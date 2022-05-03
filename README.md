@@ -1,4 +1,4 @@
-# Android-Sep-2020
+# Android-May-2022
 KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 
 #android
@@ -12,3 +12,5 @@ KAYNAK GÖSTERMEK KOŞULUYLA HER TÜRLÜ ALINTI YAPILABİLİR
 #Oğuz Karan
 #hilt
 #dagger
+#coroutines
+#gRPC
