@@ -1,27 +1,11 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Bir fonksiyonun geri dönüş değeri fonksiyon bildiriminde gövde yazılmadan : den sonra yazılmalıdır. Unit
-    C# ve Java'daki void anahtar sözcüğüne karşılık getirilebilir. Kotlin 1.1 versiyonundan sonra geri dönüş değeri olmayan
-    fonskiyonlar için Unit yazılması zorunlu değildir
+    Kotlin'de nokta içeren bir sabitin noktadan önceki kısmı (tam kısmı) sıfır ise sıfır yazılmayabilir.
+    Ancak noktadan sonraki kısmı (ondalık kısmı) sıfır ise noktadan sonra bir şey yazmamak geçersizdir
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
-fun main() : Unit
+fun main()
 {
-    println("Hello, World")
-    foo()
-    println("Goodbye, World")
+    var a = .3
+    var b = 4. //error
 }
-
-fun foo()
-{
-    println("foo")
-    bar()
-}
-
-
-fun bar() : Unit
-{
-    println("bar")
-}
-
-
