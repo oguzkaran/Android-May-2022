@@ -1,11 +1,21 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Kotlin'de nokta içeren bir sabitin noktadan önceki kısmı (tam kısmı) sıfır ise sıfır yazılmayabilir.
-    Ancak noktadan sonraki kısmı (ondalık kısmı) sıfır ise noktadan sonra bir şey yazmamak geçersizdir
+    Aşağıdaki örneği inceleyiniz. bar metodunun parametresinin default argümanı olan add metodu default arguman ile
+    çağrıldığında çağrılır
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    var a = .3
-    var b = 4. //error
+    bar()
+    println("--------------------------------")
+    bar(10)
 }
+
+fun add(a: Int, b: Int): Int
+{
+    println("add");
+
+    return a + b
+}
+
+fun bar(a: Int = add(10, 20)) = println("a=$a")
