@@ -10,6 +10,15 @@ class App {
 }
 
 class Sample {
+    public void foo(int a, int b)
+    {
+        int numberOfStudents;
+    }
+
+    public void bar(int a, int b)
+    {
+        int numberOfStudents;
+    }
 
     public static int digitsSum(int a)
     {

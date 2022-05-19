@@ -1,21 +1,28 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örneği inceleyiniz. bar metodunun parametresinin default argümanı olan add metodu default arguman ile
-    çağrıldığında çağrılır
+    Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler kullanılabilir hatta değiştirilebilir
+    Anahtar Notlar: Java' da yakalanan (capture) değişkenlere faaliyet alanları boyunca bir kez atama yapılabilir.
+    Bu atamanın da yakalanmadan önce yapılması zorunludur (effectively final)
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    bar()
-    println("--------------------------------")
-    bar(10)
+    print("Bir sayı giriniz:")
+    val a = readLine()!!.toInt()
+
+    foo(a)
 }
 
-fun add(a: Int, b: Int): Int
+fun foo(a: Int)
 {
-    println("add");
+    var x = a
 
-    return a + b
+    fun isEven() = x++ % 2 == 0
+
+    if (isEven())
+        println("Çift")
+    else
+        println("Tek")
+
+    println(x)
 }
-
-fun bar(a: Int = add(10, 20)) = println("a=$a")
