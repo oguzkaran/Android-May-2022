@@ -1,28 +1,17 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Yerel fonksiyonlar içerisinde kendisinden önce bildirilen yerel değişkenler kullanılabilir hatta değiştirilebilir
-    Anahtar Notlar: Java' da yakalanan (capture) değişkenlere faaliyet alanları boyunca bir kez atama yapılabilir.
-    Bu atamanın da yakalanmadan önce yapılması zorunludur (effectively final)
+    == ve != operatörleeri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    print("Bir sayı giriniz:")
+    print("Birinci sayıyı giriniz:")
     val a = readLine()!!.toInt()
 
-    foo(a)
-}
+    print("İkinci sayıyı giriniz:")
+    val b = readLine()!!.toInt()
+    val resEquals = a == b
+    val resNotEquals = a != b
 
-fun foo(a: Int)
-{
-    var x = a
-
-    fun isEven() = x++ % 2 == 0
-
-    if (isEven())
-        println("Çift")
-    else
-        println("Tek")
-
-    println(x)
+    println("resEquals = $resEquals, resNotEquals = $resNotEquals")
 }
