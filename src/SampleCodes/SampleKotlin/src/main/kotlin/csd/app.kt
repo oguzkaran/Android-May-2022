@@ -1,17 +1,13 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    == ve != operatörleeri. Bu operatörlerin fonksiyon karşılıkları ileride ele alınacaktır
+    if ifadesinin koşul operatörü yerine kullanımı
+    Anahtar Notlar: Kotlin'de koşul operatörü (conditional operator) yoktur
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    print("Birinci sayıyı giriniz:")
+    print("Bir sayı giriniz:")
     val a = readLine()!!.toInt()
 
-    print("İkinci sayıyı giriniz:")
-    val b = readLine()!!.toInt()
-    val resEquals = a == b
-    val resNotEquals = a != b
-
-    println("resEquals = $resEquals, resNotEquals = $resNotEquals")
+    println(if (a % 2 == 0) "Çift" else "Tek")
 }
