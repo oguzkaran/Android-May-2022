@@ -1,33 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Parametresi ile aldığı Int türden bir sayının basamak sayısını döndüren digitsCount isimli
-    fonksiyonu yazınız ve aşağıdaki kod ile test ediniz
+    Sınıf Çalışması: Parametresi ile aldığı bir sayının basamaklarının basamak sayıncı kuvvetleri toplamının
+    kendisine eşit olup olmadığını test eden isArmstrong isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon
+    negatif değerler için false değerini döndürecektir
+
+    Açıklama: Kuvvet alma işlemi için bir önceki örnekte yazılan pow fonksiyonu kullanılacaktır
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    runDigitsCountTest()
+    isArmstrongTest()
 }
 
-fun runDigitsCountTest()
+fun isArmstrongTest()
 {
-    while (true) {
-        val a = readInt()
-
-        println("$a sayısının basamak sayısı:${digitsCount(a)}")
-
-        if (a == 0)
-            break
-    }
-
-    println("Tekrar yapıyor musnuz?")
+    for (a in 0..999999)
+        if (isArmstrong(a))
+            println(a)
 }
 
-fun readInt() = readLine()!!.toInt()
-
-
-
-fun digitsCount(a: Int) : Int
+fun isArmstrong(a: Int) : Boolean
 {
-    TODO("Write this function")
+    TODO("Write tjat function. This is your task")
 }
+

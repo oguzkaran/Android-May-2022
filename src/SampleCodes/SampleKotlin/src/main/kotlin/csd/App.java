@@ -16,6 +16,9 @@ class App {
         int c = Integer.parseInt(kb.nextLine());
 
 
+        for (;;) {
+            //...
+        }
 
     }
 }
