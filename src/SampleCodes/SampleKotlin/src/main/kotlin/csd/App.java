@@ -11,12 +11,12 @@ class App {
     public static void main(String[] args)
     {
         Scanner kb = new Scanner(System.in);
-
-        System.out.print("Bir sayı giriniz:");
         int a = Integer.parseInt(kb.nextLine());
+        int b = Integer.parseInt(kb.nextLine());
+        int c = Integer.parseInt(kb.nextLine());
 
 
-        System.out.println(a % 2 == 0 ? "Çift" : "Tek");
+
     }
 }
 
