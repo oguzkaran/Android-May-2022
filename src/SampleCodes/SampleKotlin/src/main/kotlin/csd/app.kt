@@ -1,26 +1,16 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Parametresi ile aldığı bir sayının basamaklarının basamak sayıncı kuvvetleri toplamının
-    kendisine eşit olup olmadığını test eden isArmstrong isimli fonksiyonu yazınız ve aşağıdaki kod ile test ediniz. Fonksiyon
-    negatif değerler için false değerini döndürecektir
-
-    Açıklama: Kuvvet alma işlemi için bir önceki örnekte yazılan pow fonksiyonu kullanılacaktır
+    when ifadesinin in ve !in (not in) operatörleri ile kullanımı. in ve !in operatörleri ileride ele alınacaktır
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    isArmstrongTest()
-}
+    print("Bir sayı giriniz:")
+    val num = readLine()!!.toInt()
 
-fun isArmstrongTest()
-{
-    for (a in 0..999999)
-        if (isArmstrong(a))
-            println(a)
+    when (num) {
+        in 10..20 -> println("10 <= num <= 20")
+        !in 1..3 -> println("num < 1 || num > 3")
+        else -> println("Geçersiz değer")
+    }
 }
-
-fun isArmstrong(a: Int) : Boolean
-{
-    TODO("Write tjat function. This is your task")
-}
-
