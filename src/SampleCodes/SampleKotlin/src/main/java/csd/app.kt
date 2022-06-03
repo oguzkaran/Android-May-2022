@@ -1,16 +1,13 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    when ifadesinin in ve !in (not in) operatörleri ile kullanımı. in ve !in operatörleri ileride ele alınacaktır
+    Kotlin'de new operatörü yoktur. Nesne yaratılması aşağıdaki gibi yapılabilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    print("Bir sayı giriniz:")
-    val num = readLine()!!.toInt()
+    var d = DeviceInfo()
 
-    when (num) {
-        in 10..20 -> println("10 <= num <= 20")
-        !in 1..3 -> println("num < 1 || num > 3")
-        else -> println("Geçersiz değer")
-    }
+    //...
 }
+
+class DeviceInfo
