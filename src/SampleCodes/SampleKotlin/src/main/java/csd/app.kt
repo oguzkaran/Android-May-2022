@@ -1,30 +1,18 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıfın primary ctor'u varsa tüm secondary ctor'ların doğrudan ya da dolaylı olarak bu ctor'u çağırıyor olmaları
-    gerekir. Bu işlem :this ctor sentaksı yapılır
+    Aşağıdaki kodda tam uyumdan (exact match) dolayı error oluşmaz
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    var s = Sample(3)
-    println("------------------------")
-    var k = Sample(3.toShort())
+    val s = Sample();
 
     //...
+
 }
 
-class Sample(var a: Double) {
-    init {
-        println("primary ctor")
-    }
+class Sample {
+    fun foo(a:Int = 0, b:Double = 4.5) = println("foo(Int, Double)")
+    fun foo(s:Sample = Sample(), b:Int = 34) = println("foo(Sample, Int)")
 
-    constructor(a: Int) : this(a.toDouble())
-    {
-        println("secondary ctor with parameter Int")
-    }
-
-    constructor(a: Short) : this(a.toInt())
-    {
-        println("secondary ctor with parameter Short")
-    }
 }

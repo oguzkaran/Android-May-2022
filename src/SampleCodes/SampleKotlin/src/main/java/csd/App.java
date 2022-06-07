@@ -12,3 +12,22 @@ class App {
     }
 }
 
+class MyPoint {
+    public double x;
+    public double y;
+
+    public MyPoint()
+    {
+    }
+
+    public MyPoint(double a)
+    {
+        this(a, 0);
+    }
+
+    public MyPoint(double a, double b)
+    {
+        x = a;
+        y = b;
+    }
+}
