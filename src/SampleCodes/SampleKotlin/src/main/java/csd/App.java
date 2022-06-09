@@ -8,7 +8,9 @@ package csd;
 class App {
     public static void main(String [] args)
     {
+        Complex c = new Complex(2.3, 4.5);
 
+        System.out.println(c.getNorm());
     }
 }
 
