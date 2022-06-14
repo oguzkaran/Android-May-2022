@@ -1,15 +1,16 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    İki yazının aynı olup olmadığı == veya != operatörleri ile test edilebilir
+    String sınıfının tüm karakterleri for döngüsü ile elde edilebilir. Yani String sınıfı "iterable"'dır. Iterable kavramı
+    ileride ele alınacaktır
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
 fun main()
 {
-    print("Birinci yazıyı giriniz:")
+    print("Bir yazı giriniz:")
     val s = readLine()!!
 
-    print("İkinci yazıyı giriniz:")
-    val k = readLine()!!
+    for (ch in s)
+        print("${ch} ")
 
-    println(if (s == k) "Aynı yazı" else "Farklı yazılar")
+    println()
 }
