@@ -5,12 +5,17 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
+import java.util.Scanner;
+
 class App {
     public static void main(String [] args)
     {
-        Complex c = new Complex(2.3, 4.5);
+        Scanner kb = new Scanner(System.in);
 
-        System.out.println(c.getNorm());
+        String s1 = kb.nextLine();
+        String s2 = kb.nextLine();
+
+        System.out.println(s1 == s2);
     }
 }
 

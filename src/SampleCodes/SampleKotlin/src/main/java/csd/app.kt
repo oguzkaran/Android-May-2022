@@ -1,12 +1,15 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Random sınıfının nextBoolean metodu
+    İki yazının aynı olup olmadığı == veya != operatörleri ile test edilebilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd
 
-import kotlin.random.Random
-
 fun main()
 {
-    for (i in 1..10)
-        println(Random.nextBoolean())
+    print("Birinci yazıyı giriniz:")
+    val s = readLine()!!
+
+    print("İkinci yazıyı giriniz:")
+    val k = readLine()!!
+
+    println(if (s == k) "Aynı yazı" else "Farklı yazılar")
 }
