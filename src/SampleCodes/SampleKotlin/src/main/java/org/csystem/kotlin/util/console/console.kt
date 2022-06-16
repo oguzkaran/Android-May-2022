@@ -17,3 +17,9 @@ fun readDouble(msg: String) : Double
     print(msg)
     return readLine()!!.toDouble()
 }
+
+fun readString(msg: String) : String
+{
+    print(msg)
+    return readLine()!!
+}
