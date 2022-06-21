@@ -3,8 +3,22 @@ package org.csystem.kotlin.util.numeric
 import kotlin.math.abs
 import kotlin.math.log10
 
+fun digits(a: Int) : IntArray
+{
+    val d = IntArray(digitsCount(a))
+    var temp = abs(a)
+
+    for (i in d.size - 1 downTo 0) {
+        d[i] = temp % 10;
+        temp /= 10
+    }
+
+    return d
+}
+
+
 fun digitsCount(a: Int) = digitsCount(a.toLong())
-fun digitsCount(a: Long) = if (a != 0L) log10(abs(a.toDouble())).toLong() + 1L else 1
+fun digitsCount(a: Long) = if (a != 0L) log10(abs(a.toDouble())).toInt() + 1 else 1
 
 fun digitsSum(a: Int) : Int
 {
