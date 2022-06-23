@@ -1,39 +1,21 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Taxi, Driver ve Client arasındaki ilişkiler
+    Türemiş sınıf türünden (sub class) bir referans taban sınıf (super class) türünden bir referansa doğrudan (implicit)
+    atanabilir (upcasting)
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
 fun main()
 {
-    val driver = Driver(/*...*/)
-    val taxi = Taxi(driver/*...*/)
-
-    //...
-
-    val client = Client(/*...*/)
-
-    taxi.take(client)
-
-    val client2 = Client(/*...*/)
-
-    taxi.take(client2)
+    val x = B()
+    var y: A = x
 
     //...
 }
 
-class Client {
+open class A {
     //...
 }
 
-class Driver {
+class B : A() {
     //...
-}
-
-class Taxi(var driver: Driver /*...*/) {
-    //...
-
-    fun take(c: Client)
-    {
-        //...
-    }
 }

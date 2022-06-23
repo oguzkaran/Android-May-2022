@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------*/
 package org.csystem.kotlin.util.math
 
-class Circle(r: Double = 0.0) {
+open class Circle(r: Double = 0.0) {
     var r: Double = Math.abs(r)
         set(value) {
             field = Math.abs(value)
