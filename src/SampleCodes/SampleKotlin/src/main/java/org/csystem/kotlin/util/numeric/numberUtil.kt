@@ -3,21 +3,64 @@ package org.csystem.kotlin.util.numeric
 import kotlin.math.abs
 import kotlin.math.log10
 
-fun digits(a: Int) : IntArray
-{
-    val d = IntArray(digitsCount(a))
-    var temp = abs(a)
+private val onesTR = arrayOf("", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz")
+private val tensTR = arrayOf("", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan")
+private val onesEN = arrayOf("", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
 
-    for (i in d.size - 1 downTo 0) {
-        d[i] = temp % 10;
-        temp /= 10
+private fun numToStr3DTR(value: Int, sb: StringBuilder) : String
+{
+    val a = value / 100
+    val b = value / 10 % 10
+    val c = value % 10
+
+    if (a != 0) {
+        if (a != 1)
+            sb.append(onesTR[a])
+        sb.append("yüz")
     }
 
-    return d
+    if (b != 0)
+        sb.append(tensTR[b])
+
+    if (c != 0)
+        sb.append(onesTR[c])
+
+    return sb.toString()
 }
 
+private fun digits(a: Long, n: Int) : IntArray
+{
+    var temp = abs(a)
+    val count = if (a != 0L) (log10(temp.toDouble()) / n).toInt() + 1 else 1
+    val result = IntArray(count)
+    val powOfTen = Math.pow(10.0, n.toDouble()).toLong()
+
+    for (i in count - 1 downTo 0) {
+        result[i] = (temp % powOfTen).toInt()
+        temp /= powOfTen
+    }
+
+    return result
+}
+
+fun numToStr3DTR(value: Int) : String
+{
+    if (value == 0)
+        return "sıfır"
+
+    val sb = StringBuilder()
+    if (value < 0)
+        sb.append("eksi")
+
+    return numToStr3DTR(abs(value), sb)
+}
+
+fun digits(a: Long)  = digits(a, 1)
+fun digitsInTwos(a: Long) = digits(a, 2)
+fun digitsInThrees(a: Long) = digits(a, 3)
 
 fun digitsCount(a: Int) = digitsCount(a.toLong())
+
 fun digitsCount(a: Long) = if (a != 0L) log10(abs(a.toDouble())).toInt() + 1 else 1
 
 fun digitsSum(a: Int) : Int
