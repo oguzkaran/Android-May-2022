@@ -1,76 +1,25 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    CompanyApp uygualaması. Örnekte payInsurance fonksiyonun türden bağımsız yazıldığına dikkat ediniz
+    AnalyticalCircle sınıfı ve test kodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.app.company.*
+import org.csystem.kotlin.util.math.geometry.AnalyticalCircle
 
-fun main() = runCompanyApp()
-
-fun runCompanyApp()
+fun main()
 {
-    val manager = getManager()
-    val worker = getWorker()
-    val salesManager = getSalesManager()
-    val projectWorker = getProjectWorker()
+    val ac = AnalyticalCircle(-2.3, 23.5, 56.7)
 
-    payInsurance(manager)
-    payInsurance(worker)
-    payInsurance(salesManager)
-    payInsurance(projectWorker)
-}
+    println("Radius:${ac.r}")
+    println("Area:${ac.area}")
+    println("Circumference:${ac.circumference}")
+    println("Center:${ac.x}, ${ac.y}")
 
-fun getManager() : Manager
-{
-    val m = Manager()
+    ac.r = 2.3
+    ac.x = 200.0
+    ac.y = 12.3
 
-    m.name = "Ali";
-    m.citizenId = "12345678912"
-    m.address = "Şişli"
-    m.department = "Pazarlama"
-    m.salary = 40000.7
-
-    return m
-}
-
-fun getWorker() : Worker
-{
-    val w = Worker()
-
-    w.name = "Veli";
-    w.citizenId = "12345678916"
-    w.address = "Beşiktaş"
-    w.feePerHour = 250.6
-    w.hourPerDay = 8
-
-    return w
-}
-
-fun getSalesManager() : SalesManager
-{
-    val m = SalesManager()
-
-    m.name = "Ayşe";
-    m.citizenId = "12345678914"
-    m.address = "Şişli"
-    m.department = "Yazılım"
-    m.salary = 40000.7
-    m.extra = 10000.9
-
-    return m
-}
-
-fun getProjectWorker() : ProjectWorker
-{
-    val w = ProjectWorker()
-
-    w.name = "Fatma";
-    w.citizenId = "12345678918"
-    w.address = "Mecidiyeköy"
-    w.feePerHour = 250.6
-    w.hourPerDay = 8
-    w.projectName = "Online chat platform"
-    w.extra = 15000.6
-
-    return w
+    println("Radius:${ac.r}")
+    println("Area:${ac.area}")
+    println("Circumference:${ac.circumference}")
+    println("Center:${ac.x}, ${ac.y}")
 }

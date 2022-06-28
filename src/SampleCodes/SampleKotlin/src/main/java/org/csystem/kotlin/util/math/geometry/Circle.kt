@@ -1,19 +1,21 @@
 /*----------------------------------------------------------------------
 	FILE        : Circle.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 16.06.2022
+	LAST UPDATE : 28.06.2022
 
 	Circle class that represents the circle in geometry
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.kotlin.util.math
+package org.csystem.kotlin.util.math.geometry
+
+import kotlin.math.abs
 
 open class Circle(r: Double = 0.0) {
-    var r: Double = Math.abs(r)
+    var r: Double = abs(r)
         set(value) {
-            field = Math.abs(value)
+            field = abs(value)
         }
 
     val area : Double

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : MutablePoint.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 16.06.2022
+	LAST UPDATE : 28.06.2022
 
 	MutablePoint class that represents a 2 dimensional point in
 	cartesian plane
@@ -12,6 +12,7 @@
 package org.csystem.kotlin.util.math.geometry
 
 class MutablePoint(var x: Double = 0.0, var y: Double = 0.0) {
+    constructor(point: Point) : this(point.x, point.y)
     fun distance(other: MutablePoint) = distance(other.x, other.y)
     fun distance(a: Double = 0.0, b: Double = 0.0) = Math.sqrt(Math.pow(x - a, 2.0) + Math.pow(y - b, 2.0))
 
@@ -21,5 +22,6 @@ class MutablePoint(var x: Double = 0.0, var y: Double = 0.0) {
         y += dy
     }
 
+    fun toPoint() = Point(x, y)
     //...
 }
