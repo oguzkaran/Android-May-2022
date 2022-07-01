@@ -1,25 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    AnalyticalCircle sınıfı ve test kodu
+    Aşağıdaki örnek Kotlin'de geçersizdir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.kotlin.util.math.geometry.AnalyticalCircle
+open class A {
+    open fun foo()
+    {
+        println("A.foo")
+    }
+    //...
+}
 
-fun main()
-{
-    val ac = AnalyticalCircle(-2.3, 23.5, 56.7)
+open class B : A() {
+    final override fun foo()
+    {
+        println("B.foo")
+    }
+}
 
-    println("Radius:${ac.r}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
-
-    ac.r = 2.3
-    ac.x = 200.0
-    ac.y = 12.3
-
-    println("Radius:${ac.r}")
-    println("Area:${ac.area}")
-    println("Circumference:${ac.circumference}")
-    println("Center:${ac.x}, ${ac.y}")
+open class C : B() {
+    open fun foo() //error
+    {
+        //...
+    }
 }

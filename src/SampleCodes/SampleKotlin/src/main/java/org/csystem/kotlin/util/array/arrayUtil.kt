@@ -52,3 +52,14 @@ fun randomLongArray(count: Int, min: Long, max: Long, random: Random = Random) :
 
     return a
 }
+
+
+fun sum(a: IntArray) : Int
+{
+    var total = 0
+
+    for (e in a)
+        total += e
+
+    return total
+}

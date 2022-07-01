@@ -10,12 +10,5 @@ class App {
     {
 
     }
-
 }
 
-class X {
-
-}
-
-class Y {
-}
