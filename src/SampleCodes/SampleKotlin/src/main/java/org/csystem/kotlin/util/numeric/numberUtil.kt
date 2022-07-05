@@ -7,6 +7,22 @@ private val onesTR = arrayOf("", "bir", "iki", "üç", "dört", "beş", "altı",
 private val tensTR = arrayOf("", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan")
 private val onesEN = arrayOf("", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
 
+private fun digits(a: Long, n: Int) : IntArray
+{
+    var temp = abs(a)
+    val count = if (a != 0L) (log10(temp.toDouble()) / n).toInt() + 1 else 1
+    val result = IntArray(count)
+    val powOfTen = Math.pow(10.0, n.toDouble()).toLong()
+
+    for (i in count - 1 downTo 0) {
+        result[i] = (temp % powOfTen).toInt()
+        temp /= powOfTen
+    }
+
+    return result
+}
+
+
 private fun numToStr3DTR(value: Int, sb: StringBuilder) : String
 {
     val a = value / 100
@@ -28,22 +44,7 @@ private fun numToStr3DTR(value: Int, sb: StringBuilder) : String
     return sb.toString()
 }
 
-private fun digits(a: Long, n: Int) : IntArray
-{
-    var temp = abs(a)
-    val count = if (a != 0L) (log10(temp.toDouble()) / n).toInt() + 1 else 1
-    val result = IntArray(count)
-    val powOfTen = Math.pow(10.0, n.toDouble()).toLong()
-
-    for (i in count - 1 downTo 0) {
-        result[i] = (temp % powOfTen).toInt()
-        temp /= powOfTen
-    }
-
-    return result
-}
-
-fun numToStr3DTR(value: Int) : String
+private fun numToStr3DTR(value: Int) : String
 {
     if (value == 0)
         return "sıfır"
@@ -136,6 +137,16 @@ fun isPrime(a: Long) : Boolean
     }
 
     return true
+}
+
+fun numToTextTR(value: Long) : String
+{
+    TODO("Homework-012-3")
+}
+
+fun numToTextEN(value: Long) : String
+{
+    TODO("Write if you have a time")
 }
 
 fun reverse(a: Int) : Int

@@ -12,15 +12,17 @@ package org.csystem.kotlin.util.math.geometry
 
 import kotlin.math.abs
 
-open class Circle(r: Double = 0.0) {
-    var r: Double = abs(r)
+open class Circle(radius: Double = 0.0) {
+    var radius: Double = abs(radius)
         set(value) {
             field = abs(value)
         }
 
     val area : Double
-        get() = Math.PI * r * r
+        get() = Math.PI * radius * radius
 
     val circumference : Double
-        get() = 2 * Math.PI * r
+        get() = 2 * Math.PI * radius
+
+    override fun toString() = "r = $radius"
 }

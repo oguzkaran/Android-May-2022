@@ -1,26 +1,11 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnek Kotlin'de geçersizdir
+    Anahtar Notlar: Temel türlere ilişkin sınıfların (Short, Int, Long, Byte, Float, Double, Boolean, Char) toString ve
+    equals metotları da override edilmiştir. toString metotları ilgili değerin yazı karşılığına geri döner.
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-open class A {
-    open fun foo()
-    {
-        println("A.foo")
-    }
-    //...
+fun main()
+{
+    
 }
 
-open class B : A() {
-    final override fun foo()
-    {
-        println("B.foo")
-    }
-}
-
-open class C : B() {
-    open fun foo() //error
-    {
-        //...
-    }
-}

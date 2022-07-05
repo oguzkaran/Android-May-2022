@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Point.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 28.06.2022
+	LAST UPDATE : 05.07.2022
 
 	Immutable Point class that represents a 2 dimensional point in
 	cartesian plane
@@ -11,10 +11,13 @@
 -----------------------------------------------------------------------*/
 package org.csystem.kotlin.util.math.geometry
 
+import kotlin.math.sqrt
+
 class Point(val x: Double = 0.0, val y: Double = 0.0) {
     constructor(mutablePoint: MutablePoint) : this(mutablePoint.x, mutablePoint.y)
     fun distance(other: Point) = distance(other.x, other.y)
-    fun distance(a: Double = 0.0, b: Double = 0.0) = Math.sqrt(Math.pow(x - a, 2.0) + Math.pow(y - b, 2.0))
+    fun distance(a: Double = 0.0, b: Double = 0.0) = sqrt((x - a) * (x - a) + (y - b) * (y - b))
     fun toMutablePoint() = MutablePoint(x, y)
+    override fun toString() = "($x, $y)"
     //...
 }
