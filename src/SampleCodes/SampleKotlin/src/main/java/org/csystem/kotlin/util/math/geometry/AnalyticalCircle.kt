@@ -35,6 +35,4 @@ open class AnalyticalCircle(radius: Double = 0.0, x: Double = 0.0, y: Double = 0
 
     fun offset(dx: Double, dy: Double = dx) = mCenter.offset(dx, dy)
     fun centerDistance(other: AnalyticalCircle) = mCenter.distance(other.mCenter)
-
-
 }

@@ -1,11 +1,8 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Anahtar Notlar: Temel türlere ilişkin sınıfların (Short, Int, Long, Byte, Float, Double, Boolean, Char) toString ve
-    equals metotları da override edilmiştir. toString metotları ilgili değerin yazı karşılığına geri döner.
+    abstract property elemanları
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-fun main()
-{
-    
-}
+import org.csystem.app.company.runCompanyApp
 
+fun main() = runCompanyApp()

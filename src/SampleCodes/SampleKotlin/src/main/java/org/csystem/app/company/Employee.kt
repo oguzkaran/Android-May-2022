@@ -1,7 +1,8 @@
 package org.csystem.app.company
 
-open class Employee() {
+abstract class Employee() {
     var name: String = ""
     var citizenId: String = ""
     var address: String = ""
+    abstract fun calculateInsurancePayment() : Double
 }
