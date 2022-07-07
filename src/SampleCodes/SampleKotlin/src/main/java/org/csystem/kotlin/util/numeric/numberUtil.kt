@@ -1,7 +1,9 @@
 package org.csystem.kotlin.util.numeric
 
+import org.csystem.kotlin.util.math.Complex
 import kotlin.math.abs
 import kotlin.math.log10
+import kotlin.random.Random
 
 private val onesTR = arrayOf("", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz")
 private val tensTR = arrayOf("", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan")
@@ -148,6 +150,10 @@ fun numToTextEN(value: Long) : String
 {
     TODO("Write if you have a time")
 }
+
+
+fun randomComplex(from: Double = 0.0, until: Double = 1.0, random: Random = Random)
+                                            = Complex(random.nextDouble(from, until), random.nextDouble(from, until))
 
 fun reverse(a: Int) : Int
 {
