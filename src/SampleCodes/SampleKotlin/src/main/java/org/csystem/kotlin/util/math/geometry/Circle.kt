@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Circle.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 05.07.2022
+	LAST UPDATE : 07.07.2022
 
 	Circle class that represents the circle in geometry
 
@@ -25,6 +25,11 @@ open class Circle(radius: Double = 0.0) {
 
     val circumference : Double
         get() = 2 * Math.PI * radius
+
+    fun copy() = Circle(radius)
+    operator fun component1() = radius
+    operator fun component2() = area
+    operator fun component3() = circumference
     override fun hashCode() = radius.hashCode()
     override fun equals(other: Any?) = other is Circle && abs(other.radius - radius) < EPSILON
     override fun toString() = "r = $radius"

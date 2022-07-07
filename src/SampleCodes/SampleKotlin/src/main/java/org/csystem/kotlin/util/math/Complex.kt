@@ -22,6 +22,9 @@ data class Complex(val real: Double = 0.0, val imag: Double = 0.0) {
     val conjugate: Complex
         get() = Complex(real, -imag)
 
+    operator fun component3() = norm
+    operator fun component4() = conjugate
+
     override fun toString() = "($real, $imag)"
     //...
 }
