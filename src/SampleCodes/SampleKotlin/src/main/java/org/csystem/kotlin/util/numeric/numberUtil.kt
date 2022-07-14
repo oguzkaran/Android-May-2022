@@ -1,3 +1,13 @@
+/*----------------------------------------------------------------------
+	FILE        : numberUtil.kt
+	AUTHOR      : Android-May-2022 Group
+	LAST UPDATE : 14.07.2022
+
+	Utility functions for numeric operations
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
 package org.csystem.kotlin.util.numeric
 
 import org.csystem.kotlin.util.math.Complex
@@ -139,6 +149,17 @@ fun isPrime(a: Long) : Boolean
     }
 
     return true
+}
+
+fun mid(a: Int, b: Int, c: Int) : Int
+{
+    if (b in a..c || b in c..a)
+        return b
+
+    if (a in b..c || a in c..b)
+        return a
+
+    return c
 }
 
 fun numToTextTR(value: Long) : String

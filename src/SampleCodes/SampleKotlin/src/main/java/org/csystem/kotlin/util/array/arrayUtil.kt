@@ -1,3 +1,14 @@
+/*----------------------------------------------------------------------
+	FILE        : arrayUtil.kt
+	AUTHOR      : Android-May-2022 Group
+	LAST UPDATE : 14.07.2022
+
+	Utility functions for array operations
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
+
 package org.csystem.kotlin.util.array
 
 import kotlin.random.Random
