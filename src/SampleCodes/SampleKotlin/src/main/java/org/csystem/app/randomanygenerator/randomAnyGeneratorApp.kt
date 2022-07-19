@@ -11,27 +11,14 @@ private fun doWorkForObjects(count: Int)
         println("-----------------------------------------")
         println("Type: ${a.javaClass.name}")
 
-        if (a is String) {
-            val str: String = a as String
-            println("$str -> ${str.uppercase()}")
+        when (a) {
+            is String -> println("$a -> ${a.uppercase()}")
+            is Int -> println("$a * $a = ${a * a}")
+            is Double -> println("$a")
+            is IntArray -> {write(a); println("Toplam: ${sum(a)}")}
+            else -> println(a as Char)
         }
-        else if (a is Int) {
-            val value = a as Int
-            println("$value * $value = ${value * value}")
-        }
-        else if (a is Double) {
-            val value = a as Double
-            println("$value")
-        }
-        else if (a is IntArray) {
-            val array: IntArray = a as IntArray
-            write(array)
-            println("Toplam: ${sum(array)}")
-        }
-        else {
-            val ch = a as Char
-            println(ch)
-        }
+
         println("-----------------------------------------")
     }
 }
