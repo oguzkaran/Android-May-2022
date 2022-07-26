@@ -1,16 +1,16 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Basit bir exception kullanımı
+    Complex sınıfının operatör fonksiyonları
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.kotlin.util.console.readDouble
-import org.csystem.kotlin.util.console.readString
+import org.csystem.kotlin.util.math.util.randomComplex
+import kotlin.random.Random
 
 fun main()
 {
-    val s = readString("true veya false giriniz:")
-    val b: Boolean = s.toBoolean()
+    val z = Random.randomComplex(-10, 10)
 
-    println(b)
+    println(z)
+    println(-z)
+    println(+z)
 }
-

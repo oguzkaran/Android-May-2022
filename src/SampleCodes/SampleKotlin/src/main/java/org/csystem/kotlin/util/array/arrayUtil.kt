@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : arrayUtil.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 14.07.2022
+	LAST UPDATE : 26.07.2022
 
 	Utility functions for array operations
 
@@ -13,64 +13,82 @@ package org.csystem.kotlin.util.array
 
 import kotlin.random.Random
 
-fun write(a: IntArray)
+fun IntArray.write() = write(1)
+
+fun IntArray.write(n: Int)
 {
-    for (value in a)
-        print("$value ")
+    val fmt = """%0${n}d """
+
+    for (value in this)
+        print(fmt.format(value))
 
     println()
 }
 
-fun write(a: DoubleArray)
+fun DoubleArray.write()
 {
-    for (value in a)
+    for (value in this)
         println("$value")
 }
 
-fun write(a: LongArray)
+fun LongArray.write()
 {
-    for (value in a)
+    for (value in this)
         println("$value")
 }
 
+fun IntArray.fillRandomArray(min: Int, max: Int, random: Random = Random)
+{
+    for (i in this.indices)
+        this[i] = random.nextInt(min, max + 1)
+}
 
-fun randomIntArray(count: Int, min: Int, max: Int, random: Random = Random) : IntArray
+fun DoubleArray.fillRandomArray(min: Double, max: Double, random: Random = Random)
+{
+    for (i in this.indices)
+        this[i] = random.nextDouble(min, max + 1)
+}
+
+
+fun LongArray.fillRandomArray(min: Long, max: Long, random: Random = Random)
+{
+    for (i in this.indices)
+        this[i] = random.nextLong(min, max + 1)
+}
+
+fun Random.randomArray(count: Int, min: Int, max: Int) : IntArray
 {
     val a = IntArray(count)
 
-    for (i in a.indices)
-        a[i] = random.nextInt(min, max + 1)
+    a.fillRandomArray(min, max, this)
 
     return a
 }
 
-fun randomDoubleArray(count: Int, min: Double, max: Double, random: Random = Random) : DoubleArray
+fun Random.randomArray(count: Int, min: Double, max: Double) : DoubleArray
 {
     val a = DoubleArray(count)
 
-    for (i in a.indices)
-        a[i] = random.nextDouble(min, max)
+    a.fillRandomArray(min, max, this)
 
     return a
 }
 
-fun randomLongArray(count: Int, min: Long, max: Long, random: Random = Random) : LongArray
+fun Random.randomArray(count: Int, min: Long, max: Long) : LongArray
 {
     val a = LongArray(count)
 
-    for (i in a.indices)
-        a[i] = random.nextLong(min, max)
+    a.fillRandomArray(min, max, this);
 
     return a
 }
 
-
-fun sum(a: IntArray) : Int
+fun IntArray.sum() : Int
 {
     var total = 0
 
-    for (e in a)
-        total += e
+    for (value in this)
+        total += value
 
     return total
 }

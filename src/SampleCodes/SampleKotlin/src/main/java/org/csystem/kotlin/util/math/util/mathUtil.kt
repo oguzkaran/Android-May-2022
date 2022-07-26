@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : mathUtil.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 14.07.2022
+	LAST UPDATE : 26.07.2022
 
 	Utility functions for mathematical operations
 
@@ -11,7 +11,9 @@
 
 package org.csystem.kotlin.util.math.util
 
+import org.csystem.kotlin.util.math.Complex
 import kotlin.math.sqrt
+import kotlin.random.Random
 
 
 data class SecondOrderEqRootInfo(val x1: Double, val x2: Double = x1)
@@ -27,3 +29,6 @@ fun findSecondOrderEqRoots(a: Double, b: Double, c: Double) : SecondOrderEqRootI
         else -> SecondOrderEqRootInfo(Double.NaN)
     }
 }
+
+fun Random.randomComplex(min: Double = .0, bound: Double = 1.0) = Complex(this.nextDouble(min, bound), this.nextDouble(min, bound))
+fun Random.randomComplex(min: Int = 0, bound: Int = 1) = randomComplex(min.toDouble(), bound.toDouble())

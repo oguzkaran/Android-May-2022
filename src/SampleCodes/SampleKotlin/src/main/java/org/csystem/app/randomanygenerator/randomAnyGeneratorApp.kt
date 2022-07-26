@@ -15,7 +15,7 @@ private fun doWorkForObjects(count: Int)
             is String -> println("$a -> ${a.uppercase()}")
             is Int -> println("$a * $a = ${a * a}")
             is Double -> println("$a")
-            is IntArray -> {write(a); println("Toplam: ${sum(a)}")}
+            is IntArray -> {a.write(); println("Toplam: ${a.sum()}")}
             else -> println(a as Char)
         }
 

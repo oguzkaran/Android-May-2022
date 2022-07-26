@@ -1,6 +1,15 @@
+/*----------------------------------------------------------------------
+	FILE        : stringUtil.kt
+	AUTHOR      : Android-May-2022 Group
+	LAST UPDATE : 26.07.2022
+
+	Utility functions for string operations
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
 package org.csystem.kotlin.util.string
 
-import java.lang.StringBuilder
 import kotlin.random.Random
 
 private const val ALPHABET_TR = "abcçdefgğhıijklmnoöprsştuüvyz"
@@ -11,19 +20,19 @@ private const val ALPHABET_TR_ALL = ALPHABET_TR + ALPHABET_TR_CAPITAL
 private const val ALPHABET_EN_ALL = ALPHABET_EN + ALPHABET_EN_CAPITAL
 private const val DIGITS = "0123456789"
 
-private fun isPangram(s: String, alphabet: String) : Boolean
+private fun String.isPangram(alphabet: String) : Boolean
 {
     for (c in alphabet)
-        if (!s.contains(c))
+        if (!this.contains(c))
             return false
 
     return true
 }
 
-private fun isIsogram(s: String, alphabet: String) : Boolean
+private fun String.isIsogram(alphabet: String) : Boolean
 {
     for (c in alphabet) {
-        val count = countString(s, c + "")
+        val count = this.countString(c + "")
         if (count != 1)
             return false
     }
@@ -31,13 +40,13 @@ private fun isIsogram(s: String, alphabet: String) : Boolean
     return true
 }
 
-fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
+fun String.countString(s: String, ignoreCase: Boolean = false) : Int
 {
     var count = 0
     var i = -1
 
     while (true) {
-        i = s1.indexOf(s2, i + 1, ignoreCase)
+        i = this.indexOf(s, i + 1, ignoreCase)
         if (i == -1)
             break
         ++count
@@ -46,22 +55,22 @@ fun countString(s1: String, s2: String, ignoreCase: Boolean = false) : Int
     return count;
 }
 
-fun getRandomTextTR(n: Int, random: Random = Random) = getRandomText(n, ALPHABET_TR_ALL, random)
+fun Random.getRandomTextTR(n: Int) = getRandomText(n, ALPHABET_TR_ALL)
 
-fun getRandomTextEN(n: Int, random: Random = Random) = getRandomText(n, ALPHABET_EN_ALL, random)
+fun Random.getRandomTextEN(n: Int) = getRandomText(n, ALPHABET_EN_ALL)
 
-fun getRandomText(n: Int, str: String, random: Random = Random) : String
+fun Random.getRandomText(n: Int, str: String) : String
 {
     val sb = StringBuilder()
 
     for (i in 1..n)
-        sb.append(str[random.nextInt(str.length)]);
+        sb.append(str[this.nextInt(str.length)]);
 
     return sb.toString()
 }
 
-fun isIsogramTR(s: String) = isIsogram(s.lowercase(), ALPHABET_TR)
-fun isIsogramEN(s: String) = isIsogram(s.lowercase(), ALPHABET_EN)
-fun isPangramTR(s: String) = isPangram(s.lowercase(), ALPHABET_TR)
-fun isPangramEN(s: String) = isPangram(s.lowercase(), ALPHABET_EN)
+fun String.isIsogramTR() = lowercase().isIsogram(ALPHABET_TR)
+fun String.isIsogramEN() = lowercase().isIsogram(ALPHABET_EN)
+fun String.isPangramTR() = lowercase().isPangram(ALPHABET_TR)
+fun String.isPangramEN() = lowercase().isPangram(ALPHABET_EN)
 

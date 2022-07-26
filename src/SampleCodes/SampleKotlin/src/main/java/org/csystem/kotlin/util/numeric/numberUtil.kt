@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : numberUtil.kt
 	AUTHOR      : Android-May-2022 Group
-	LAST UPDATE : 14.07.2022
+	LAST UPDATE : 26.07.2022
 
 	Utility functions for numeric operations
 
@@ -68,17 +68,17 @@ private fun numToStr3DTR(value: Int) : String
     return numToStr3DTR(abs(value), sb)
 }
 
-fun digits(a: Long)  = digits(a, 1)
-fun digitsInTwos(a: Long) = digits(a, 2)
-fun digitsInThrees(a: Long) = digits(a, 3)
+fun Long.digits()  = digits(this, 1)
+fun Long.digitsInTwos() = digits(this, 2)
+fun Long.digitsInThrees() = digits(this, 3)
 
-fun digitsCount(a: Int) = digitsCount(a.toLong())
+fun Int.digitsCount() = this.toLong().digitsCount()
 
-fun digitsCount(a: Long) = if (a != 0L) log10(abs(a.toDouble())).toInt() + 1 else 1
+fun Long.digitsCount() = if (this != 0L) log10(abs(this.toDouble())).toInt() + 1 else 1
 
-fun digitsSum(a: Int) : Int
+fun Int.digitsSum() : Int
 {
-    var temp = a
+    var temp = this
     var sum = 0
 
     while (temp != 0) {
@@ -89,14 +89,14 @@ fun digitsSum(a: Int) : Int
     return Math.abs(sum)
 }
 
-fun getDigitsPowerSum(a: Int) : Int
+fun Int.getDigitsPowerSum() : Int
 {
-    var temp = a
+    var temp = this
     var sum = 0
-    val n = digitsCount(a).toDouble()
+    val n = temp.digitsCount().toDouble()
 
     while (temp != 0) {
-        sum += Math.pow((a % 10).toDouble(), n).toInt()
+        sum += Math.pow((temp % 10).toDouble(), n).toInt()
         temp /= 10
     }
 
@@ -109,7 +109,7 @@ fun getPrime(n: Int) : Long
     var value =  2L
 
     while (true) {
-        if (isPrime(value))
+        if (value.isPrime())
             ++count
 
         if (count == n)
@@ -119,12 +119,15 @@ fun getPrime(n: Int) : Long
     }
 }
 
-fun isArmstrong(a: Int) = a == getDigitsPowerSum(a)
+fun Int.isArmstrong() = this == this.getDigitsPowerSum()
 
-fun isPalindrome(a: Int) = a == reverse(a)
+fun Int.isPalindrome() = this == this.reverse()
 
-fun isPrime(a: Long) : Boolean
+fun Int.isPrime() = this.toLong().isPrime()
+fun Long.isPrime() : Boolean
 {
+    val a = this
+
     if (a <= 1)
         return false
 
@@ -162,23 +165,20 @@ fun mid(a: Int, b: Int, c: Int) : Int
     return c
 }
 
-fun numToTextTR(value: Long) : String
+fun Long.numToTextTR() : String
 {
     TODO("Homework-012-3")
 }
 
-fun numToTextEN(value: Long) : String
+fun Long.numToTextEN() : String
 {
     TODO("Write if you have a time")
 }
 
 
-fun randomComplex(from: Double = 0.0, until: Double = 1.0, random: Random = Random)
-                                            = Complex(random.nextDouble(from, until), random.nextDouble(from, until))
-
-fun reverse(a: Int) : Int
+fun Int.reverse() : Int
 {
-    var temp = a;
+    var temp = this;
     var rev = 0
 
     while (temp != 0) {
