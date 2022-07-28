@@ -12,6 +12,7 @@
 package org.csystem.kotlin.util.math.util
 
 import org.csystem.kotlin.util.math.Complex
+import org.csystem.kotlin.util.math.MutableComplex
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -32,3 +33,7 @@ fun findSecondOrderEqRoots(a: Double, b: Double, c: Double) : SecondOrderEqRootI
 
 fun Random.randomComplex(min: Double = .0, bound: Double = 1.0) = Complex(this.nextDouble(min, bound), this.nextDouble(min, bound))
 fun Random.randomComplex(min: Int = 0, bound: Int = 1) = randomComplex(min.toDouble(), bound.toDouble())
+
+
+fun Random.randomMutableComplex(min: Double = .0, bound: Double = 1.0) = MutableComplex(this.nextDouble(min, bound), this.nextDouble(min, bound))
+fun Random.randomMutableComplex(min: Int = 0, bound: Int = 1) = randomMutableComplex(min.toDouble(), bound.toDouble())
