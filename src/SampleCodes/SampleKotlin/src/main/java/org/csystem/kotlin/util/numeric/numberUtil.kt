@@ -10,10 +10,9 @@
 -----------------------------------------------------------------------*/
 package org.csystem.kotlin.util.numeric
 
-import org.csystem.kotlin.util.math.Complex
 import kotlin.math.abs
 import kotlin.math.log10
-import kotlin.random.Random
+import kotlin.math.min
 
 private val onesTR = arrayOf("", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz")
 private val tensTR = arrayOf("", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan")
@@ -188,3 +187,58 @@ fun Int.reverse() : Int
 
     return rev
 }
+////////////////////////////////////////////////////////////////
+infix fun Int.gcd(a: Int) : Int
+{
+    val min = min(abs(this), abs(a))
+
+    for (i in min downTo 2)
+        if (a % i == 0 && this % i == 0)
+            return i
+
+    return 1
+}
+
+fun getFibonacciNumber(n: Int) : Int /*x*/
+{
+    if (n <= 2)
+        return n - 1
+
+    var prev2 = 0
+    var prev1 = 1
+    var result = 0
+
+    for (i in 1..n - 2) {
+        result = prev1 + prev2
+        prev2 = prev1
+        prev1 = result
+    }
+
+    return result
+}
+
+fun getNextArmstrong(a: Int) : Int /*x*/
+{
+    var temp = a + 1
+
+    while (!temp.isArmstrong())
+        temp++
+
+    return temp
+}
+
+fun getNextFibonacciNumber(a: Int) : Int /*x*/
+{
+    var prev2 = 0
+    var prev1 = 1
+    var result = 0
+
+    while (result <= a) {
+        result = prev1 + prev2
+        prev2 = prev1
+        prev1 = result
+    }
+
+    return result
+}
+
