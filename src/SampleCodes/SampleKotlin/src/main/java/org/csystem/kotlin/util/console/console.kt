@@ -80,7 +80,7 @@ fun readFloat(msg: String = "", errMsg: String = "") : Float
 
 fun readBoolean(msg: String = "") : Boolean = readLine()!!.toBoolean()
 
-fun readString(msg: String) : String
+fun readString(msg: String = "") : String
 {
     print(msg)
     return readLine()!!
