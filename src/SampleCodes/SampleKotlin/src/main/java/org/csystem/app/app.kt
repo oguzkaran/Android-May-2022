@@ -1,8 +1,19 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Basit bir parser kütüphanesi ve demo olarak kullanımı
+    Generic sınıflar için nesne yaratılırken generic parametrelerin türleri tespit edilemezse açılım kesin kullanılmalıdır.
+    Aksi durumda error oluşur
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.app.parser.runStdIntParserApp
+fun main()
+{
+    val s1 = Sample<Int>()
+    val s2 = Sample<Double>()
 
-fun main() = runStdIntParserApp()
+    s1.foo(10)
+    s2.foo(10.7)
+}
+
+class Sample<T> {
+    //...
+    fun foo(t: T) = println(t)
+}
