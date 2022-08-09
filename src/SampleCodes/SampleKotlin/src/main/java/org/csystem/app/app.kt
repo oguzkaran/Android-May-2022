@@ -1,19 +1,16 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Generic sınıflar için nesne yaratılırken generic parametrelerin türleri tespit edilemezse açılım kesin kullanılmalıdır.
-    Aksi durumda error oluşur
+    Triple sınıfının (ve Pair sınıfının) toList extension metotları ile elemanlardan oluşan liste elde edilebilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
 fun main()
 {
-    val s1 = Sample<Int>()
-    val s2 = Sample<Double>()
 
-    s1.foo(10)
-    s2.foo(10.7)
 }
 
-class Sample<T> {
-    //...
-    fun foo(t: T) = println(t)
-}
+class Tuple<T1>
+class Tuple<T1, T2>
+class Tuple<T1, T2, T3>
+class Tuple<T1, T2, T4>
+
+
