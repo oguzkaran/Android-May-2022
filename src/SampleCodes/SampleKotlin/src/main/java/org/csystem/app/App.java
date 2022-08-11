@@ -8,17 +8,3 @@ class App {
 }
 
 
-class X implements IA {
-    public void foo()
-    {
-
-    }
-}
-
-
-interface IA {
-    default void foo()
-    {
-
-    }
-}
