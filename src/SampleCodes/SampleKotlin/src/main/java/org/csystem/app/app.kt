@@ -1,41 +1,27 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte A nesnesi tarafından yaratılan B nesnesinin referansı A içindeki referansa
-    atandığından artık A nesnesi ve B nesnesi garbage collected duruma gelemez. Bu durumda "bellek sızıntısı (memory leak)"
-    oluşur
+     Kotlin'de Java'dan farklı olarak yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
+import org.csystem.kotlin.util.console.readInt
+
 fun main()
 {
-    foo()
+    var a = readInt("Bir sayı giriniz:")
 
-    //...
-}
-
-fun foo()
-{
-    var a = A()
-
-    a.doWork()
-
-    a = A()
-    //...
-}
-
-class A {
-    private var mB: B? = null
-
-    inner class B {
-        fun doSomething()
+    val ix = object: IX {
+        override fun foo()
         {
-            //...
+            println("a = $a")
+            a++
         }
     }
 
-    fun doWork()
-    {
-        mB = this.B()
+    ix.foo()
+    ix.foo()
 
-        mB?.doSomething()
-    }
+}
+
+interface IX {
+    fun foo()
 }
