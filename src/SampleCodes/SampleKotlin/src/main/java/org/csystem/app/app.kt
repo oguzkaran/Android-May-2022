@@ -1,27 +1,18 @@
 /*----------------------------------------------------------------------------------------------------------------------
-     Kotlin'de Java'dan farklı olarak yakalanan bir değişkenin değeri scope'u içerisinde değiştirilebilir
+     type aliases
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.kotlin.util.console.readInt
+typealias StringArrayList = ArrayList<String>
 
 fun main()
 {
-    var a = readInt("Bir sayı giriniz:")
+    val sList = StringArrayList() //ArrayList<String>()
 
-    val ix = object: IX {
-        override fun foo()
-        {
-            println("a = $a")
-            a++
-        }
-    }
+    sList.add("ankara")
+    sList.add("istanbul")
+    sList.add("izmir")
 
-    ix.foo()
-    ix.foo()
-
-}
-
-interface IX {
-    fun foo()
+    for (city in sList)
+        println(city)
 }
