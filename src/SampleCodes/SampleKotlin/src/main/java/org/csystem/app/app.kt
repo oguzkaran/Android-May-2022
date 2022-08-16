@@ -1,18 +1,32 @@
 /*----------------------------------------------------------------------------------------------------------------------
-     type aliases
+    Lambda fonksiyonların bir kullanımı
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-typealias StringArrayList = ArrayList<String>
+import kotlin.random.Random
 
 fun main()
 {
-    val sList = StringArrayList() //ArrayList<String>()
+    val a = IntArray(10)
 
-    sList.add("ankara")
-    sList.add("istanbul")
-    sList.add("izmir")
+    for (i in 0 until 10)
+        a[i] = Random.nextInt(10, 20)
 
-    for (city in sList)
-        println(city)
+    forEach(a) {print("$it ")}
+    println()
+    transform(a) {it * it}
+    forEach(a) {print("$it ")}
+    println()
+}
+
+fun forEach(a: IntArray, f: (Int) -> Unit)
+{
+    for (elem in a)
+        f(elem)
+}
+
+fun transform(a: IntArray, f: (Int) -> Int)
+{
+    for (i in a.indices)
+        a[i] = f(a[i])
 }
