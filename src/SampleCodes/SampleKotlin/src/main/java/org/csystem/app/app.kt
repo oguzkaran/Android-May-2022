@@ -1,32 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Lambda fonksiyonların bir kullanımı
+
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import kotlin.random.Random
+import org.csystem.kotlin.util.console.readInt
+import org.csystem.kotlin.util.numeric.isPrime
 
 fun main()
 {
-    val a = IntArray(10)
+    val a = IntArray(readInt("Bir sayı giriniz:")) {it + 1}
+    val b = a.filter {it % 2 == 0}.toIntArray()
 
-    for (i in 0 until 10)
-        a[i] = Random.nextInt(10, 20)
-
-    forEach(a) {print("$it ")}
+    a.forEach {print("$it ")}
     println()
-    transform(a) {it * it}
-    forEach(a) {print("$it ")}
+    b.forEach {print("$it ")}
+
+    println()
+
+    val c = a.filter{it.isPrime()}
+
+    c.forEach {print("$it ")}
+
     println()
 }
 
-fun forEach(a: IntArray, f: (Int) -> Unit)
-{
-    for (elem in a)
-        f(elem)
-}
-
-fun transform(a: IntArray, f: (Int) -> Int)
-{
-    for (i in a.indices)
-        a[i] = f(a[i])
-}
