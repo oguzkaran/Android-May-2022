@@ -1,5 +1,7 @@
 package org.csystem.kotlin.util.console
 
+import java.math.BigDecimal
+
 fun readInt(msg: String = "", errMsg: String = "") : Int
 {
     while (true) {
@@ -7,7 +9,7 @@ fun readInt(msg: String = "", errMsg: String = "") : Int
             print(msg)
             return readLine()!!.toInt()
         }
-        catch (ex: NumberFormatException) {
+        catch (ignore: NumberFormatException) {
             print(errMsg)
         }
     }
@@ -20,7 +22,7 @@ fun readLong(msg: String = "", errMsg: String = "") : Long
             print(msg)
             return readLine()!!.toLong()
         }
-        catch (ex: NumberFormatException) {
+        catch (ignore: NumberFormatException) {
             print(errMsg)
         }
     }
@@ -33,7 +35,7 @@ fun readShort(msg: String = "", errMsg: String = "") : Short
             print(msg)
             return readLine()!!.toShort()
         }
-        catch (ex: NumberFormatException) {
+        catch (ignore: NumberFormatException) {
             print(errMsg)
         }
     }
@@ -46,7 +48,7 @@ fun readByte(msg: String = "", errMsg: String = "") : Byte
             print(msg)
             return readLine()!!.toByte()
         }
-        catch (ex: NumberFormatException) {
+        catch (ignore: NumberFormatException) {
             print(errMsg)
         }
     }
@@ -59,7 +61,7 @@ fun readDouble(msg: String = "", errMsg: String = "") : Double
             print(msg)
             return readLine()!!.toDouble()
         }
-        catch (ex: NumberFormatException) {
+        catch (ignore: NumberFormatException) {
             print(errMsg)
         }
     }
@@ -72,7 +74,7 @@ fun readFloat(msg: String = "", errMsg: String = "") : Float
             print(msg)
             return readLine()!!.toFloat()
         }
-        catch (ex: NumberFormatException) {
+        catch (ignore: NumberFormatException) {
             print(errMsg)
         }
     }
@@ -84,4 +86,18 @@ fun readString(msg: String = "") : String
 {
     print(msg)
     return readLine()!!
+}
+
+
+fun readBigDecimal(msg: String, errMsg: String = "") : BigDecimal
+{
+    while (true) {
+        try {
+            print(msg)
+            return BigDecimal(readLine()!!)
+        }
+        catch (ignore: NumberFormatException) {
+            println(errMsg)
+        }
+    }
 }

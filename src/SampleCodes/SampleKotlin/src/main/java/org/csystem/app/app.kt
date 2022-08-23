@@ -1,26 +1,47 @@
 /*----------------------------------------------------------------------------------------------------------------------
-
+    apply eklenti fonksiyonu: apply eklenti fonksiyonunun callback'ine this geçirilir
+    "apply the following assignments or calls to the object"
+    apply fonksiyonu çağrıldığı referansa geri döner
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
 import org.csystem.kotlin.util.console.readInt
-import org.csystem.kotlin.util.numeric.isPrime
+
+class Sample {
+    var a: Int = 0
+    fun foo()
+    {
+        println("foo")
+    }
+
+    fun bar()
+    {
+        println("bar")
+    }
+
+    fun tar() : Int
+    {
+        println("tar")
+        return  10;
+    }
+
+    override fun toString() = "Sample"
+}
 
 fun main()
 {
-    val a = IntArray(readInt("Bir sayı giriniz:")) {it + 1}
-    val b = a.filter {it % 2 == 0}.toIntArray()
+    var x: Int
 
-    a.forEach {print("$it ")}
-    println()
-    b.forEach {print("$it ")}
+    val s = Sample().apply {
+        a = readInt("Bir sayı giriniz:")
+        this.foo()
+        bar()
+        println("Merhaba")
+        x = tar()
+    }
 
-    println()
-
-    val c = a.filter{it.isPrime()}
-
-    c.forEach {print("$it ")}
-
-    println()
+    println("s.a = ${s.a}")
+    println("x = $x")
+    println(s)
 }
 
