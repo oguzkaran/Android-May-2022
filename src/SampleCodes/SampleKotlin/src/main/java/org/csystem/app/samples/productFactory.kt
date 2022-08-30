@@ -17,23 +17,23 @@ private fun getProduct(line: String) : Product
     return Product(id, name, stock, cost, price)
 }
 
-fun loadProductsFromFile(path: String) : Iterable<Product> =
+fun loadProductsFromFileAsIterable(path: String) : Iterable<Product> =
         Files.newBufferedReader(Paths.get(path)).useLines {
             it.toList().drop(1).map { getProduct(it)}
         }
 
-fun loadProductsFromFileAsArray(path: String) = loadProductsFromFile(path).toList().toTypedArray()
+fun loadProductsFromFileAsArray(path: String) = loadProductsFromFileAsIterable(path).toList().toTypedArray()
 
-fun loadProductsFromFileAsSet(path: String) = loadProductsFromFile(path).toSet()
+fun loadProductsFromFileAsSet(path: String) = loadProductsFromFileAsIterable(path).toSet()
 
 fun loadProductsFromFileAsTreeSet(path: String) : TreeSet<Product> =
     TreeSet<Product>(Comparator.comparing { it.id }).apply {
-        loadProductsFromFile(path).forEach{ this.add(it)}
+        loadProductsFromFileAsIterable(path).forEach{ this.add(it)}
     }
 
 
 object ProductFactory {
-    fun loadFromFile(path: String) = loadProductsFromFile(path)
+    fun loadFromFile(path: String) = loadProductsFromFileAsIterable(path)
     fun loadFromFileAsArray(path: String) = loadProductsFromFileAsArray(path)
     fun loadFromFileAsSet(path: String) = loadProductsFromFileAsSet(path)
     fun loadFromFileAsTreeSet(path: String) = loadProductsFromFileAsTreeSet(path)

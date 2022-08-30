@@ -1,20 +1,29 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örneği inceleyiniz
+    Iterable arayüzünün dropLast eklenti metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
+import org.csystem.app.samples.loadNamesFromFile
+import org.csystem.kotlin.util.console.readInt
+import org.csystem.kotlin.util.console.readString
+
 fun main()
 {
-    val r = 1..10
-    val iter = r.iterator()
+    try {
+        val text = readString("Bir yazı giriniz:")
+        val count = readInt("Sorgudan son kaç tanesi atılsın:")
+        val allNames = loadNamesFromFile("names.csv")
+        val names = allNames.filter { it.contains(text, ignoreCase = true) }
+                .drop(count)
+                .map { it.lowercase() }
+                .toList()
 
-    while (iter.hasNext())
-        print("${iter.next()} ")
-
-    println()
-
-    for (v in r)
-        print("$v ")
-
-    println()
+        allNames.filter { it.contains(text, ignoreCase = true) }.forEach(::println)
+        println("---------------------------------------------------------")
+        names.forEach(::println)
+    }
+    catch (ex: Throwable) {
+        println(ex.message)
+    }
 }
+
