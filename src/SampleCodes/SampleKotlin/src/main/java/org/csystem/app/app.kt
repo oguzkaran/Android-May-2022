@@ -1,29 +1,28 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Iterable arayüzünün dropLast eklenti metodu
+    Set tarzı collection'larda "hash kullananlar eşitlik kontrolü için equals ve hasCode metotlarının geri dönüş
+    değerine bakarlar. Bu durumda programcı bir tür durumlar için bu metotları gerekirse override etmelidir
+    Anahtar Notlar: Hash code üretmek ayrı bir kavramdır ve bir çok durumda üretmenin farklı yöntemleri vardır. Aşağıdaki
+    örnekte ürünün id değeri Int olduğundan ve aynı id'ye sahip birden fazla ürünün "set" içerisinde bulunmaması gerektiği
+    varsayımıyla düşünülmüştür
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.app.samples.loadNamesFromFile
-import org.csystem.kotlin.util.console.readInt
-import org.csystem.kotlin.util.console.readString
+import org.csystem.app.samples.loadProductsFromFileAsIterable
+import org.csystem.app.samples.loadProductsFromFileAsSet
 
 fun main()
 {
     try {
-        val text = readString("Bir yazı giriniz:")
-        val count = readInt("Sorgudan son kaç tanesi atılsın:")
-        val allNames = loadNamesFromFile("names.csv")
-        val names = allNames.filter { it.contains(text, ignoreCase = true) }
-                .drop(count)
-                .map { it.lowercase() }
-                .toList()
+        val allProducts = loadProductsFromFileAsIterable("products.csv")
+        val products = loadProductsFromFileAsSet("products.csv")
 
-        allNames.filter { it.contains(text, ignoreCase = true) }.forEach(::println)
-        println("---------------------------------------------------------")
-        names.forEach(::println)
+        println(products.javaClass.name)
+
+        products.forEach(::println)
+        println("Count:${products.count()}")
+        println("All products Count:${allProducts.count()}")
     }
     catch (ex: Throwable) {
-        println(ex.message)
+        ex.printStackTrace()
     }
 }
-
