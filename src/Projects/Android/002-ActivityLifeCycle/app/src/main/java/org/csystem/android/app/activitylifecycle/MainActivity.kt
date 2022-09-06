@@ -7,7 +7,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     private fun displayCreateReport(savedInstanceState: Bundle?)
     {
-        Toast.makeText(this, if (savedInstanceState == null) "Created Now" else "Created Before", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, if (savedInstanceState == null) "Created now" else "Created Before", Toast.LENGTH_LONG).show()
     }
 
     private fun initialize(savedInstanceState: Bundle?)
@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initialize(savedInstanceState)
     }
 
