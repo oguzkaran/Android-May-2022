@@ -1,4 +1,4 @@
-package org.csystem.android.app.generic
+package org.csystem.android.app.ui
 
 import org.junit.Test
 
