@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="org.csystem.android.app.ui.MainActivity">
 
+    <ToggleButton
+        android:id="@+id/mainActivityToggleButtonOpen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOn="@string/open_toggle_on_text"
+        android:textOff="@string/open_toggle_off_text"
+         />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,4 +41,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <CheckBox
+        android:id="@+id/mainActivityCheckBoxAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/accept_checkbox_text" />
+
+    <Switch
+        android:id="@+id/mainActivitySwitchReverse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reverse_switch_text"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 </LinearLayout>
