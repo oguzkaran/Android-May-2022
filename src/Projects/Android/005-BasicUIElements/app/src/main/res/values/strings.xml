@@ -3,9 +3,12 @@
     <string name="message_textview">Message</string>
     <string name="message_edittext_hint">Input a message</string>
     <string name="ok_button_text">OK</string>
+    <string name="exit_button_text">Exit</string>
     <string name="accept_checkbox_text">Accept</string>
     <string name="must_accept_text">You must accept</string>
+    <string name="is_blank_text">Message can not be empty</string>
     <string name="reverse_switch_text">Reverse</string>
-    <string name="open_toggle_on_text">Open</string>
-    <string name="open_toggle_off_text">Close</string>
+    <string name="enable_switch_text">Enable</string>
+    <string name="open_toggle_on_text">Close</string>
+    <string name="open_toggle_off_text">Open</string>
 </resources>

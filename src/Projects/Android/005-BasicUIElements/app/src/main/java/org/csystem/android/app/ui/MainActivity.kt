@@ -7,26 +7,63 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
     private var mTextViewHitCounter: Int = 0
+    private lateinit var mToggleButtonOpen: ToggleButton
+    private lateinit var mLinearLayoutOperation: LinearLayout
+    private lateinit var mLinearLayoutChecks: LinearLayout
     private lateinit var mEditTextMessage: EditText
     private lateinit var mTextViewMessage: TextView
     private lateinit var mCheckBoxAccept: CheckBox
     private lateinit var mSwitchReverse: Switch
+    private lateinit var mSwitchEnable: Switch
+
+    private fun setOperationViewsEnabled(enabled: Boolean)
+    {
+        for (i in 0 until mLinearLayoutOperation.childCount)
+            mLinearLayoutOperation.getChildAt(i).isEnabled = enabled
+    }
 
     private fun checkBoxAcceptCheckedChangeCallback(checked: Boolean)
     {
-        Toast.makeText(this, if (checked) "Accepted" else "Rejected", Toast.LENGTH_SHORT).show()
+        mEditTextMessage.isEnabled = checked
     }
 
-    private fun switchCheckedChangeCallback(checked: Boolean)
+    private fun switchEnableCheckedChangeCallback(checked: Boolean) = setOperationViewsEnabled(checked)
+
+    private fun toggleOpenCheckedChangeCallback(checked: Boolean)
     {
-        if (checked)
-            Toast.makeText(this, "Reverse", Toast.LENGTH_SHORT).show()
+        if (checked) {
+            mLinearLayoutOperation.visibility = View.VISIBLE
+            mLinearLayoutChecks.visibility = View.VISIBLE
+        }
+        else {
+            mLinearLayoutOperation.visibility = View.INVISIBLE
+            mLinearLayoutChecks.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun initOpenToggleButton()
+    {
+        mToggleButtonOpen = findViewById(R.id.mainActivityToggleButtonOpen) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
+        mToggleButtonOpen.setOnCheckedChangeListener { _, checked ->  toggleOpenCheckedChangeCallback(checked)}
+    }
+
+    private fun initLayouts()
+    {
+        mLinearLayoutOperation = findViewById(R.id.mainActivityLinearLayoutOperation) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
+        mLinearLayoutOperation.visibility = View.INVISIBLE
+        mLinearLayoutChecks = findViewById(R.id.mainActivityLinearLayoutChecks) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
+        mLinearLayoutChecks.visibility = View.INVISIBLE
+    }
+
+    private fun initEnableSwitch()
+    {
+        mSwitchEnable = findViewById(R.id.mainActivitySwitchEnable) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
+        mSwitchEnable.setOnCheckedChangeListener { _, checked ->  switchEnableCheckedChangeCallback(checked)}
     }
 
     private fun initReverseSwitch()
     {
-        mSwitchReverse = findViewById(R.id.mainActivitySwitchReverse)
-        mSwitchReverse.setOnCheckedChangeListener { _, checked ->  switchCheckedChangeCallback(checked)}
+        mSwitchReverse = findViewById(R.id.mainActivitySwitchReverse) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
     }
 
     private fun initAcceptCheckBox()
@@ -50,10 +87,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews()
     {
+        initOpenToggleButton()
+        initLayouts()
         initMessageEditText()
         initMessageTextView()
         initAcceptCheckBox()
         initReverseSwitch()
+        initEnableSwitch()
     }
 
     private fun initialize()
@@ -70,7 +110,6 @@ class MainActivity : AppCompatActivity() {
 
     fun onTextViewMessageClicked(view: View)
     {
-        Toast.makeText(this, "TextView Clicked", Toast.LENGTH_SHORT).show()
         ++mTextViewHitCounter
         title = "Counter:$mTextViewHitCounter"
     }
@@ -83,6 +122,11 @@ class MainActivity : AppCompatActivity() {
         }
         val message = StringBuilder(mEditTextMessage.text.toString())
 
+        if (message.isBlank()) {
+            Toast.makeText(this, R.string.is_blank_text, Toast.LENGTH_SHORT).show()
+            return
+        }
+
         if (mSwitchReverse.isChecked)
             message.reverse();
 
@@ -91,4 +135,6 @@ class MainActivity : AppCompatActivity() {
             mTextViewMessage.text = this
         }
     }
+
+    fun onExitButtonClicked(view: View) = finish()
 }
