@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "org.csystem.android.app.generic"
+        applicationId "org.csystem.android.app.birthdate"
         minSdk 22
         targetSdk 33
         versionCode 1
@@ -27,15 +27,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     kotlinOptions {
         jvmTarget = '11'
     }
-    namespace 'org.csystem.android.app.generic'
+    namespace 'org.csystem.android.app.birthdate'
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
