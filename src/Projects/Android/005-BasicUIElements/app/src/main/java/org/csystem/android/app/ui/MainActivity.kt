@@ -11,10 +11,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mLinearLayoutOperation: LinearLayout
     private lateinit var mLinearLayoutChecks: LinearLayout
     private lateinit var mEditTextMessage: EditText
+    private lateinit var mEditTextOptionalMessage: EditText
     private lateinit var mTextViewMessage: TextView
     private lateinit var mCheckBoxAccept: CheckBox
     private lateinit var mSwitchReverse: Switch
     private lateinit var mSwitchEnable: Switch
+    private lateinit var mSwitchOptionalMessage: Switch
 
     private fun setOperationViewsEnabled(enabled: Boolean)
     {
@@ -25,6 +27,12 @@ class MainActivity : AppCompatActivity() {
     private fun checkBoxAcceptCheckedChangeCallback(checked: Boolean)
     {
         mEditTextMessage.isEnabled = checked
+        mEditTextOptionalMessage.isEnabled = checked
+    }
+
+    private fun switchOptionalMessageCheckedChangeCallback(checked: Boolean)
+    {
+        mEditTextOptionalMessage.visibility = if (checked) View.VISIBLE else View.GONE
     }
 
     private fun switchEnableCheckedChangeCallback(checked: Boolean) = setOperationViewsEnabled(checked)
@@ -55,6 +63,12 @@ class MainActivity : AppCompatActivity() {
         mLinearLayoutChecks.visibility = View.INVISIBLE
     }
 
+    private fun initOptionalMessageSwitch()
+    {
+        mSwitchOptionalMessage = findViewById(R.id.mainActivitySwitchOptionalMessage) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
+        mSwitchOptionalMessage.setOnCheckedChangeListener { _, checked ->  switchOptionalMessageCheckedChangeCallback(checked)}
+    }
+
     private fun initEnableSwitch()
     {
         mSwitchEnable = findViewById(R.id.mainActivitySwitchEnable) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
@@ -80,20 +94,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initOptionalMessageEditText()
+    {
+        mEditTextOptionalMessage = findViewById(R.id.mainActivityEditTextOptionalMessage) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
+    }
+
     private fun initMessageEditText()
     {
         mEditTextMessage = findViewById(R.id.mainActivityEditTextMessage) //Bu şekilde erişim kolaylaştırıldı. Sadece arka planı göstermek için yazıldı
     }
+
 
     private fun initViews()
     {
         initOpenToggleButton()
         initLayouts()
         initMessageEditText()
+        initOptionalMessageEditText()
         initMessageTextView()
         initAcceptCheckBox()
         initReverseSwitch()
         initEnableSwitch()
+        initOptionalMessageSwitch()
     }
 
     private fun initialize()
@@ -126,6 +148,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.is_blank_text, Toast.LENGTH_SHORT).show()
             return
         }
+
+        if (mEditTextOptionalMessage.visibility == View.VISIBLE)
+            message.append(mEditTextOptionalMessage.text.toString())
 
         if (mSwitchReverse.isChecked)
             message.reverse();

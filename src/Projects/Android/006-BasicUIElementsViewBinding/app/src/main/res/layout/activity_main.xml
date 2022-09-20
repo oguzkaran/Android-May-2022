@@ -43,10 +43,9 @@
             android:hint="@string/message_edittext_hint" />
 
         <Button
+            android:id="@+id/mainActivityButtonOK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onOKButtonClicked"
-            tools:ignore="UsingOnClickInXml"
             android:text="@string/ok_button_text" />
 
         <TextView
@@ -59,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/accept_checkbox_text" />
-
         <Switch
             android:id="@+id/mainActivitySwitchReverse"
             android:layout_width="match_parent"
@@ -91,10 +89,9 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/mainActivityButtonExit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onExitButtonClicked"
-        tools:ignore="UsingOnClickInXml"
         android:text="@string/exit_button_text" />
 
 </LinearLayout>
