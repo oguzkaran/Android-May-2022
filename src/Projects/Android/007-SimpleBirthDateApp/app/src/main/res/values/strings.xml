@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">BirthDateApp</string>
+    <string name="app_name">Doğum Tarihi Uygulaması</string>
+    <string name="ok_button_text">Tamam</string>
+    <string name="exit_button_text">Çıkış</string>
 </resources>
