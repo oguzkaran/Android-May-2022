@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/mainActivityButtonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_button_text"
+        android:onClick = "onButtonClicked"
+        tools:ignore="UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/mainActivityButtonRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick = "onButtonClicked"
+        tools:ignore="UsingOnClickInXml"
+        android:text="@string/register_button_text" />
+
+    <Button
+        android:id="@+id/mainActivityButtonExit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick = "onButtonClicked"
+        tools:ignore="UsingOnClickInXml"
+        android:text="@string/exit_button_text" />
+</LinearLayout>
