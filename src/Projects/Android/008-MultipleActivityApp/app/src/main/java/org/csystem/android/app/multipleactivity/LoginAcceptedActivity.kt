@@ -1,8 +1,9 @@
 package org.csystem.android.app.multipleactivity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import org.csystem.android.app.multipleactivity.keys.PASSWORD
+import org.csystem.android.app.multipleactivity.keys.USERNAME
 
 class LoginAcceptedActivity : AppCompatActivity() {
     private var mUsername: String? = ""
@@ -11,14 +12,12 @@ class LoginAcceptedActivity : AppCompatActivity() {
     private fun initViews()
     {
         intent.also {
-            mUsername = it.getStringExtra("username")
+            mUsername = it.getStringExtra(USERNAME)
             mUsername.also {
                 title = it
             }
-            mPassword = it.getStringExtra("password")
+            mPassword = it.getStringExtra(PASSWORD)
         }
-
-
     }
 
     private fun initialize()

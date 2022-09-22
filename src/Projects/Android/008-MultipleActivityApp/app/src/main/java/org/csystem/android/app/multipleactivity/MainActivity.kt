@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun registerButtonClicked()
     {
-        Toast.makeText(this,  "Register", Toast.LENGTH_SHORT).show()
+        Intent(this, RegisterActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     private fun exitButtonClicked()
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, R.string.goodbye_message_text, Toast.LENGTH_LONG).show()
         finish()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

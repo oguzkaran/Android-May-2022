@@ -2,9 +2,10 @@ package org.csystem.android.app.multipleactivity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.multipleactivity.databinding.ActivityLoginBinding
+import org.csystem.android.app.multipleactivity.keys.PASSWORD
+import org.csystem.android.app.multipleactivity.keys.USERNAME
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityLoginBinding
@@ -13,16 +14,9 @@ class LoginActivity : AppCompatActivity() {
     {
         //Control data
         Intent(this, LoginAcceptedActivity::class.java).apply {
-            putExtra("username", mBinding.loginActivityEditTextUsername.text.toString())
-            putExtra("password", mBinding.loginActivityEditTextUsername.text.toString())
+            putExtra(USERNAME, mBinding.loginActivityEditTextUsername.text.toString())
+            putExtra(PASSWORD, mBinding.loginActivityEditTextUsername.text.toString())
             startActivity(this)
-        }
-    }
-
-    private fun initAcceptSwitch()
-    {
-        mBinding.loginActivitySwitchAccept.setOnCheckedChangeListener {
-                _, checked -> mBinding.loginActivityButtonLogin.isEnabled = checked
         }
     }
 
@@ -34,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
     private fun initViews()
     {
         initLoginButton()
-        initAcceptSwitch()
     }
 
     private fun initBinding()

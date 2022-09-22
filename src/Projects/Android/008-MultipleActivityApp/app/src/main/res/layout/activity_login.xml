@@ -29,13 +29,5 @@
         android:id="@+id/loginActivityButtonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:text="@string/login_button_text" />
-
-    <Switch
-        android:id="@+id/loginActivitySwitchAccept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accept_conditions_switch_text" />
-
 </LinearLayout>
