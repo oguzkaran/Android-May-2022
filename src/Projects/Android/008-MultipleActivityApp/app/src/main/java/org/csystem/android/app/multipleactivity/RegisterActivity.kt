@@ -2,6 +2,7 @@ package org.csystem.android.app.multipleactivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.multipleactivity.data.RegisterInfo
@@ -39,6 +40,14 @@ class RegisterActivity : AppCompatActivity() {
             Toast.makeText(this, "Confirm your password", Toast.LENGTH_LONG).show()
     }
 
+    private fun showPasswordSwitchCallback(checked: Boolean)
+    {
+        mBinding.registerActivityEditTextPassword.also {
+            Toast.makeText(this, it.inputType.toString(), Toast.LENGTH_LONG).show()
+            it.inputType = if (checked) InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else 129
+        }
+    }
+
 
     private fun initAcceptSwitch()
     {
@@ -47,6 +56,12 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun initShowPasswordSwitch()
+    {
+        mBinding.registerActivitySwitchShowPassword.setOnCheckedChangeListener {
+                _, checked -> showPasswordSwitchCallback(checked)
+        }
+    }
     private fun initRegisterButton()
     {
         mBinding.registerActivityButtonRegister.setOnClickListener{registerButtonClickedCallback()}
@@ -56,8 +71,8 @@ class RegisterActivity : AppCompatActivity() {
     {
         initRegisterButton()
         initAcceptSwitch()
+        initShowPasswordSwitch()
     }
-
 
     private fun initBinding()
     {

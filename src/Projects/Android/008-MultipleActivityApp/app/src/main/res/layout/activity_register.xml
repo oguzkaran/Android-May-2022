@@ -32,13 +32,29 @@
         android:inputType="textPersonName"
         android:hint="@string/username_edittext_hint_text" />
 
-    <EditText
-        android:id="@+id/registerActivityEditTextPassword"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/password_edittext_hint_text"/>
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/registerActivityEditTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/password_edittext_hint_text"/>
+
+        <Switch
+            android:id="@+id/registerActivitySwitchShowPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/show_password_switch_text" />
+
+    </LinearLayout>
+
+
 
     <EditText
         android:id="@+id/registerActivityEditTextConfirmPassword"

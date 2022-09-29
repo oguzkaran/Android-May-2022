@@ -2,6 +2,7 @@
     <string name="app_name">MultipleActivityApp</string>
     <string name="login_button_text">Login</string>
     <string name="register_button_text">Register</string>
+    <string name="back_button_text">Back</string>
     <string name="exit_button_text">Exit</string>
     <string name="username_edittext_hint_text">Enter username</string>
     <string name="name_edittext_hint_text">Enter name</string>
@@ -9,5 +10,6 @@
     <string name="password_edittext_hint_text">Enter password</string>
     <string name="confirm_password_edittext_hint_text">Confirm  password</string>
     <string name="accept_conditions_switch_text">Accept</string>
+    <string name="show_password_switch_text">Show Password</string>
     <string name="goodbye_message_text">C and System Programmers Association</string>
 </resources>
