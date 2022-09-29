@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.multipleactivity.data.RegisterInfo
 import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterBinding
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
+import org.csystem.android.app.multipleactivity.keys.TEXT_PASSWORD_HIDE
+import org.csystem.android.app.multipleactivity.keys.TEXT_PASSWORD_SHOW
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityRegisterBinding
@@ -43,8 +45,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun showPasswordSwitchCallback(checked: Boolean)
     {
         mBinding.registerActivityEditTextPassword.also {
-            Toast.makeText(this, it.inputType.toString(), Toast.LENGTH_LONG).show()
-            it.inputType = if (checked) InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else 129
+            it.inputType = if (checked) TEXT_PASSWORD_SHOW else TEXT_PASSWORD_HIDE
         }
     }
 

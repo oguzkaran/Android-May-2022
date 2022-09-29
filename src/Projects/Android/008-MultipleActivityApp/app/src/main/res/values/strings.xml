@@ -12,4 +12,6 @@
     <string name="accept_conditions_switch_text">Accept</string>
     <string name="show_password_switch_text">Show Password</string>
     <string name="goodbye_message_text">C and System Programmers Association</string>
+    <string name="return_back_message">Press again to return back!…</string>
+
 </resources>

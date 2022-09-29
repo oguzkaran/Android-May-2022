@@ -8,6 +8,15 @@
     android:orientation="vertical"
     tools:context=".LoginAcceptedActivity">
 
+    <TextView
+        android:id="@+id/loginAcceptedActivityTextViewUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/loginAcceptedActivityButtonBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back_button_text" />
 
 </LinearLayout>
