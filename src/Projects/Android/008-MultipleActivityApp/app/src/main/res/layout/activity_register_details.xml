@@ -86,6 +86,51 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/textview_marital_status_label"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/registerDetailsActivityRadioGroupMaritalStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/registerDetailsActivityRadioButtonSingle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="SINGLE"
+                android:checked="true"
+                android:text="@string/marital_status_radio_button_single" />
+
+            <RadioButton
+                android:id="@+id/registerDetailsActivityRadioButtonMarried"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="MARRIED"
+                android:text="@string/marital_status_radio_button_married" />
+
+            <RadioButton
+                android:id="@+id/registerDetailsActivityRadioButtonDivorced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="DIVORCED"
+                android:text="@string/marital_status_radio_button_divorced" />
+        </RadioGroup>
+    </LinearLayout>
+
     <Button
         android:id="@+id/registerDetailsActivityButtonRegister"
         android:layout_width="match_parent"

@@ -3,6 +3,7 @@
     <string name="login_button_text">Login</string>
     <string name="register_button_text">Register</string>
     <string name="back_button_text">Back</string>
+    <string name="users_button_text">List Users</string>
     <string name="exit_button_text">Exit</string>
     <string name="username_edittext_hint_text">Enter username</string>
     <string name="name_edittext_hint_text">Enter name</string>
@@ -13,10 +14,23 @@
     <string name="show_password_switch_text">Show Password</string>
     <string name="goodbye_message_text">C and System Programmers Association</string>
     <string name="return_back_message">Press again to return back!…</string>
+    <string name="textview_education_label">Education Information</string>
     <string name="education_radio_button_phd">PhD</string>
     <string name="education_radio_button_msc">MsC</string>
     <string name="education_radio_button_graduate">Graduate</string>
     <string name="education_radio_button_under_graduate">Under Graduate</string>
-    <string name="textview_education_label">Education Information</string>
-
+    <string name="textview_marital_status_label">Marital Status</string>
+    <string name="marital_status_radio_button_single">Single</string>
+    <string name="marital_status_radio_button_married">Married</string>
+    <string name="marital_status_radio_button_divorced">Divorced</string>
+    <string name="title_activity_users">UsersActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">Login failed</string>
+    <string name="users_activity_title">All Users</string>
 </resources>

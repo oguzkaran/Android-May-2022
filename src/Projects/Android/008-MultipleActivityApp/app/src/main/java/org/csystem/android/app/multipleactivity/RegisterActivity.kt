@@ -7,6 +7,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.multipleactivity.data.Education
+import org.csystem.android.app.multipleactivity.data.MaritalStatus
 import org.csystem.android.app.multipleactivity.data.RegisterInfo
 import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterBinding
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
@@ -23,6 +24,13 @@ class RegisterActivity : AppCompatActivity() {
         return Education.valueOf(selected.tag as String)
     }
 
+    private fun getMaritalStatus() : MaritalStatus
+    {
+        val selected = findViewById<RadioButton>(mBinding.registerActivityRadioGroupMaritalStatus.checkedRadioButtonId)
+
+        return MaritalStatus.valueOf(selected.tag as String)
+    }
+
     private fun createRegisterInfo() : RegisterInfo
     {
         val name = mBinding.registerActivityEditTextName.text.toString()
@@ -30,7 +38,7 @@ class RegisterActivity : AppCompatActivity() {
         val username = mBinding.registerActivityEditTextUsername.text.toString()
         val password = mBinding.registerActivityEditTextPassword.text.toString()
 
-        return RegisterInfo(name, email, username, password, getEducation())
+        return RegisterInfo(name, email, username, password, getEducation(), getMaritalStatus())
     }
 
     private fun confirmPassword() = mBinding.registerActivityEditTextPassword.text.toString() == mBinding.registerActivityEditTextConfirmPassword.text.toString()

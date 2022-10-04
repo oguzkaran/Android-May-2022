@@ -1,5 +1,6 @@
 package org.csystem.android.app.multipleactivity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,9 +31,16 @@ class LoginAcceptedActivity : AppCompatActivity() {
             finish()
     }
 
+
+
     private fun initBackButton()
     {
         mBinding.loginAcceptedActivityButtonBack.setOnClickListener {loginAcceptedActivityButtonBackCallback()}
+    }
+
+    private fun initUsersButton()
+    {
+        mBinding.loginAcceptedActivityButtonUsers.setOnClickListener { Intent(this, UsersActivity::class.java).apply { startActivity(this) } }
     }
 
     private fun initBinding()
@@ -44,6 +52,7 @@ class LoginAcceptedActivity : AppCompatActivity() {
     private fun initViews()
     {
         initBackButton()
+        initUsersButton()
         title = mLoginInfo.username //Burada name gösterilecektir
         mBinding.loginAcceptedActivityTextViewUsername.text = mLoginInfo.username
     }

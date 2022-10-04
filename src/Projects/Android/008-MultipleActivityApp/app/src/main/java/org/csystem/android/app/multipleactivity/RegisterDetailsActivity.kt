@@ -5,6 +5,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.multipleactivity.data.RegisterInfo
+import org.csystem.android.app.multipleactivity.data.UsersRepository
 import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterDetailsBinding
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
 
@@ -15,14 +16,22 @@ class RegisterDetailsActivity : AppCompatActivity() {
     private fun registerDetailsButtonClickedCallback()
     {
         //Control data
+        //Refresh mRegisterInfo
         Toast.makeText(this, "Register completed!...", Toast.LENGTH_LONG).show()
+        UsersRepository.save(mRegisterInfo)
         finish()
     }
 
     private fun initEducationInfo()
     {
+        mBinding.registerDetailsActivityRadioGroupMaritalStatus.findViewWithTag<RadioButton>(mRegisterInfo.maritalStatus.toString()).isChecked = true
+    }
+
+    private fun initMaritalStatusInfo()
+    {
         mBinding.registerDetailsActivityRadioGroupEducation.findViewWithTag<RadioButton>(mRegisterInfo.education.toString()).isChecked = true
     }
+
 
     private fun initEditTexts()
     {
@@ -52,6 +61,7 @@ class RegisterDetailsActivity : AppCompatActivity() {
         initIntentData()
         initEditTexts()
         initEducationInfo()
+        initMaritalStatusInfo()
         initRegisterButton()
         initBackButton()
     }
