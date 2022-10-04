@@ -24,7 +24,6 @@ class RegisterDetailsActivity : AppCompatActivity() {
         mBinding.registerDetailsActivityRadioGroupEducation.findViewWithTag<RadioButton>(mRegisterInfo.education.toString()).isChecked = true
     }
 
-
     private fun initEditTexts()
     {
         mBinding.registerDetailsActivityEditTextName.setText(mRegisterInfo.name)
@@ -32,15 +31,9 @@ class RegisterDetailsActivity : AppCompatActivity() {
         mBinding.registerDetailsActivityEditTextUsername.setText(mRegisterInfo.username)
     }
 
-    private fun initBackButton()
-    {
-        mBinding.registerDetailsActivityButtonBack.setOnClickListener{finish()}
-    }
+    private fun initBackButton() = mBinding.registerDetailsActivityButtonBack.setOnClickListener{finish()}
 
-    private fun initRegisterButton()
-    {
-        mBinding.registerDetailsActivityButtonRegister.setOnClickListener{registerDetailsButtonClickedCallback()}
-    }
+    private fun initRegisterButton() = mBinding.registerDetailsActivityButtonRegister.setOnClickListener{registerDetailsButtonClickedCallback()}
 
     private fun initIntentData()
     {
