@@ -37,6 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+
         <EditText
             android:id="@+id/registerActivityEditTextPassword"
             android:layout_width="wrap_content"
@@ -55,7 +57,6 @@
     </LinearLayout>
 
 
-
     <EditText
         android:id="@+id/registerActivityEditTextConfirmPassword"
         android:layout_width="match_parent"
@@ -63,6 +64,63 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="@string/confirm_password_edittext_hint_text"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/textview_education_label"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/registerActivityRadioGroupEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/registerActivityRadioButtonPhd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="PHD"
+                android:text="@string/education_radio_button_phd" />
+
+            <RadioButton
+                android:id="@+id/registerActivityRadioButtonMsc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="MSC"
+                android:text="@string/education_radio_button_msc" />
+
+            <RadioButton
+                android:id="@+id/registerActivityRadioButtonGraduate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="GRADUATE"
+                android:checked="true"
+                android:text="@string/education_radio_button_graduate" />
+
+            <RadioButton
+                android:id="@+id/registerActivityRadioButtonUndergraduate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tag="UNDER_GRADUATE"
+                android:text="@string/education_radio_button_under_graduate" />
+
+
+        </RadioGroup>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/registerActivityButtonRegister"
         android:layout_width="match_parent"

@@ -13,5 +13,10 @@
     <string name="show_password_switch_text">Show Password</string>
     <string name="goodbye_message_text">C and System Programmers Association</string>
     <string name="return_back_message">Press again to return back!…</string>
+    <string name="education_radio_button_phd">PhD</string>
+    <string name="education_radio_button_msc">MsC</string>
+    <string name="education_radio_button_graduate">Graduate</string>
+    <string name="education_radio_button_under_graduate">Under Graduate</string>
+    <string name="textview_education_label">Education Information</string>
 
 </resources>
