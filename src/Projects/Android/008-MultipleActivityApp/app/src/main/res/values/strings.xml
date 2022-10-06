@@ -37,4 +37,8 @@
     <string name="alert_details_yes">Yes</string>
     <string name="alert_details_no">No</string>
     <string name="alert_details_cancel">Cancel</string>
+    <string name="textview_name_label">Name</string>
+    <string name="textview_email_label">Email</string>
+    <string name="textview_username_label">Username</string>
+    <string name="ok_button_text">OK</string>
 </resources>

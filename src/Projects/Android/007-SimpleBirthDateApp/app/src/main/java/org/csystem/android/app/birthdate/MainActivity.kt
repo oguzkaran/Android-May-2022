@@ -12,6 +12,21 @@ import java.time.temporal.ChronoUnit
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
 
+    private fun toLocalDate(str: String) : LocalDate //Bu metot ileride bir kütüphanede olacak
+    {
+        val formatters = arrayOf(DateTimeFormatter.ofPattern("dd-MM-yyyy"), DateTimeFormatter.ofPattern("dd/MM/yyyy"), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
+        for (formatter in formatters)
+            try {
+                return LocalDate.parse(str, formatter)
+            }
+            catch (ignore: DateTimeException) {
+
+            }
+
+        throw DateTimeException("Invalid Date format")
+    }
+
     private fun getBirthDayMessage(birthDay: LocalDate, today: LocalDate) : String
     {
         var message = "Doğum gününüz kutlu olsun"
@@ -23,15 +38,15 @@ class MainActivity : AppCompatActivity() {
 
         return message
     }
+
     private fun okButtonClickedCallback()
     {
-        try {
-            mBinding.mainActivityTextViewMessage.text = ""
-            val today = LocalDate.now()
-            val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            val birthDate = LocalDate.parse(mBinding.mainActivityEditTextBirthDate.text.toString(), formatter)
-            val birthDay = birthDate.withYear(today.year)
+        mBinding.mainActivityTextViewMessage.text = ""
+        val today = LocalDate.now()
 
+        try {
+            val birthDate = toLocalDate(mBinding.mainActivityEditTextBirthDate.text.toString())
+            val birthDay = birthDate.withYear(today.year)
             val message = getBirthDayMessage(birthDay, today)
 
             val age = ChronoUnit.DAYS.between(birthDate, today) / 365.0
@@ -39,10 +54,9 @@ class MainActivity : AppCompatActivity() {
             "%s-> Yaşınız:%.2f".format(message, age).apply {
                 mBinding.mainActivityTextViewMessage.text = this
             }
-
         }
-        catch (ex: DateTimeException) {
-            Toast.makeText(this, "Invalid date format", Toast.LENGTH_LONG).show()
+        catch (ignore: DateTimeException) {
+            Toast.makeText(this, R.string.invalid_date_format_message, Toast.LENGTH_LONG).show()
         }
     }
 
