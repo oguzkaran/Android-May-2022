@@ -32,7 +32,6 @@ class LoginAcceptedActivity : AppCompatActivity() {
     }
 
 
-
     private fun initBackButton()
     {
         mBinding.loginAcceptedActivityButtonBack.setOnClickListener {loginAcceptedActivityButtonBackCallback()}
