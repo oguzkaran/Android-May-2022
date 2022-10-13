@@ -32,7 +32,6 @@
         android:inputType="textPersonName"
         android:hint="@string/username_edittext_hint_text" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,8 +114,6 @@
                 android:layout_weight="1"
                 android:tag="UNDER_GRADUATE"
                 android:text="@string/education_radio_button_under_graduate" />
-
-
         </RadioGroup>
     </LinearLayout>
 
@@ -163,6 +160,30 @@
                 android:tag="DIVORCED"
                 android:text="@string/marital_status_radio_button_divorced" />
         </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/registerActivitySpinnerDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/registerActivitySpinnerMonths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/registerActivitySpinnerYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <Button

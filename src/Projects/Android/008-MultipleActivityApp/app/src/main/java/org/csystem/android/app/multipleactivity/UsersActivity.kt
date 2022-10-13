@@ -46,7 +46,7 @@ class UsersActivity : AppCompatActivity() {
             .setMessage(R.string.alert_details_message)
             .setPositiveButton(R.string.alert_details_yes) {_, w -> alertButtonsCallback(w, ri)}
             .setNegativeButton(R.string.alert_details_no) {_, w -> alertButtonsCallback(w, ri)}
-            .setNeutralButton(R.string.alert_details_cancel) {_, w -> alertButtonsCallback(w, ri)}
+            //.setNeutralButton(R.string.alert_details_cancel) {_, w -> alertButtonsCallback(w, ri)}
             .setIcon(R.drawable.question_mark_icon)
             .create().show()
     }

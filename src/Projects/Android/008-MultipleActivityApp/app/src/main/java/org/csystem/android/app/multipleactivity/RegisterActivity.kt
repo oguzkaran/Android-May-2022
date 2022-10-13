@@ -2,7 +2,7 @@ package org.csystem.android.app.multipleactivity
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
+import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,8 @@ import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterBind
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
 import org.csystem.android.app.multipleactivity.keys.TEXT_PASSWORD_HIDE
 import org.csystem.android.app.multipleactivity.keys.TEXT_PASSWORD_SHOW
+import java.time.LocalDate
+import java.time.Month
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityRegisterBinding
@@ -66,6 +68,36 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun initDaySpinner()
+    {
+        val days = Array(31) {it + 1}
+
+        mBinding.registerActivitySpinnerDays.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, days)
+    }
+
+    private fun initMonthSpinner()
+    {
+        val months = Array(12) {it + 1}
+
+        mBinding.registerActivitySpinnerMonths.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, months)
+    }
+
+    private fun initYearSpinner()
+    {
+        val today = LocalDate.now() //Sistemin saati değiştirilmesine karşılık bir server'dan alınabilir. İleride göreceğiz
+        val first = today.year - 100 + 1
+        val years = Array(100) {first + it}
+
+        mBinding.registerActivitySpinnerYears.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, years)
+    }
+
+    private fun initBirthDateSpinners()
+    {
+        initDaySpinner()
+        initMonthSpinner()
+        initYearSpinner()
+    }
+
 
     private fun initAcceptSwitch()
     {
@@ -90,6 +122,7 @@ class RegisterActivity : AppCompatActivity() {
         initRegisterButton()
         initAcceptSwitch()
         initShowPasswordSwitch()
+        initBirthDateSpinners()
     }
 
     private fun initBinding()
