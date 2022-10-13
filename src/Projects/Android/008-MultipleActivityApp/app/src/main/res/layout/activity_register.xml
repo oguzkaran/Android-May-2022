@@ -165,25 +165,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/registerActivitySpinnerDays"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="@string/textview_bith_date_label"
+            android:textSize="20sp" />
 
-        <Spinner
-            android:id="@+id/registerActivitySpinnerMonths"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/registerActivitySpinnerDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-        <Spinner
-            android:id="@+id/registerActivitySpinnerYears"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <Spinner
+                android:id="@+id/registerActivitySpinnerMonths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/registerActivitySpinnerYears"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
     </LinearLayout>
 
     <Button

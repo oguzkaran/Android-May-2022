@@ -20,6 +20,7 @@
     <string name="education_radio_button_graduate">Graduate</string>
     <string name="education_radio_button_under_graduate">Under Graduate</string>
     <string name="textview_marital_status_label">Marital Status</string>
+    <string name="textview_bith_date_label">Birth Date</string>
     <string name="marital_status_radio_button_single">Single</string>
     <string name="marital_status_radio_button_married">Married</string>
     <string name="marital_status_radio_button_divorced">Divorced</string>
@@ -41,4 +42,5 @@
     <string name="textview_email_label">Email</string>
     <string name="textview_username_label">Username</string>
     <string name="ok_button_text">OK</string>
+    <string name="invalid_date_toast_message_text">Invalid Date</string>
 </resources>

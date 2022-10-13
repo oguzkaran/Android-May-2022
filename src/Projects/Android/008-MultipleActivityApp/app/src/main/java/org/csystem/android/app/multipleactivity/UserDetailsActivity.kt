@@ -6,6 +6,7 @@ import org.csystem.android.app.multipleactivity.data.RegisterInfo
 import org.csystem.android.app.multipleactivity.databinding.ActivityUserDetailsBinding
 import org.csystem.android.app.multipleactivity.keys.LOGIN_INFO
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
+import java.time.format.DateTimeFormatter
 
 class UserDetailsActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityUserDetailsBinding
@@ -22,11 +23,14 @@ class UserDetailsActivity : AppCompatActivity() {
 
     private fun initRegisterInfoViews(ri: RegisterInfo)
     {
+        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         mBinding.userDetailsActivityTextViewName.text = ri.name
         mBinding.userDetailsActivityTextViewEmail.text = ri.email
         mBinding.userDetailsActivityTextViewUsername.text = ri.username
         mBinding.userDetailsActivityTextViewEducation.text = ri.education.toString()
         mBinding.userDetailsActivityTextViewMaritalStatus.text = ri.maritalStatus.toString()
+        mBinding.userDetailsActivityTextViewBirthDate.text = formatter.format(ri.birthDate)
+        mBinding.userDetailsActivityTextViewRegisterDate.text = formatter.format(ri.registerDate)
     }
 
     private fun initOKButton()
