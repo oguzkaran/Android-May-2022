@@ -13,8 +13,10 @@ import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterBind
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
 import org.csystem.android.app.multipleactivity.keys.TEXT_PASSWORD_HIDE
 import org.csystem.android.app.multipleactivity.keys.TEXT_PASSWORD_SHOW
+import java.time.DateTimeException
 import java.time.LocalDate
 import java.time.Month
+import java.util.function.ToLongBiFunction
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityRegisterBinding
@@ -33,24 +35,45 @@ class RegisterActivity : AppCompatActivity() {
         return MaritalStatus.valueOf(selected.tag as String)
     }
 
-    private fun createRegisterInfo() : RegisterInfo
+    private fun createRegisterInfo(birthDate: LocalDate) : RegisterInfo
     {
         val name = mBinding.registerActivityEditTextName.text.toString()
         val email = mBinding.registerActivityEditTextEmail.text.toString()
         val username = mBinding.registerActivityEditTextUsername.text.toString()
         val password = mBinding.registerActivityEditTextPassword.text.toString()
 
-        return RegisterInfo(name, email, username, password, getEducation(), getMaritalStatus())
+        return RegisterInfo(name, email, username, password, getEducation(), getMaritalStatus(), birthDate)
     }
 
     private fun confirmPassword() = mBinding.registerActivityEditTextPassword.text.toString() == mBinding.registerActivityEditTextConfirmPassword.text.toString()
 
+    private fun createBirthDate() : LocalDate?
+    {
+        var result: LocalDate? = null
+
+        try {
+            val day = mBinding.registerActivitySpinnerDays.selectedItemPosition + 1
+            val month = mBinding.registerActivitySpinnerMonths.selectedItemPosition + 1
+            val year = mBinding.registerActivitySpinnerYears.selectedItem as Int
+            result = LocalDate.of(year, month, day)
+        }
+        catch (ignore: DateTimeException) {
+
+        }
+
+        return result
+    }
+
     private fun registerButtonClickedCallback()
     {
         if (confirmPassword()) {
-            val registerInfo = createRegisterInfo()
+            val birthDate = createBirthDate();
 
-            //Control data
+            if (birthDate == null) {
+                Toast.makeText(this, "Invalid date format", Toast.LENGTH_LONG).show()
+                return
+            }
+            val registerInfo = createRegisterInfo(birthDate)
 
             Intent(this, RegisterDetailsActivity::class.java).apply {
                 putExtra(REGISTER_INFO, registerInfo)
@@ -77,9 +100,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initMonthSpinner()
     {
-        val months = Array(12) {it + 1}
-
-        mBinding.registerActivitySpinnerMonths.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, months)
+        mBinding.registerActivitySpinnerMonths.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, Month.values())
     }
 
     private fun initYearSpinner()
@@ -97,7 +118,6 @@ class RegisterActivity : AppCompatActivity() {
         initMonthSpinner()
         initYearSpinner()
     }
-
 
     private fun initAcceptSwitch()
     {
