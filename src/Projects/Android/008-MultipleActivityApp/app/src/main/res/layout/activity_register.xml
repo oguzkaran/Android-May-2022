@@ -1,214 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".RegisterActivity">
 
-    <EditText
-        android:id="@+id/registerActivityEditTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/name_edittext_hint_text" />
-
-    <EditText
-        android:id="@+id/registerActivityEditTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_edittext_hint_text" />
-
-    <EditText
-        android:id="@+id/registerActivityEditTextUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/username_edittext_hint_text" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.android.app.multipleactivity.data.viewmodel.RegisterInfoViewModel"/>
+        <variable name="registerViewModel" type="RegisterInfoViewModel" />
+    </data>
 
     <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".RegisterActivity">
 
         <EditText
-            android:id="@+id/registerActivityEditTextPassword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:hint="@string/password_edittext_hint_text"/>
+            android:inputType="textPersonName"
+            android:hint="@string/name_edittext_hint_text"
+            android:text="@={registerViewModel.name}"/>
 
-        <Switch
-            android:id="@+id/registerActivitySwitchShowPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/show_password_switch_text" />
-
-    </LinearLayout>
-
-
-    <EditText
-        android:id="@+id/registerActivityEditTextConfirmPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="@string/confirm_password_edittext_hint_text"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/textview_education_label"
-            android:textSize="20sp" />
-
-        <RadioGroup
-            android:id="@+id/registerActivityRadioGroupEducation"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email_edittext_hint_text"
+            android:text="@={registerViewModel.email}"/>
 
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonPhd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="PHD"
-                android:text="@string/education_radio_button_phd" />
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonMsc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="MSC"
-                android:text="@string/education_radio_button_msc" />
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonGraduate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="GRADUATE"
-                android:checked="true"
-                android:text="@string/education_radio_button_graduate" />
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonUndergraduate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="UNDER_GRADUATE"
-                android:text="@string/education_radio_button_under_graduate" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/textview_marital_status_label"
-            android:textSize="20sp" />
-
-        <RadioGroup
-            android:id="@+id/registerActivityRadioGroupMaritalStatus"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonSingle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="SINGLE"
-                android:checked="true"
-                android:text="@string/marital_status_radio_button_single" />
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonMarried"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="MARRIED"
-                android:text="@string/marital_status_radio_button_married" />
-
-            <RadioButton
-                android:id="@+id/registerActivityRadioButtonDivorced"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:tag="DIVORCED"
-                android:text="@string/marital_status_radio_button_divorced" />
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/textview_bith_date_label"
-            android:textSize="20sp" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/username_edittext_hint_text"
+            android:text="@={registerViewModel.username}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Spinner
-                android:id="@+id/registerActivitySpinnerDays"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
-            <Spinner
-                android:id="@+id/registerActivitySpinnerMonths"
+            <EditText
+                android:id="@+id/registerActivityEditTextPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="@string/password_edittext_hint_text"
+                android:text="@={registerViewModel.password}"/>
 
-            <Spinner
-                android:id="@+id/registerActivitySpinnerYears"
+            <Switch
+                android:id="@+id/registerActivitySwitchShowPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="@string/show_password_switch_text"
+                android:checked="@={registerViewModel.showPassword}"/>
+
         </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/confirm_password_edittext_hint_text"
+            android:text="@={registerViewModel.confirmPassword}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/textview_education_label"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/registerActivityRadioGroupEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonPhd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="PHD"
+                    android:text="@string/education_radio_button_phd" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonMsc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="MSC"
+                    android:text="@string/education_radio_button_msc" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonGraduate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="GRADUATE"
+                    android:checked="true"
+                    android:text="@string/education_radio_button_graduate" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonUndergraduate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="UNDER_GRADUATE"
+                    android:text="@string/education_radio_button_under_graduate" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/textview_marital_status_label"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/registerActivityRadioGroupMaritalStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonSingle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="SINGLE"
+                    android:checked="true"
+                    android:text="@string/marital_status_radio_button_single" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonMarried"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="MARRIED"
+                    android:text="@string/marital_status_radio_button_married" />
+
+                <RadioButton
+                    android:id="@+id/registerActivityRadioButtonDivorced"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="DIVORCED"
+                    android:text="@string/marital_status_radio_button_divorced" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/textview_bith_date_label"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/registerActivitySpinnerDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:selectedItemPosition="@={registerViewModel.daySelectedPosition}"
+                    android:spinnerMode="dialog"/>
+
+                <Spinner
+                    android:id="@+id/registerActivitySpinnerMonths"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:selectedItemPosition="@={registerViewModel.monthSelectedPosition}"
+                    android:spinnerMode="dialog"/>
+
+                <Spinner
+                    android:id="@+id/registerActivitySpinnerYears"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:selectedItemPosition="@={registerViewModel.yearSelectedPosition}"
+                    android:spinnerMode="dialog"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/registerActivityButtonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/register_button_text" />
+
+        <Switch
+            android:id="@+id/registerActivitySwitchAccept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accept_conditions_switch_text" />
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/registerActivityButtonRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:text="@string/register_button_text" />
-
-    <Switch
-        android:id="@+id/registerActivitySwitchAccept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accept_conditions_switch_text" />
-
-</LinearLayout>
+</layout>

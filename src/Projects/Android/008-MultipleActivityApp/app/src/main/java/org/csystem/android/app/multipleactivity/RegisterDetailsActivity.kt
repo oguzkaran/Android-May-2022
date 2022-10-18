@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.multipleactivity.data.RegisterInfo
 import org.csystem.android.app.multipleactivity.data.UsersRepository
+import org.csystem.android.app.multipleactivity.data.viewmodel.RegisterInfoViewModel
 import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterDetailsBinding
 import org.csystem.android.app.multipleactivity.datetime.createBirthDate
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
@@ -14,7 +15,7 @@ import java.time.LocalDate
 import java.time.Month
 
 class RegisterDetailsActivity : AppCompatActivity() {
-    private lateinit var mRegisterInfo: RegisterInfo
+    private lateinit var mRegisterInfo: RegisterInfoViewModel
     private lateinit var mBinding: ActivityRegisterDetailsBinding
 
     private fun registerDetailsButtonClickedCallback()
@@ -30,7 +31,7 @@ class RegisterDetailsActivity : AppCompatActivity() {
         //Refresh mRegisterInfo
         mRegisterInfo.birthDate = birthDate
         Toast.makeText(this, "Register completed!...", Toast.LENGTH_LONG).show()
-        UsersRepository.save(mRegisterInfo)
+        //UsersRepository.save(mRegisterInfo)
         finish()
     }
 
@@ -90,11 +91,11 @@ class RegisterDetailsActivity : AppCompatActivity() {
     {
         mRegisterInfo = if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.TIRAMISU) {
             Toast.makeText(this, "Before Tiramisu!...", Toast.LENGTH_LONG).show()
-            intent.getSerializableExtra(REGISTER_INFO) as RegisterInfo
+            intent.getSerializableExtra(REGISTER_INFO) as RegisterInfoViewModel
         }
         else {
             Toast.makeText(this, "Tiramisu+!...", Toast.LENGTH_LONG).show()
-            intent.getSerializableExtra(REGISTER_INFO, RegisterInfo::class.java)!!
+            intent.getSerializableExtra(REGISTER_INFO, RegisterInfoViewModel::class.java)!!
         }
     }
 

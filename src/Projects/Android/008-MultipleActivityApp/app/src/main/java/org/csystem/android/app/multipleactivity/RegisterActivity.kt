@@ -6,9 +6,11 @@ import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.multipleactivity.data.Education
 import org.csystem.android.app.multipleactivity.data.MaritalStatus
 import org.csystem.android.app.multipleactivity.data.RegisterInfo
+import org.csystem.android.app.multipleactivity.data.viewmodel.RegisterInfoViewModel
 import org.csystem.android.app.multipleactivity.databinding.ActivityRegisterBinding
 import org.csystem.android.app.multipleactivity.datetime.createBirthDate
 import org.csystem.android.app.multipleactivity.keys.REGISTER_INFO
@@ -36,17 +38,7 @@ class RegisterActivity : AppCompatActivity() {
         return MaritalStatus.valueOf(selected.tag as String)
     }
 
-    private fun createRegisterInfo(birthDate: LocalDate) : RegisterInfo
-    {
-        val name = mBinding.registerActivityEditTextName.text.toString()
-        val email = mBinding.registerActivityEditTextEmail.text.toString()
-        val username = mBinding.registerActivityEditTextUsername.text.toString()
-        val password = mBinding.registerActivityEditTextPassword.text.toString()
-
-        return RegisterInfo(name, email, username, password, getEducation(), getMaritalStatus(), birthDate)
-    }
-
-    private fun confirmPassword() = mBinding.registerActivityEditTextPassword.text.toString() == mBinding.registerActivityEditTextConfirmPassword.text.toString()
+    private fun confirmPassword() = mBinding.registerViewModel!!.password == mBinding.registerViewModel!!.confirmPassword
 
     private fun registerButtonClickedCallback()
     {
@@ -60,10 +52,9 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.invalid_date_toast_message_text, Toast.LENGTH_LONG).show()
                 return
             }
-            val registerInfo = createRegisterInfo(birthDate)
 
             Intent(this, RegisterDetailsActivity::class.java).apply {
-                putExtra(REGISTER_INFO, registerInfo)
+                putExtra(REGISTER_INFO, mBinding.registerViewModel)
                 startActivity(this)
             }
         }
@@ -136,8 +127,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initBinding()
     {
-        mBinding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_register)
+        mBinding.registerViewModel = RegisterInfoViewModel()
     }
 
     private fun initialize()
