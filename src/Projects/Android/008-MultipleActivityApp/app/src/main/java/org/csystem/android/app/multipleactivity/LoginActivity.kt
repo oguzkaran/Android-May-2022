@@ -3,6 +3,7 @@ package org.csystem.android.app.multipleactivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.multipleactivity.data.LoginInfo
 import org.csystem.android.app.multipleactivity.databinding.ActivityLoginBinding
 import org.csystem.android.app.multipleactivity.keys.LOGIN_INFO
@@ -14,7 +15,7 @@ class LoginActivity : AppCompatActivity() {
     {
         //Control data
         Intent(this, LoginAcceptedActivity::class.java).apply {
-            putExtra(LOGIN_INFO, LoginInfo(mBinding.loginActivityEditTextUsername.text.toString(), mBinding.loginActivityEditTextPassword.text.toString()))
+            putExtra(LOGIN_INFO, mBinding.loginInfo)
             startActivity(this)
         }
     }
@@ -31,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initBinding()
     {
-        mBinding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        mBinding.loginInfo = LoginInfo()
     }
 
     private fun initialize()
