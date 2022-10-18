@@ -3,8 +3,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <import type="org.csystem.android.app.multipleactivity.data.LoginInfo"/>
+        <import type="org.csystem.android.app.multipleactivity.data.viewmodel.LoginViewModel"/>
         <variable name="loginInfo" type="LoginInfo" />
+        <variable name="loginViewModel" type="LoginViewModel" />
     </data>
+
     <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -30,9 +33,9 @@
             android:text="@={loginInfo.password}"/>
 
         <Button
-            android:id="@+id/loginActivityButtonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> loginViewModel.handleLoginButtonClicked()}"
             android:text="@string/login_button_text" />
     </LinearLayout>
 </layout>

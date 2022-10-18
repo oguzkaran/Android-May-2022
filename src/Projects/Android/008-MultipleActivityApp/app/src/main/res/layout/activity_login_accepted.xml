@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".LoginAcceptedActivity">
 
-    <TextView
-        android:id="@+id/loginAcceptedActivityTextViewUsername"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.android.app.multipleactivity.data.LoginInfo"/>
+        <import type="org.csystem.android.app.multipleactivity.data.viewmodel.LoginAcceptedViewModel"/>
+        <variable name="loginInfo" type="LoginInfo"/>
+        <variable name="loginAcceptedViewModel" type="LoginAcceptedViewModel"/>
+    </data>
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".LoginAcceptedActivity">
 
-    <Button
-        android:id="@+id/loginAcceptedActivityButtonUsers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/users_button_text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{loginInfo.username}" />
 
-    <Button
-        android:id="@+id/loginAcceptedActivityButtonBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/back_button_text" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> loginAcceptedViewModel.handleListUsersButtonClicked()}"
+            android:text="@string/users_button_text" />
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> loginAcceptedViewModel.handleBackButtonClicked()}"
+            android:text="@string/back_button_text" />
+
+    </LinearLayout>
+</layout>
