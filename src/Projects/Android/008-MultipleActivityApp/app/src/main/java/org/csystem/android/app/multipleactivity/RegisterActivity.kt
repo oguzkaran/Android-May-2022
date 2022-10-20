@@ -37,13 +37,6 @@ class RegisterActivity : AppCompatActivity() {
         return MaritalStatus.valueOf(selected.tag as String)
     }
 
-    private fun showPasswordSwitchCallback(checked: Boolean)
-    {
-        mBinding.registerActivityEditTextPassword.also {
-            it.inputType = if (checked) TEXT_PASSWORD_SHOW else TEXT_PASSWORD_HIDE
-        }
-    }
-
     private fun initDaySpinner(today: LocalDate)
     {
         val days = Array(31) {it + 1}
@@ -74,24 +67,8 @@ class RegisterActivity : AppCompatActivity() {
         initYearSpinner(today)
     }
 
-    private fun initAcceptSwitch()
-    {
-        mBinding.registerActivitySwitchAccept.setOnCheckedChangeListener {
-                _, checked -> mBinding.registerActivityButtonRegister.isEnabled = checked
-        }
-    }
-
-    private fun initShowPasswordSwitch()
-    {
-        mBinding.registerActivitySwitchShowPassword.setOnCheckedChangeListener {
-                _, checked -> showPasswordSwitchCallback(checked)
-        }
-    }
-
     private fun initViews()
     {
-        initAcceptSwitch()
-        initShowPasswordSwitch()
         initBirthDateSpinners()
     }
 
@@ -145,5 +122,17 @@ class RegisterActivity : AppCompatActivity() {
         }
         else
             Toast.makeText(this, "Confirm your password", Toast.LENGTH_LONG).show()
+    }
+
+    fun showPasswordSwitchCallback(checked: Boolean)
+    {
+        mBinding.registerActivityEditTextPassword.also {
+            it.inputType = if (checked) TEXT_PASSWORD_SHOW else TEXT_PASSWORD_HIDE
+        }
+    }
+
+    fun acceptSwitchCheckedChangedCallback(checked: Boolean)
+    {
+        mBinding.registerActivityButtonRegister.isEnabled = checked
     }
 }

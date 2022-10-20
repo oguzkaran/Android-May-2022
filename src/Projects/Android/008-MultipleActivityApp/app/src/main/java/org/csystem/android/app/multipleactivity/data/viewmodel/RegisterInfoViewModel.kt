@@ -12,25 +12,22 @@ data class RegisterInfoViewModel(var name: String = "", var email: String = "", 
                                  var birthDate: LocalDate = LocalDate.now(),
                                  var registerDate: LocalDate = LocalDate.now(),
                                  var daySelectedPosition: Int = 0, var monthSelectedPosition: Int = 0,
-                                 var yearSelectedPosition: Int = 0
+                                 var yearSelectedPosition: Int = 0,
+                                 var enableAcceptButton: Boolean = false
+
 ) : Serializable {
     @Transient
     lateinit var activity: RegisterActivity
 
-    fun handleRegisterButtonClicked()
-    {
-        activity.registerButtonClickedCallback()
-    }
+    fun handleRegisterButtonClicked() = activity.registerButtonClickedCallback()
 
-    fun educationRadioGroupClicked(id: Int)
-    {
-        activity.educationRadioGroupClickedCallback(id)
-    }
+    fun educationRadioGroupCheckedChanged(id: Int) = activity.educationRadioGroupClickedCallback(id)
 
-    fun maritalStatusRadioGroupClicked(id: Int)
-    {
-        activity.maritalStatusRadioGroupClickedCallback(id)
-    }
+    fun maritalStatusRadioGroupCheckedChanged(id: Int) = activity.maritalStatusRadioGroupClickedCallback(id)
+
+    fun showPasswordSwitchCheckedChanged(checked: Boolean) = activity.showPasswordSwitchCallback(checked)
+
+    fun acceptSwitchCheckedChanged(checked: Boolean) = activity.acceptSwitchCheckedChangedCallback(checked)
 
     override fun toString() = "$username[$name]"
 }

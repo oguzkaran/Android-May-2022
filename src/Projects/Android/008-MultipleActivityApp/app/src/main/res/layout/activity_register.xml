@@ -53,11 +53,11 @@
                 android:text="@={registerViewModel.password}"/>
 
             <Switch
-                android:id="@+id/registerActivitySwitchShowPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/show_password_switch_text"
+                android:onCheckedChanged="@{(_, checked) -> registerViewModel.showPasswordSwitchCheckedChanged(checked)}"
                 android:checked="@={registerViewModel.showPassword}"/>
 
         </LinearLayout>
@@ -85,7 +85,7 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onCheckedChanged="@{(r, id) -> registerViewModel.educationRadioGroupClicked(id)}"
+                android:onCheckedChanged="@{(_, id) -> registerViewModel.educationRadioGroupCheckedChanged(id)}"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -138,7 +138,7 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onCheckedChanged="@{(r, id) -> registerViewModel.maritalStatusRadioGroupClicked(id)}"
+                android:onCheckedChanged="@{(_, id) -> registerViewModel.maritalStatusRadioGroupCheckedChanged(id)}"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -219,9 +219,9 @@
             android:text="@string/register_button_text" />
 
         <Switch
-            android:id="@+id/registerActivitySwitchAccept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onCheckedChanged="@{(_, checked) -> registerViewModel.acceptSwitchCheckedChanged(checked)}"
             android:text="@string/accept_conditions_switch_text" />
 
     </LinearLayout>
