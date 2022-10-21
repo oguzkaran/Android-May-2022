@@ -214,7 +214,7 @@
             android:id="@+id/registerActivityButtonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="false"
+            android:enabled="@{registerViewModel.enableAcceptButton}"
             android:onClick="@{() -> registerViewModel.handleRegisterButtonClicked()}"
             android:text="@string/register_button_text" />
 
