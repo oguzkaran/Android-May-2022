@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SampleCinemaApp</string>
+    <string name="cinema_type_action">Action</string>
+    <string name="cinema_type_drama">Drama</string>
+    <string name="cinema_type_politics">Politics</string>
+    <string name="cinema_type_horror">Horror</string>
+    <string name="cinema_type_biography">Biography</string>
+
+    <string name="edittext_name_hint">Name</string>
+    <string name="edittext_year_hint">Year</string>
+    <string name="edittext_director_hint">Director</string>
+    <string name="edittext_company_hint">Company</string>
+    <string name="button_save_text">Save</string>
+    <string name="button_exit_list">List</string>
+    <string name="button_exit_text">Exit</string>
+
+    <string name="text_goodbye_csd">C and System Programmers Association</string>
+</resources>
