@@ -11,8 +11,12 @@
     <string name="edittext_director_hint">Director</string>
     <string name="edittext_company_hint">Company</string>
     <string name="button_save_text">Save</string>
-    <string name="button_exit_list">List</string>
+    <string name="button_list_text">List</string>
     <string name="button_exit_text">Exit</string>
 
-    <string name="text_goodbye_csd">C and System Programmers Association</string>
+
+    <string name="message_text_goodbye_csd">C and System Programmers Association</string>
+    <string name="message_title_no_cinema">Warning</string>
+    <string name="message_text_no_cinema">No cinema added yet</string>
+    <string name="message_text_no_cinema_ok_button">OK</string>
 </resources>

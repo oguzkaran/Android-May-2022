@@ -14,5 +14,7 @@ object CinemaRepository {
 
     fun findAll() : List<Cinema> = mCinemaList
 
+    fun count() = findAll().count()
+
     //...
 }

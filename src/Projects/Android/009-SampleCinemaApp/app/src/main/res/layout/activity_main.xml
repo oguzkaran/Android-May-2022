@@ -20,7 +20,8 @@
     <Spinner
         android:id="@+id/mainActivitySpinnerType"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"/>
 
     <EditText
         android:id="@+id/mainActivityEditTextYear"
@@ -56,7 +57,7 @@
         android:id="@+id/mainActivityButtonList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_save_text" />
+        android:text="@string/button_list_text" />
 
     <Button
         android:id="@+id/mainActivityButtonExit"
