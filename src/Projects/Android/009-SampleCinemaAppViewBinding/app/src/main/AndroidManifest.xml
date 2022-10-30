@@ -13,6 +13,13 @@
         android:theme="@style/Theme.009SampleCinemaApp"
         tools:targetApi="31">
         <activity
+            android:name=".CinemaDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ListCinemaActivity"
             android:exported="false">
             <meta-data

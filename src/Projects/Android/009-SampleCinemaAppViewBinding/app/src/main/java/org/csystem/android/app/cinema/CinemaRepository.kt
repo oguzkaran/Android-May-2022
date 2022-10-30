@@ -9,12 +9,25 @@ object CinemaRepository {
     {
         mCinemaList.add(cinema)
 
+        cinema.id = mCinemaList.size
         return cinema
     }
 
     fun findAll() : List<Cinema> = mCinemaList
 
     fun count() = findAll().count()
+
+    fun update(cinema: Cinema) : Boolean
+    {
+        val id = cinema.id
+
+        if (id <= 0 || id > mCinemaList.size)
+            return false;
+
+        mCinemaList[id - 1] = cinema
+
+        return true
+    }
 
     //...
 }
