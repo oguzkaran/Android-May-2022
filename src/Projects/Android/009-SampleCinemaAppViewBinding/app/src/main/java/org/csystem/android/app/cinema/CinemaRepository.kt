@@ -33,7 +33,7 @@ object CinemaRepository {
 
     fun deleteById(id: Int)
     {
-        if (0 < id && id < mCinemaList.size)
+        if (0 < id && id <= mCinemaList.size)
             mCinemaList[id - 1] = null
     }
     //...
