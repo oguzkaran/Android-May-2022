@@ -64,6 +64,16 @@ class CinemaDetailsActivity : AppCompatActivity() {
             .setNegativeButton(R.string.message_text_cinema_details_no_button) {_, _-> ;}
             .create().show();
     }
+    private fun modifySwitchCheckedChangeCallback(checked: Boolean)
+    {
+        mBinding.cinemaDetailsActivityButtonUpdate.isEnabled = checked
+        mBinding.cinemaDetailsActivityButtonDelete.isEnabled = checked
+    }
+
+    private fun initModifySwitch()
+    {
+        mBinding.cinemaDetailsActivitySwitchModify.setOnCheckedChangeListener {_, checked -> modifySwitchCheckedChangeCallback(checked)}
+    }
 
     private fun initUpdateButton()
     {
@@ -94,6 +104,7 @@ class CinemaDetailsActivity : AppCompatActivity() {
         initData()
         initTypeSpinner()
         initUpdateButton()
+        initModifySwitch()
     }
 
     private fun initCinema()

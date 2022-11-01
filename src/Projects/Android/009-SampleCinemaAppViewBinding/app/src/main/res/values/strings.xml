@@ -11,9 +11,12 @@
     <string name="edittext_director_hint">Director</string>
     <string name="edittext_company_hint">Company</string>
     <string name="button_save_text">Save</string>
+    <string name="button_add_text">Add</string>
     <string name="button_update_text">Update</string>
+    <string name="button_delete_text">Delete</string>
     <string name="button_list_text">List</string>
     <string name="button_exit_text">Exit</string>
+    <string name="switch_modify_text">Modify</string>
 
 
     <string name="message_text_goodbye_csd">C and System Programmers Association</string>

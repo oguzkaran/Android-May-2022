@@ -3,7 +3,7 @@ package org.csystem.android.app.cinema
 import org.csystem.android.app.cinema.data.entity.Cinema
 
 object CinemaRepository {
-    private val mCinemaList = ArrayList<Cinema>()
+    private val mCinemaList = ArrayList<Cinema?>()
 
     fun save(cinema: Cinema) : Cinema
     {
@@ -13,7 +13,7 @@ object CinemaRepository {
         return cinema
     }
 
-    fun findAll() : List<Cinema> = mCinemaList.toList()
+    fun findAll() : List<Cinema> = mCinemaList.filterNotNull().toList()
 
     fun count() = findAll().count()
 
@@ -29,5 +29,12 @@ object CinemaRepository {
         return true
     }
 
+    fun isEmpty() = count() == 0
+
+    fun deleteById(id: Int)
+    {
+        if (0 < id && id < mCinemaList.size)
+            mCinemaList[id - 1] = null
+    }
     //...
 }

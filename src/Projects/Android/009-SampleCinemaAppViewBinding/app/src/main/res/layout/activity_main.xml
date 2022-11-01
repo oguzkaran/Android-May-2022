@@ -8,57 +8,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <EditText
-        android:id="@+id/mainActivityEditTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/edittext_name_hint"
-        />
-
-    <Spinner
-        android:id="@+id/mainActivitySpinnerType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dialog"/>
-
-    <EditText
-        android:id="@+id/mainActivityEditTextYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/edittext_year_hint"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/mainActivityEditTextDirector"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/edittext_director_hint"/>
-
-    <EditText
-        android:id="@+id/mainActivityEditTextCompany"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/edittext_company_hint"
-         />
-
     <Button
-        android:id="@+id/mainActivityButtonSave"
+        android:id="@+id/mainActivityButtonInsert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_save_text" />
+        android:text="@string/button_add_text" />
 
     <Button
         android:id="@+id/mainActivityButtonList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_list_text" />
-
     <Button
         android:id="@+id/mainActivityButtonExit"
         android:layout_width="match_parent"

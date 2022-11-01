@@ -27,20 +27,9 @@ class ListCinemaActivity : AppCompatActivity() {
 
     private fun initCinemaListView()
     {
-        val list = CinemaRepository.findAll()
-
-        if (list.isEmpty()) { //Diğer activity'ye alacağız
-            AlertDialog.Builder(this)
-                .setTitle(R.string.message_title_no_cinema)
-                .setMessage(R.string.message_text_no_cinema)
-                .setPositiveButton(R.string.message_text_no_cinema_ok_button) {_, _ -> finish()}
-                .create().show()
-        }
-        else {
-            mBinding.listCinemaActivityListViewCinema.adapter =
-                ArrayAdapter(this, android.R.layout.simple_list_item_1, CinemaRepository.findAll()) //findAll çağırmak çok fazla verinin olduğuh durumda dezavantaj olabilir
-            mBinding.listCinemaActivityListViewCinema.setOnItemClickListener{_, _, pos, _ -> cinemaListViewItemClickCallback(pos)}
-        }
+        mBinding.listCinemaActivityListViewCinema.adapter =
+            ArrayAdapter(this, android.R.layout.simple_list_item_1, CinemaRepository.findAll()) //findAll çağırmak çok fazla verinin olduğuh durumda dezavantaj olabilir
+        mBinding.listCinemaActivityListViewCinema.setOnItemClickListener{_, _, pos, _ -> cinemaListViewItemClickCallback(pos)}
     }
 
     private fun initBinding()
@@ -61,7 +50,7 @@ class ListCinemaActivity : AppCompatActivity() {
         initialize()
     }
 
-    @Deprecated("Since API Level 30")
+    @Deprecated("Since API Level ?")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
     {
         if (requestCode == CINEMA_DETAILS_ACTIVITY_REQUEST_CODE)

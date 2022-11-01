@@ -55,7 +55,21 @@
         android:id="@+id/cinemaDetailsActivityButtonUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="@string/button_update_text" />
+
+    <Button
+        android:id="@+id/cinemaDetailsActivityButtonDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/button_update_text" />
+
+    <Switch
+        android:id="@+id/cinemaDetailsActivitySwitchModify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_modify_text" />
 
 
 </LinearLayout>
