@@ -13,7 +13,7 @@ object CinemaRepository {
         return cinema
     }
 
-    fun findAll() : List<Cinema> = mCinemaList
+    fun findAll() : List<Cinema> = mCinemaList.toList()
 
     fun count() = findAll().count()
 

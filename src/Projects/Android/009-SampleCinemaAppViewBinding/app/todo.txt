@@ -1,0 +1,4 @@
+- CinemaDetailsActivity'de update işlemi sonrasında geri dönüşte bilgiler tekrar ListCinemaActivity'ye yüklenecek.
++ Update işleminden sonra CinemaDetailsActivity kapatılacak
+- Listede sinema olmaması durumu ListCinemaActivity'de değil MainActivity'de kontrol edilecek
+- MainActivity ana buttonlardan oluşan bir activity durumuna getirilecek

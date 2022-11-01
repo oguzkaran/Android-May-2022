@@ -43,10 +43,16 @@ class CinemaDetailsActivity : AppCompatActivity() {
         mCinema.year = yearInfo.first
     }
 
+    private fun closeActivity()
+    {
+        setResult(RESULT_OK)
+        finish()
+    }
     private fun updateButtonAlertPositiveButtonCallback()
     {
         updateCinemaObject()
         CinemaRepository.update(mCinema)
+        closeActivity()
     }
 
     private fun updateButtonClickCallback()
