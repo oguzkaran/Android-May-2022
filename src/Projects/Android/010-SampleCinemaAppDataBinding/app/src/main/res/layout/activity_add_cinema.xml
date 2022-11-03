@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.android.app.cinema.viewmodel.AddCinemaActivityViewModel"/>
+        <import type="org.csystem.android.app.cinema.viewmodel.converter.IntStringConverter"/>
+        <variable name="viewModel" type="AddCinemaActivityViewModel" />
+    </data>
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".AddCinemaActivity">
+
+        <EditText
+            android:id="@+id/addCinemaActivityEditTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edittext_name_hint"
+            android:text="@={viewModel.name}"
+            />
+
+        <Spinner
+            android:id="@+id/addCinemaActivitySpinnerType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"/>
+
+        <EditText
+            android:id="@+id/addCinemaActivityEditTextYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edittext_year_hint"
+            android:inputType="number"
+            android:text="@={IntStringConverter.INSTANCE.toStr(viewModel.year)}"/>
+
+        <EditText
+            android:id="@+id/addCinemaActivityEditTextDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/edittext_director_hint"
+            android:text="@={viewModel.director}"/>
+
+        <EditText
+            android:id="@+id/addCinemaActivityEditTextCompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/edittext_company_hint"
+            android:text="@={viewModel.company}" />
+
+        <Button
+            android:id="@+id/addCinemaActivityButtonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save_text"
+            android:onClick="@{() -> viewModel.handleSaveButton()}"/>
+
+        <Button
+            android:id="@+id/addCinemaActivityButtonList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_list_text"
+            android:onClick="@{() -> viewModel.handleListButton()}"/>
+
+        <Button
+            android:id="@+id/addCinemaActivityButtonExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_exit_text"
+            android:onClick="@{() -> viewModel.handleExitButton()}"/>
+    </LinearLayout>
+</layout>
