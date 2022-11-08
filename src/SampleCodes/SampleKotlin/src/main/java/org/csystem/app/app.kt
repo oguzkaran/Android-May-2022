@@ -4,32 +4,11 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
-
-fun tryParse(str: String) : LocalDate?
-{
-    val formatters = arrayOf(DateTimeFormatter.ofPattern("dd-MM-yyyy"), DateTimeFormatter.ofPattern("dd/MM/yyyy"), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-
-    for (formatter in formatters) {
-        try {
-            return LocalDate.parse(str, formatter)
-        }
-        catch (ignore: DateTimeParseException) {
-
-        }
-    }
-    return null
-}
+import org.csystem.util.kotlin.math.solveQuadraticEquation
 
 fun main()
 {
-    val str1 = "10/09/1976"
-    val str2 = "10-09-1976"
-    val str3 = "1976-09-10"
-
-    println(tryParse(str1))
-    println(tryParse(str2))
-    println(tryParse(str3))
+    val (x1, x2) = solveQuadraticEquation(1.0, -3.0, -18.0)
+    
+    println("x1 = $x1, x2 = $x2")
 }

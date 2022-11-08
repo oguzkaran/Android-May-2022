@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">QuadraticEquationApp</string>
+    <string name="solve_button_text">Solve</string>
+</resources>
