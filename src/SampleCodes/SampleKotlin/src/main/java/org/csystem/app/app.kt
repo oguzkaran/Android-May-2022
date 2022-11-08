@@ -9,6 +9,6 @@ import org.csystem.util.kotlin.math.solveQuadraticEquation
 fun main()
 {
     val (x1, x2) = solveQuadraticEquation(1.0, -3.0, -18.0)
-    
+
     println("x1 = $x1, x2 = $x2")
 }
