@@ -1,4 +1,4 @@
-package org.csystem.android.app.a010_quadraticequationapp
+package org.csystem.android.app.quadraticequation
 
 import org.junit.Test
 

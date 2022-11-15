@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">QuadraticEquationApp</string>
+    <string name="edittext_a_hint">a:</string>
+    <string name="edittext_b_hint">b:</string>
+    <string name="edittext_c_hint">c:</string>
     <string name="solve_button_text">Solve</string>
 </resources>

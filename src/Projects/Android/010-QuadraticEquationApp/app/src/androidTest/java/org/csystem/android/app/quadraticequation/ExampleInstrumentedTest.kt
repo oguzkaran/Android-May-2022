@@ -1,4 +1,4 @@
-package org.csystem.android.app.a010_quadraticequationapp
+package org.csystem.android.app.quadraticequation
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
