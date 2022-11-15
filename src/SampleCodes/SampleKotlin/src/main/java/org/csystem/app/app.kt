@@ -1,14 +1,29 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte birden fazla formatter ile işlem yapan örnek bir fonksiyon yazılmıştır. Detaylar gözardı edilmiştir.
-    Bir kütüphane içerisine daha detaylısı eklenecektir
+    Thread sınıfını kullanarak thread yaratmak için Thread sınıfının Runnable parametreli ctor'ları kullanılabilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.util.kotlin.math.solveQuadraticEquation
+import kotlin.random.Random
 
 fun main()
 {
-    val (x1, x2) = solveQuadraticEquation(1.0, -3.0, -18.0)
+    val t = Thread(RandomGeneratorThread())
 
-    println("x1 = $x1, x2 = $x2")
+    t.start()
+    println("main ends")
+}
+
+class RandomGeneratorThread : Runnable {
+    private fun runCallback()
+    {
+        val value = Random.nextInt(100)
+
+        print("%02d ".format(value))
+        Thread.sleep(1000)
+    }
+    override fun run()
+    {
+        (1..10).forEach{runCallback()}
+        println()
+    }
 }
