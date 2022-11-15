@@ -40,7 +40,6 @@
             android:inputType="numberDecimal|numberSigned"
             android:hint="@string/edittext_c_hint"
             android:text="@={DoubleStringConverter.INSTANCE.toStr(viewModel.c)}"/>
-            />
 
         <Button
             android:layout_width="match_parent"
