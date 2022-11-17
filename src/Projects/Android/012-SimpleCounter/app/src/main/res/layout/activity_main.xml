@@ -6,8 +6,10 @@
         <variable name="viewModel" type="SimpleCounterViewModel" />
         <variable name="counter1" type="java.lang.String" />
         <variable name="counter2" type="java.lang.String" />
+        <variable name="clock" type="java.lang.String" />
         <variable name="isEnabled" type="boolean" />
     </data>
+
     <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +21,9 @@
         <TextView
             android:id="@+id/mainActivityTextViewClock"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@{clock}"
+            />
 
         <TextView
             android:layout_width="match_parent"

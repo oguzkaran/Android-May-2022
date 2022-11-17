@@ -18,8 +18,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun datetimeSchedulerCallback()
     {
-        //title = mFormatter.format(LocalDateTime.now())
-        mBinding.mainActivityTextViewClock.text = mFormatter.format(LocalDateTime.now())
+        val now = LocalDateTime.now()
+        mBinding.clock = mFormatter.format(now)
+
+        runOnUiThread {
+            title = mBinding.clock!!
+        }
     }
 
     private fun counterSchedulerCallback()
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         mBinding.viewModel = SimpleCounterViewModel(this)
         mBinding.counter1 = "0"
         mBinding.counter2 = "0"
+        mBinding.clock = ""
         mBinding.isEnabled = true
     }
 

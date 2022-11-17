@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RandomNumberSum</string>
+    <string name="edittext_count_hint">Input count</string>
+    <string name="edittext_min_hint">Input minimum value</string>
+    <string name="edittext_bound_hint">Input bound value</string>
+    <string name="button_ok_text">Ok</string>
+</resources>
