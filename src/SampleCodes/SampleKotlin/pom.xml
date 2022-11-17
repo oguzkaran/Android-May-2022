@@ -31,8 +31,12 @@
 			<id>android-may-2022-maven-repo</id>
 			<url>https://raw.github.com/oguzkaran/android-may-2022-maven-repo/main</url>
 		</repository>
-	</repositories>
 
+		<repository>
+			<id>JavaApp1-Jun-2022</id>
+			<url>https://raw.github.com/oguzkaran/javaapp1-jun-2022-maven-repo/main</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -83,6 +87,12 @@
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util</artifactId>
 			<version>35.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-scheduler</artifactId>
+			<version>7.0.1</version>
 		</dependency>
 	</dependencies>
 

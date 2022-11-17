@@ -89,5 +89,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test:1.7.10" level="project" />
     <orderEntry type="library" name="Maven: org.csystem:org-csystem-util-math:36.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.csystem:org-csystem-util:35.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.csystem:org-csystem-util-scheduler:7.0.1" level="project" />
   </component>
 </module>

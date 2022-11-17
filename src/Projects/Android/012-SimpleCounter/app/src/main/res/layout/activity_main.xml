@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="org.csystem.android.app.simplecounter.viewmodel.SimpleCounterViewModel"/>
+        <variable name="viewModel" type="SimpleCounterViewModel" />
+        <variable name="counter1" type="java.lang.String" />
+        <variable name="counter2" type="java.lang.String" />
+        <variable name="isEnabled" type="boolean" />
+    </data>
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/mainActivityTextViewClock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{counter1}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{counter2}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.handleStartButton1()}"
+            android:text="@string/start_button_text" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="@{isEnabled}"
+            android:onClick="@{() -> viewModel.handleStartButton2()}"
+            android:text="@string/start_button_text" />
+    </LinearLayout>
+</layout>
+
