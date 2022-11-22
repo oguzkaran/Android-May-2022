@@ -38,15 +38,22 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.handleStartButton1()}"
-            android:text="@string/start_button_text" />
+            android:onClick="@{() -> viewModel.handleStartStopButton()}"
+            android:text="@string/start_stop_button_text" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:enabled="@{isEnabled}"
-            android:onClick="@{() -> viewModel.handleStartButton2()}"
+            android:onClick="@{() -> viewModel.handleStartButton()}"
             android:text="@string/start_button_text" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="@{!isEnabled}"
+            android:onClick="@{() -> viewModel.handleStopButton()}"
+            android:text="@string/stop_button_text" />
     </LinearLayout>
 </layout>
 

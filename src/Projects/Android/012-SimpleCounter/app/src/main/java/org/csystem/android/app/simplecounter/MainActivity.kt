@@ -2,6 +2,7 @@ package org.csystem.android.app.simplecounter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.simplecounter.databinding.ActivityMainBinding
 import org.csystem.android.app.simplecounter.viewmodel.SimpleCounterViewModel
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
     private val mFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
     private var mCounterThread: Thread? = null
+    private var mCounterScheduler: Scheduler? = null
+    private var mClockScheduler: Scheduler? = null
 
     private fun datetimeSchedulerCallback()
     {
@@ -37,13 +40,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun counter1ThreadCallback()
     {
-        while (true) {
-            var counter = mBinding.counter1!!.toInt()
+        try {
+            while (true) {
+                var counter = mBinding.counter1!!.toInt()
 
-            ++counter
+                ++counter
 
-            mBinding.counter1 = counter.toString()
-            Thread.sleep(1000)
+                mBinding.counter1 = counter.toString()
+                Thread.sleep(1000)
+            }
+        }
+        catch (ignore: InterruptedException) {
+            runOnUiThread {
+                Toast.makeText(this, "Counter paused", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -76,19 +86,27 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    fun startButtonClicked1()
+    fun startStopButtonClicked()
     {
-        if (mCounterThread == null || !mCounterThread!!.isAlive) {
+        if (mCounterThread != null)
+            if (!mCounterThread!!.isAlive)
+                mCounterThread = thread{counter1ThreadCallback()}
+            else
+                mCounterThread!!.interrupt()
+        else
             mCounterThread = thread{counter1ThreadCallback()}
-        }
     }
 
-    fun startButtonClicked2()
+    fun startButtonClicked()
     {
-        mBinding.isEnabled = false;
+        mBinding.isEnabled = false
 
-        val scheduler = Scheduler(1, TimeUnit.SECONDS)
+        mCounterScheduler = Scheduler(1, TimeUnit.SECONDS).schedule { counterSchedulerCallback() }
+    }
 
-        scheduler.schedule { counterSchedulerCallback() }
+    fun stopButtonClicked()
+    {
+        mBinding.isEnabled = true
+        mCounterScheduler!!.cancel()
     }
 }

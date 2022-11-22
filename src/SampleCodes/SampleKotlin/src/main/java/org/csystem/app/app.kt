@@ -1,31 +1,37 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte interrupt flag değeri set edilmesine rağmen thread sonlanmauyacak biçimde yazılmıştır
+    Thread sınıfının isInterrupted metodu interrupt flag değeri set edilmişse, reset duruma getirmez. Aşağıdaki örneği
+    inceleyiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import org.csystem.kotlin.util.console.readInt
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
 fun main()
 {
-    val count = readInt("Bir sayı giriniz:")
-    val t = thread{ threadCallback(count) }
+    val t = thread{ threadCallback() }
 
-    Thread.sleep(Random.nextLong(5000, 15001))
+    Thread.sleep(Random.nextLong(1000, 4000))
+    t.interrupt()
+    Thread.sleep(Random.nextLong(1000, 4000))
     t.interrupt()
     println("Main ends!...")
 }
 
-fun threadCallback(count: Int)
+fun threadCallback()
 {
-    for (i in 1..count) {
-        try {
-            print("$i ")
-            Thread.sleep(1000)
-        }
-        catch (ignore: InterruptedException) {
-            println("Interrupt geldi. Ama umursamıyorum!...")
-        }
+    var i = 0
+
+    val self = Thread.currentThread();
+    while (!self.isInterrupted) {
+        println("First loop:${i++} ")
+        //...
     }
+
+    while (!Thread.interrupted()) {
+        println("Second loop:${i++} ")
+        //...
+    }
+
+    println("\nThread ends!...")
 }
