@@ -1,31 +1,31 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Bir thread başka bir thread join metodu ile bekleyebllir. join metodunun parametresiz overload'u thread sonlanana
-    kadar beklemek amaçlı kullanılır. Parametreli overload'ları en fazla beklenmesi gereken süreyi alırlar
+    Aşağıdaki örnekte interrupt flag değeri set edilmesine rağmen thread sonlanmauyacak biçimde yazılmıştır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
+import org.csystem.kotlin.util.console.readInt
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
 fun main()
 {
-    var sum = 0
+    val count = readInt("Bir sayı giriniz:")
+    val t = thread{ threadCallback(count) }
 
-    thread{ sum = sumRandomNumbersCallback()}
-        .apply { join(); println("Sum:$sum")}
+    Thread.sleep(Random.nextLong(5000, 15001))
+    t.interrupt()
+    println("Main ends!...")
 }
 
-private fun sumRandomNumbersCallback() : Int
+fun threadCallback(count: Int)
 {
-    var sum = 0
-
-    for (i in 1..10) {
-        val value = Random.nextInt(100)
-
-        print("$value ")
-        sum += value
-        Thread.sleep(1000)
+    for (i in 1..count) {
+        try {
+            print("$i ")
+            Thread.sleep(1000)
+        }
+        catch (ignore: InterruptedException) {
+            println("Interrupt geldi. Ama umursamıyorum!...")
+        }
     }
-    println()
-    return sum
 }
