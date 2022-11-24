@@ -8,6 +8,7 @@
         <variable name="counter2" type="java.lang.String" />
         <variable name="clock" type="java.lang.String" />
         <variable name="isEnabled" type="boolean" />
+        <variable name="startStopText" type="java.lang.String"/>
     </data>
 
     <LinearLayout
@@ -39,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.handleStartStopButton()}"
-            android:text="@string/start_stop_button_text" />
+            android:text="@={startStopText}"/>
 
         <Button
             android:layout_width="match_parent"

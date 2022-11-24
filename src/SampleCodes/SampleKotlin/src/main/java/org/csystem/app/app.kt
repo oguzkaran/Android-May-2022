@@ -1,37 +1,35 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Thread sınıfının isInterrupted metodu interrupt flag değeri set edilmişse, reset duruma getirmez. Aşağıdaki örneği
-    inceleyiniz
+    Collections sınıfının synchronizedXXX metotları collection'larıu sarmalayan "thread safe" collection nesnesi yaratmak
+    için kullanılır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
+import org.csystem.kotlin.util.console.readInt
+import java.util.*
 import kotlin.concurrent.thread
-import kotlin.random.Random
 
 fun main()
 {
-    val t = thread{ threadCallback() }
+    val nThreads = readInt("Input thread count:")
+    val count = readInt("Input count:")
+    val generator = IntListGenerator(count)
+    val threads = ArrayList<Thread>(nThreads)
 
-    Thread.sleep(Random.nextLong(1000, 4000))
-    t.interrupt()
-    Thread.sleep(Random.nextLong(1000, 4000))
-    t.interrupt()
-    println("Main ends!...")
+    for (i in 1..nThreads)
+        threads.add(thread{generator.threadCallback()})
+
+    threads.forEach{it.join()}
+    println("Size:${generator.size}")
 }
 
-fun threadCallback()
-{
-    var i = 0
+class IntListGenerator(private val mCount: Int) {
+    private val mList: MutableList<Int> = Collections.synchronizedList(ArrayList())
+    val size: Int
+        get() = mList.size
 
-    val self = Thread.currentThread();
-    while (!self.isInterrupted) {
-        println("First loop:${i++} ")
-        //...
+    fun threadCallback()
+    {
+        for (i in 1..mCount)
+            mList.add(i)
     }
-
-    while (!Thread.interrupted()) {
-        println("Second loop:${i++} ")
-        //...
-    }
-
-    println("\nThread ends!...")
 }

@@ -1,8 +1,8 @@
 package org.csystem.android.app.simplecounter
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.simplecounter.databinding.ActivityMainBinding
 import org.csystem.android.app.simplecounter.viewmodel.SimpleCounterViewModel
@@ -14,10 +14,21 @@ import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
+    private lateinit var mStartText: String
+    private lateinit var mStopText: String
     private val mFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kk:mm:ss")
     private var mCounterThread: Thread? = null
     private var mCounterScheduler: Scheduler? = null
-    private var mClockScheduler: Scheduler? = null
+    private var mClockScheduler: Scheduler? = null //TODO
+
+
+    private fun setStartStopText()
+    {
+        if (mBinding.startStopText!! == mStartText)
+            mBinding.startStopText = mStopText
+        else
+            mBinding.startStopText = mStartText
+    }
 
     private fun datetimeSchedulerCallback()
     {
@@ -57,6 +68,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initResources()
+    {
+        mStartText = resources.getString(R.string.start_button_text)
+        mStopText = resources.getString(R.string.stop_button_text)
+    }
+
     private fun initBinding()
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -65,10 +82,12 @@ class MainActivity : AppCompatActivity() {
         mBinding.counter2 = "0"
         mBinding.clock = ""
         mBinding.isEnabled = true
+        mBinding.startStopText = mStartText
     }
 
     private fun initialize()
     {
+        initResources()
         initBinding()
     }
 
@@ -94,13 +113,14 @@ class MainActivity : AppCompatActivity() {
             else
                 mCounterThread!!.interrupt()
         else
-            mCounterThread = thread{counter1ThreadCallback()}
+            mCounterThread = thread { counter1ThreadCallback() }
+
+        setStartStopText()
     }
 
     fun startButtonClicked()
     {
         mBinding.isEnabled = false
-
         mCounterScheduler = Scheduler(1, TimeUnit.SECONDS).schedule { counterSchedulerCallback() }
     }
 
