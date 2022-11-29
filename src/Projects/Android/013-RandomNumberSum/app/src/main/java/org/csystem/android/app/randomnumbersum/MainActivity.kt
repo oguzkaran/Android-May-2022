@@ -1,17 +1,20 @@
 package org.csystem.android.app.randomnumbersum
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.randomnumbersum.databinding.ActivityMainBinding
 import org.csystem.android.app.randomnumbersum.viewmodel.MainActivityViewModel
-import kotlin.concurrent.thread
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import kotlin.random.Random
 
 const val MILLIS = 1000L
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
+    private lateinit var mExecutorService: ExecutorService
 
     private fun findTotalThreadCallback()
     {
@@ -21,15 +24,20 @@ class MainActivity : AppCompatActivity() {
         mBinding.progressResult = ""
         mBinding.total = ""
 
-        for (i in 1..mBinding.viewModel!!.count) {
-            val a = Random.nextInt(min, bound)
+        try {
+            for (i in 1..mBinding.viewModel!!.count) {
+                val a = Random.nextInt(min, bound)
 
-            mBinding.progressResult = "${mBinding.progressResult}${if (mBinding.progressResult == "") a else ", $a"}"
-            result += a
-            Thread.sleep(MILLIS)
+                mBinding.progressResult =
+                    "${mBinding.progressResult}${if (mBinding.progressResult == "") a else ", $a"}"
+                result += a
+                Thread.sleep(MILLIS)
+            }
+            mBinding.total = result.toString()
         }
-
-        mBinding.total = result.toString()
+        catch (ignore: InterruptedException) {
+            runOnUiThread {Toast.makeText(this, "Thread must be stopped anymore!....", Toast.LENGTH_LONG).show()}
+        }
     }
 
     private fun initBinding()
@@ -40,7 +48,10 @@ class MainActivity : AppCompatActivity() {
         mBinding.total = ""
     }
 
-    private fun initialize() = initBinding()
+    private fun initialize()
+    {
+        initBinding()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -48,5 +59,16 @@ class MainActivity : AppCompatActivity() {
         initialize()
     }
 
-    fun okButtonClicked() = thread {findTotalThreadCallback()}
+    override fun onResume()
+    {
+        mExecutorService = Executors.newSingleThreadExecutor()
+        super.onResume()
+    }
+    override fun onPause()
+    {
+        mExecutorService.shutdownNow()
+        super.onPause()
+    }
+
+    fun okButtonClicked() = mExecutorService.execute {findTotalThreadCallback()}
 }

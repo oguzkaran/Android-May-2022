@@ -1,35 +1,39 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Collections sınıfının synchronizedXXX metotları collection'larıu sarmalayan "thread safe" collection nesnesi yaratmak
-    için kullanılır
+    ExecutorService arayüzünün submit metodu Future<V> arayüz referansı döndürür. Future<V> arayüzünün get metodu ile
+    thread beklenebilir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
 import org.csystem.kotlin.util.console.readInt
-import java.util.*
-import kotlin.concurrent.thread
+import java.util.concurrent.Executors
+import java.util.concurrent.Future
+import java.util.concurrent.TimeUnit
+import kotlin.random.Random
+
+typealias AnyFutureList = ArrayList<Future<*>>
 
 fun main()
 {
-    val nThreads = readInt("Input thread count:")
-    val count = readInt("Input count:")
-    val generator = IntListGenerator(count)
-    val threads = ArrayList<Thread>(nThreads)
+    val count = readInt("Input number of threads to run:")
+    val threadPool = Executors.newCachedThreadPool()
+    val futures = AnyFutureList()
 
-    for (i in 1..nThreads)
-        threads.add(thread{generator.threadCallback()})
+    for (i in 1..count)
+        threadPool.submit{ threadCallback(10, "t$i") }.apply{ futures.add(this) }
 
-    threads.forEach{it.join()}
-    println("Size:${generator.size}")
+    println("Waiting for all threads!...")
+    for (future in futures)
+        future.get(1, TimeUnit.SECONDS)
+
+    println("main ends!...")
+    threadPool.shutdown()
 }
 
-class IntListGenerator(private val mCount: Int) {
-    private val mList: MutableList<Int> = Collections.synchronizedList(ArrayList())
-    val size: Int
-        get() = mList.size
-
-    fun threadCallback()
-    {
-        for (i in 1..mCount)
-            mList.add(i)
+fun threadCallback(count: Int, name: String)
+{
+    for (i in 1..count) {
+        println("$name->${Random.nextInt(100)}")
+        Thread.sleep(1000)
     }
 }
+
