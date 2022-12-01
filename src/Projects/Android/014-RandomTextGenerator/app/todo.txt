@@ -1,0 +1,22 @@
+Açıklamalar:
+- Uygulama içerisindeki MainActivity'de bir "EditText", bir "Button" ve bir "ListView" bulunacaktır
+
+- EditText ile verilen pozitif bir tamsayı kadar rasgele İnglizce karakterlerden oluşan ismi, uygun
+biçimde belirlenmiş rasgele bir ip adresi (örneğin: 192.168.1.123), 1024 ile 65535 aralığında
+yine rasgele belirlenmiş port numarası ve  rasgele belirlenmiş durum bilgisine ilişkin Sensor nesnesi
+yaratılacak ve bunlar ListView'a eklenecektir.
+
+-  Her bir rasgele sensör belirleme işlemi [300, 1200] aralığında rasgele belirlenmiş değerlere
+göre beklenerek yapılacaktır.
+
+- Rasgele belirlenecek sensör sayısı [1, 30] aralığında olmalıdır
+
+- Uygulamada geçersiz değerler için uygun mesajlar verilecektir
+
+- ListView'un bir elemanına click yapıldığında ilgili sensor'ün bilgileri başka bir activity olarak
+readonly biçimde açılacaktır
+
+- Rasgele text belirlemek için ilgili repository'si eklenmiş olan "org-csystem-util" kütüphanesinin
+3.0.0 versiyonundaki StringUtil sınıfı kullanılabilir. Bu bir zorunluluk değildir
+
+- Rasgele ip bilgisi için uygun bir metot yazabilirsiniz
