@@ -15,6 +15,6 @@ fun main()
 
 fun doWork(value: Int)
 {
-    
+
 }
 
