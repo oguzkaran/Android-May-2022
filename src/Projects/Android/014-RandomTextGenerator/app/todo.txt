@@ -1,5 +1,7 @@
 Açıklamalar:
-- Uygulama içerisindeki MainActivity'de bir "EditText", bir "Button" ve bir "ListView" bulunacaktır
+- Uygulama içerisindeki Başlangıç activity'sinde Add ve Exit olarak ikşi tane button bulunacaktır
+
+- Add button'una basıldığında açılan activity'de bir "EditText", bir "Button" ve bir "ListView" bulunacaktır
 
 - EditText ile verilen pozitif bir tamsayı kadar rasgele İnglizce karakterlerden oluşan ismi, uygun
 biçimde belirlenmiş rasgele bir ip adresi (örneğin: 192.168.1.123), 1024 ile 65535 aralığında

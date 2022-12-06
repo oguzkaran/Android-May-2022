@@ -6,7 +6,6 @@
         <variable name="viewModel" type="SimpleCounterViewModel" />
         <variable name="counter1" type="java.lang.String" />
         <variable name="counter2" type="java.lang.String" />
-        <variable name="clock" type="java.lang.String" />
         <variable name="isEnabled" type="boolean" />
         <variable name="startStopText" type="java.lang.String"/>
     </data>
@@ -22,9 +21,7 @@
         <TextView
             android:id="@+id/mainActivityTextViewClock"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{clock}"
-            />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"

@@ -1,12 +1,16 @@
 package org.csystem.android.app.simplecounter
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.simplecounter.databinding.ActivityMainBinding
 import org.csystem.android.app.simplecounter.viewmodel.SimpleCounterViewModel
 import org.csystem.util.scheduler.Scheduler
+import java.lang.ref.WeakReference
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
@@ -20,6 +24,39 @@ class MainActivity : AppCompatActivity() {
     private var mCounterThread: Thread? = null
     private var mCounterScheduler: Scheduler? = null
     private var mClockScheduler: Scheduler? = null //TODO
+    private val mHandler = ClockHandler(this)
+
+    private class ClockHandler(activity: MainActivity) : Handler(Looper.myLooper()!!) {
+        private val mWeakReference: WeakReference<MainActivity>
+
+        init {
+            mWeakReference = WeakReference(activity)
+        }
+
+        override fun handleMessage(msg: Message)
+        {
+            val activity = mWeakReference.get()!!
+
+            when (msg.what) {
+                0 -> "My Time:${activity.mFormatter.format(LocalDateTime.now())}"
+                    .apply { activity.mBinding.mainActivityTextViewClock.text = this }
+                1 -> "Your Time:${activity.mFormatter.format(msg.obj as LocalDateTime)}".apply { activity.title = this }
+            }
+        }
+    }
+
+    /*
+    private val mHandler = object: Handler(Looper.myLooper()!!) {
+        override fun handleMessage(msg: Message)
+        {
+            when (msg.what) {
+                0 -> "My Time:${mFormatter.format(LocalDateTime.now())}"
+                    .apply { mBinding.mainActivityTextViewClock.text = this }
+                1 -> "Your Time:${mFormatter.format(msg.obj as LocalDateTime)}".apply { title = this }
+            }
+        }
+    }
+    */
 
 
     private fun setStartStopText()
@@ -32,12 +69,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun datetimeSchedulerCallback()
     {
-        val now = LocalDateTime.now()
-        mBinding.clock = mFormatter.format(now)
-
-        runOnUiThread {
-            title = mBinding.clock!!
-        }
+        mHandler.sendEmptyMessage(0)
+        mHandler.sendMessage(mHandler.obtainMessage(1, LocalDateTime.now()))
     }
 
     private fun counterSchedulerCallback()
@@ -80,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         mBinding.viewModel = SimpleCounterViewModel(this)
         mBinding.counter1 = "0"
         mBinding.counter2 = "0"
-        mBinding.clock = ""
         mBinding.isEnabled = true
         mBinding.startStopText = mStartText
     }
