@@ -3,9 +3,7 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app
 
-import java.io.Closeable
-import java.lang.ref.WeakReference
-
+val list = ArrayList<Sample>()
 
 fun main()
 {
@@ -18,3 +16,7 @@ fun doWork(value: Int)
 
 }
 
+
+class Sample {
+
+}
