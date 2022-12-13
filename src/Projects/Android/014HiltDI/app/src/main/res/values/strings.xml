@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HiltDI</string>
+    <string name="first_button_text">First</string>
+    <string name="second_button_text">Second</string>
 </resources>
