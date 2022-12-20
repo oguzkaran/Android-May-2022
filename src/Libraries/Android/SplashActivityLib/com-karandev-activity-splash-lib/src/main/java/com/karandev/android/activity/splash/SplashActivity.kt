@@ -5,29 +5,44 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import com.karandev.android.activity.splash.intent.KaranIntentFilter
+import com.karandev.android.activity.splash.intent.IntentFilterUtil
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-    private fun startCountDownTimer()
+    private fun startCountDownTimer(millisInFuture: Long, countDownInterval: Long, prefix: String = "")
     {
-        object: CountDownTimer(10000, 1000) {
+        object: CountDownTimer(millisInFuture, countDownInterval) {
             override fun onTick(ms: Long)
             {
-                title = (ms / 1000).toString();
+                title = "$prefix${ms / 1000}"
             }
 
             override fun onFinish()
             {
-                Intent(KaranIntentFilter.SPLASH_FILTER).apply { startActivity(this) }
+                Intent(IntentFilterUtil.SPLASH_FILTER).apply { startActivity(this) }
                 finish()
             }
         }.start()
     }
+
+    private fun initCountDownTimer()
+    {
+        val millisInFuture = resources.getInteger(R.integer.com_karandev_splach_countdown_future).toLong()
+        val countDownInterval = resources.getInteger(R.integer.com_karandev_splach_countdown_interval).toLong()
+        val prefix = resources.getString(R.string.com_karandev_splash_title_prefix)
+
+        startCountDownTimer(millisInFuture, countDownInterval, prefix)
+    }
+
+    private fun initialize()
+    {
+        setContentView(R.layout.activity_splash)
+        initCountDownTimer()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
-        startCountDownTimer()
+        initialize()
     }
 }

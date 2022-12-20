@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 rootProject.name = "HiltDI"
 include ':app'
 include ':diconfiglib'
-include ':activitylib'

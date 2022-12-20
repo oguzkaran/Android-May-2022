@@ -56,7 +56,8 @@ dependencies {
 
     //Module dependencies
     implementation(project(path: ":diconfiglib"))
-    implementation(project(path: ":activitylib"))
+    //implementation files('libs/com-karandev-activity-splash-lib-release.aar')
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
 }
 
 kapt {

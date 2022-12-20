@@ -1,3 +1,4 @@
 <resources>
-    <string name="karan_splash_message">KARANDEV</string>
+    <string name="com_karandev_splash_message">KARAN</string>
+    <string name="com_karandev_splash_title_prefix">Elapsed:</string>
 </resources>
