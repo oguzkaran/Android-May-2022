@@ -1,14 +1,11 @@
 package org.csystem.android.app.randomtextgenerator
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import org.csystem.android.app.randomtextgenerator.configuration.global.COUNT_DOWN_INTERVAL
 import org.csystem.android.app.randomtextgenerator.configuration.global.MILLIS_IN_FUTURE
-import org.csystem.android.app.randomtextgenerator.configuration.global.START_VALUE
-import org.csystem.util.string.StringUtil
-import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity() {
     private fun initSplashCountdownTimer()
