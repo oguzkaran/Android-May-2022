@@ -12,8 +12,7 @@ import org.csystem.app.startanother.shareddatalib.StringOperation
 import org.csystem.app.startanother.shareddatalib.StringOperationProvider
 import javax.inject.Inject
 
-private val COMMANDS = listOf("UPPER", "LOWER", "REVERSE")
-private val VALUES = StringOperation.values()
+private val COMMANDS = arrayOf("UPPER", "LOWER", "REVERSE")
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -49,11 +48,12 @@ class MainActivity : AppCompatActivity() {
     {
         //REVERSE Bugün hava çok güzel
         val (index, command) = getCommand(commandStr.trimStart())
+        val cmdIndex = COMMANDS.indexOf(command)
 
-        if (index == -1 || !COMMANDS.contains(command))
+        if (cmdIndex == -1)
             return Pair(-1, "")
 
-        return Pair(index, commandStr.substring(index + 1))
+        return Pair(cmdIndex, commandStr.substring(index + 1))
     }
 
     private fun parseData()
@@ -68,8 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         val (index, text) = parseCommand(commandStr)
 
-        Toast.makeText(this, index.toString(), Toast.LENGTH_LONG).show()
-
         if (index == -1) {
             Toast.makeText(this, "Invalid command", Toast.LENGTH_LONG).show()
             finish()
@@ -77,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mBinding.viewModel!!.stringOperationInfo.str = text
-        mBinding.viewModel!!.stringOperationInfo.operation = VALUES[index]
+        mBinding.viewModel!!.type = index
     }
 
     private fun initOperationSpinner()
