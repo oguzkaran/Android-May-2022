@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StartAnotherApp</string>
+    <string name="button_calculate_text">Calculate</string>
+</resources>

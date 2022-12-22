@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="string_operation_upper">UPPER</string>
+    <string name="string_operation_lower">LOWER</string>
+    <string name="string_operation_reverse">REVERSE</string>
+</resources>
