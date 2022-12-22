@@ -12,7 +12,7 @@ import org.csystem.app.startanother.shareddatalib.StringOperation
 import org.csystem.app.startanother.shareddatalib.StringOperationProvider
 import javax.inject.Inject
 
-private val COMMANDS = arrayOf("UPPER", "LOWER", "REVERSE")
+private val COMMANDS = listOf("UPPER", "LOWER", "REVERSE")
 private val VALUES = StringOperation.values()
 
 @AndroidEntryPoint
@@ -37,19 +37,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun getCommand(commandStr: String) : Pair<Int, String>
     {
-        val sb = StringBuilder()
+        val index = commandStr.indexOfAny(charArrayOf(' ', '\t'))
 
-        var c: Char
-        var index = 0
+        //Toast.makeText(this, commandStr, Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, index.toString(), Toast.LENGTH_LONG).show()
 
-        while (true) {
-            c = commandStr[index++]
-            if (index == commandStr.length || c.isWhitespace())
-                break
-            sb.append(c)
-        }
-
-        return Pair(index - 1, sb.toString())
+        return Pair(index, commandStr.substring(0, index))
     }
 
     private fun parseCommand(commandStr: String) : Pair<Int, String>
@@ -57,10 +50,9 @@ class MainActivity : AppCompatActivity() {
         //REVERSE Bugün hava çok güzel
         val (index, command) = getCommand(commandStr.trimStart())
 
-        if (!COMMANDS.contains(command))
+        if (index == -1 || !COMMANDS.contains(command))
             return Pair(-1, "")
 
-        Toast.makeText(this, "THISSSS:$index", Toast.LENGTH_LONG).show()
         return Pair(index, commandStr.substring(index + 1))
     }
 
@@ -75,6 +67,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         val (index, text) = parseCommand(commandStr)
+
+        Toast.makeText(this, index.toString(), Toast.LENGTH_LONG).show()
 
         if (index == -1) {
             Toast.makeText(this, "Invalid command", Toast.LENGTH_LONG).show()
