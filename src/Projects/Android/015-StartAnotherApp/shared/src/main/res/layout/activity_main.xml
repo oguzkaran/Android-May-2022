@@ -26,11 +26,10 @@
             android:id="@+id/mainActivitySpinnerOperation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:selectedItemPosition="@{viewModel.stringOperationInfo.operation.ordinal}"
+            android:selectedItemPosition="@={viewModel.type}"
             android:spinnerMode="dialog"/>
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{result}" />

@@ -16,9 +16,24 @@ private val COMMANDS = arrayOf("UPPER", "LOWER", "REVERSE")
 private val VALUES = StringOperation.values()
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() { //REVERSE Bugün hava çok güzel
+class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
     @Inject lateinit var stringOperationProvider: StringOperationProvider
+
+    private fun doUpper()
+    {
+        mBinding.result = mBinding.viewModel!!.stringOperationInfo.str.uppercase()
+    }
+
+    private fun doLower()
+    {
+        mBinding.result = mBinding.viewModel!!.stringOperationInfo.str.lowercase()
+    }
+
+    private fun doReverse()
+    {
+        mBinding.result = StringBuilder(mBinding.viewModel!!.stringOperationInfo.str).reverse().toString()
+    }
 
     private fun getCommand(commandStr: String) : Pair<Int, String>
     {
@@ -37,8 +52,11 @@ class MainActivity : AppCompatActivity() { //REVERSE Bugün hava çok güzel
         return Pair(index - 1, sb.toString())
     }
 
+
     private fun parseCommand(commandStr: String) : Pair<Int, String>
     {
+        //REVERSE Bugün hava çok güzel
+
         val (index, command) = getCommand(commandStr.trimStart())
 
         if (!COMMANDS.contains(command))
@@ -83,7 +101,14 @@ class MainActivity : AppCompatActivity() { //REVERSE Bugün hava çok güzel
     {
         initBinding()
         initOperationSpinner()
+        try {
+            parseData()
+        }
+        catch (ex: Throwable) {
+            Toast.makeText(this, "Shared:${ex.message}", Toast.LENGTH_LONG).show()
+        }
     }
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -92,6 +117,10 @@ class MainActivity : AppCompatActivity() { //REVERSE Bugün hava çok güzel
 
     fun calculateButtonClicked()
     {
-        //...
+        when (mBinding.viewModel!!.type) {
+            0 -> doUpper()
+            1 -> doLower()
+            2 -> doReverse()
+        }
     }
 }

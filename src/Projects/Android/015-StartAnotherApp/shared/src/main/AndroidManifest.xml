@@ -20,6 +20,12 @@
             <intent-filter>
                 <action android:name="org.csystem.app.startanother.action.shared" />
                 <category android:name="android.intent.category.DEFAULT" />
+
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!-- <category android:name="android.intent.category.LAUNCHER" />-->
+
+                <!-- <action android:name="org.csystem.app.startanother.action.shared" />-->
+                <!-- <category android:name="android.intent.category.DEFAULT" />-->
             </intent-filter>
 
             <meta-data
