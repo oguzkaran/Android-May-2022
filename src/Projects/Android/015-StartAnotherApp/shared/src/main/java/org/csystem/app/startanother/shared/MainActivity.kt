@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         while (true) {
             c = commandStr[index++]
-            if (c == ' ' || c == '\t')
+            if (index == commandStr.length || c.isWhitespace())
                 break
             sb.append(c)
         }
@@ -52,16 +52,15 @@ class MainActivity : AppCompatActivity() {
         return Pair(index - 1, sb.toString())
     }
 
-
     private fun parseCommand(commandStr: String) : Pair<Int, String>
     {
         //REVERSE Bugün hava çok güzel
-
         val (index, command) = getCommand(commandStr.trimStart())
 
         if (!COMMANDS.contains(command))
             return Pair(-1, "")
 
+        Toast.makeText(this, "THISSSS:$index", Toast.LENGTH_LONG).show()
         return Pair(index, commandStr.substring(index + 1))
     }
 
@@ -72,13 +71,15 @@ class MainActivity : AppCompatActivity() {
         if (commandStr == null) {
             Toast.makeText(this, "Invalid Data", Toast.LENGTH_LONG).show()
             finish()
+            return
         }
 
-        val (index, text) = parseCommand(commandStr!!)
+        val (index, text) = parseCommand(commandStr)
 
         if (index == -1) {
             Toast.makeText(this, "Invalid command", Toast.LENGTH_LONG).show()
             finish()
+            return
         }
 
         mBinding.viewModel!!.stringOperationInfo.str = text

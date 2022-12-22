@@ -7,6 +7,4 @@ data class StringOperationInfo(var str: String,
                                var operation: StringOperation,
                                var dateTime : LocalDateTime = LocalDateTime.now(),
 
-) : Serializable {
-
-}
+) : Serializable
