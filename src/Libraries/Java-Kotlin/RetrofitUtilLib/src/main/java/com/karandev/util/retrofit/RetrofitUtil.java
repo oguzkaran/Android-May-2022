@@ -1,9 +1,22 @@
+/*----------------------------------------------------------------------
+	FILE        : RetrofitUtil.java
+	AUTHOR      : Oğuz Karan
+	LAST UPDATE : 30.12.2022
+
+	RetrofitUtil class for "retrofit"
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
 package com.karandev.util.retrofit;
 
 import java.util.function.BiConsumer;
+import java.util.stream.Stream;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -14,7 +27,7 @@ public final class RetrofitUtil {
     private RetrofitUtil()
     {}
 
-    public static Retrofit createRetrofitClient(String baseUrl)
+    public static Retrofit createRetrofit(String baseUrl)
     {
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -23,18 +36,23 @@ public final class RetrofitUtil {
                 .build();
     }
 
-    public static Retrofit createRetrofitClientWithLogging(String baseUrl)
+    public static Retrofit createRetrofitWithLogging(String baseUrl)
     {
-        var interceptor = new HttpLoggingInterceptor();
+        var interceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return createRetrofitWithInterceptors(baseUrl, interceptor);
+    }
 
-        var client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+    public static Retrofit createRetrofitWithInterceptors(String baseUrl, Interceptor...interceptors)
+    {
+        var builder = new OkHttpClient.Builder();
+
+        Stream.of(interceptors).forEach(builder::addInterceptor);
 
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
+                .client(builder.build())
                 .build();
     }
 
@@ -42,13 +60,13 @@ public final class RetrofitUtil {
     {
         call.enqueue(new Callback<T>() {
             @Override
-            public void onResponse(Call<T> call, Response<T> response)
+            public void onResponse(@NotNull Call<T> call, @NotNull Response<T> response)
             {
                 responseConsumer.accept(call, response);
             }
 
             @Override
-            public void onFailure(Call<T> call, Throwable ex)
+            public void onFailure(@NotNull Call<T> call, @NotNull Throwable ex)
             {
                 failConsumer.accept(call, ex);
             }
