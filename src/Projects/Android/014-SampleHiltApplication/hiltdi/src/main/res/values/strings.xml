@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">HiltDI</string>
-    <string name="first_button_text">First</string>
-    <string name="second_button_text">Second</string>
-    <string name="com_karandev_splash_message">C and System Programmers Association</string>
-    <string name="com_karandev_splash_title_prefix">Please Wait!… </string>
-</resources>
