@@ -1,0 +1,3 @@
+- GET -> http://161.97.141.113:50500/api/read/vets/lastname?n=karan
+- GET -> http://161.97.141.113:50500/api/read/vets/count
+- POST -> http:/161.97.141.113:50501/api/update/vets/vet/save

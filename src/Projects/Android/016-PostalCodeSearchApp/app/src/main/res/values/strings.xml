@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PostalCodeSearchApp</string>
+    <string name="edittext_number_hint">Input postal code</string>
+    <string name="button_list_places_text">List Places</string>
+    <string name="no_place_message">No place for the information</string>
+    <string name="invalid_code_message">Invalid postal code</string>
 </resources>

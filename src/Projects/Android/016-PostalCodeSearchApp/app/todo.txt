@@ -1,0 +1,9 @@
+Uygulamayı aşağıdaki açıklamalara göre düzenleyiniz
+- List All Places button'u için belirlenen postan koduna ilişkin tüm bilgiler listview'a eklenecektir
+- Eğer hiç veri gelmezse uygun mesaj (string.xml içerisinde) kullanıcıya Toast olarak verilecektir
+- Liste içerisinde bir elemana dokunulduğunda yeni bir activity açılacak ve ilgili yer bilgilerinin
+detayları gösterilecektir
+- Uygulama başka bir uygulama tarafından çalıştırılabilecek şekilde yazılacaktır
+- Tasarımı genel istekleri yerine getirmek koşuluyla dilediğiniz gibi belirleyebilirsiniz
+- Uygulamayı mümkün olduğunca databinding kullanarak yapmaya çalışınız
+- Derste yazdığımız RetrofitUtil kütüphanesini şimdilik libs içerisinden kullanınız

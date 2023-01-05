@@ -3,7 +3,7 @@
 	AUTHOR      : Oğuz Karan
 	LAST UPDATE : 30.12.2022
 
-	RetrofitUtil class for "retrofit"
+	RetrofitUtil class for Retrofit library
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
@@ -38,9 +38,7 @@ public final class RetrofitUtil {
 
     public static Retrofit createRetrofitWithLogging(String baseUrl)
     {
-        var interceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        return createRetrofitWithInterceptors(baseUrl, interceptor);
+        return createRetrofitWithInterceptors(baseUrl, new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
     }
 
     public static Retrofit createRetrofitWithInterceptors(String baseUrl, Interceptor...interceptors)
@@ -56,19 +54,19 @@ public final class RetrofitUtil {
                 .build();
     }
 
-    public static <T, C extends Call<T>> void enqueue(C call, BiConsumer<Call<T>, Response<T>> responseConsumer, BiConsumer<Call<T>, Throwable> failConsumer)
+    public static <T, C extends Call<T>> void enqueue(C call, BiConsumer<Call<T>, Response<T>> responseCon, BiConsumer<Call<T>, Throwable> failCon)
     {
         call.enqueue(new Callback<T>() {
             @Override
             public void onResponse(@NotNull Call<T> call, @NotNull Response<T> response)
             {
-                responseConsumer.accept(call, response);
+                responseCon.accept(call, response);
             }
 
             @Override
             public void onFailure(@NotNull Call<T> call, @NotNull Throwable ex)
             {
-                failConsumer.accept(call, ex);
+                failCon.accept(call, ex);
             }
         });
     }
