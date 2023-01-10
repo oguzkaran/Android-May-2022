@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         val postalCodeSearch = RetrofitUtil.createRetrofitWithLogging(GEONAMES_BASE_URL).create(IPostalCodeSearch::class.java)
         val call = postalCodeSearch.findPostalCode("csystem", "tr", 67000, 10)
 
-        //RetrofitUtil.enqueue(call, {_, r -> responseCallback(r)}) {c, ex -> failCallback(c, ex)}
-        call.putQueue({_, r -> responseCallback(r)}) {c, ex -> failCallback(c, ex)}
+        RetrofitUtil.enqueue(call, {_, r -> responseCallback(r)}) {c, ex -> failCallback(c, ex)}
     }
 }

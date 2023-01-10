@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VeterinarianApp</string>
+    <string name="button_save_text">Save</string>
+    <string name="button_get_text">Get</string>
+    <string name="button_exit_text">Exit</string>
+    <string name="edittext_diploma_no_hint">Input Diploma Number</string>
+    <string name="problem_message">Problem occurs!...</string>
+</resources>

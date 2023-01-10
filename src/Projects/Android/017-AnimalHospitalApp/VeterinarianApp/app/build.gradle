@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'org.csystem.android.app.geonames.postalcodesearch'
+    namespace 'org.csystem.android.app.veterinarian'
     compileSdk 33
 
     defaultConfig {
-        applicationId "org.csystem.android.app.geonames.postalcodesearch"
+        applicationId "org.csystem.android.app.veterinarian"
         minSdk 22
         targetSdk 33
         versionCode 1
