@@ -4,5 +4,10 @@
     <string name="button_get_text">Get</string>
     <string name="button_exit_text">Exit</string>
     <string name="edittext_diploma_no_hint">Input Diploma Number</string>
-    <string name="problem_message">Problem occurs!...</string>
+    <string name="edittext_citizen_id_hint">Input Citizen Id</string>
+    <string name="edittext_first_name_hint">Input First Name</string>
+    <string name="edittext_middle_name_hint">Input Middle Name (Optional)</string>
+    <string name="edittext_last_name_hint">Input Last Name</string>
+    <string name="edittext_birth_date_hint">Input Birth Date (DD/MM/YYYY)</string>
+    <string name="problem_message">Problem occurs!…</string>
 </resources>

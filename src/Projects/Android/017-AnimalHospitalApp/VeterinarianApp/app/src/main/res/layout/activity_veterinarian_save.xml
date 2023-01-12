@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
+            android:hint="@string/edittext_citizen_id_hint"
             android:text="@={viewModel.veterinarianSave.citizenId}"/>
 
         <EditText
@@ -34,6 +35,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="@string/edittext_first_name_hint"
             android:text="@={viewModel.veterinarianSave.firstName}"/>
 
         <EditText
@@ -41,6 +43,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="@string/edittext_middle_name_hint"
             android:text="@={viewModel.veterinarianSave.middleName}"/>
 
         <EditText
@@ -48,6 +51,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:hint="@string/edittext_last_name_hint"
             android:text="@={viewModel.veterinarianSave.lastName}"
             />
 
@@ -56,6 +60,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
+            android:hint="@string/edittext_birth_date_hint"
             android:text="@={viewModel.veterinarianSave.birthDate}"/>
 
         <Button
