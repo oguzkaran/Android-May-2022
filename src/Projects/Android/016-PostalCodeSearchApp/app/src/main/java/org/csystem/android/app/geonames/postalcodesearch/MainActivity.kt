@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.karandev.util.retrofit.RetrofitUtil
-import com.karandev.util.retrofit.putQueue
 import org.csystem.android.app.geonames.postalcodesearch.api.GEONAMES_BASE_URL
 import org.csystem.android.app.geonames.postalcodesearch.api.IPostalCodeSearch
 import org.csystem.android.app.geonames.postalcodesearch.data.entity.PostalCodes

@@ -60,4 +60,7 @@ dependencies {
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.1'
+
+    implementation 'com.karandev:com-karandev-util-retrofit:1.0.0'
+    implementation 'com.karandev:com-karandev-util-databinding-release:1.0.0'
 }
