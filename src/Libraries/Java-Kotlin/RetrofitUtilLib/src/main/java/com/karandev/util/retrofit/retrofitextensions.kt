@@ -1,3 +1,14 @@
+/*----------------------------------------------------------------------
+	FILE        : retrofitextensions.kt
+	AUTHOR      : Oğuz Karan
+	LAST UPDATE : 30.12.2022
+
+	Kotlin Extensions for Retrofit library
+
+	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	All Rights Free
+-----------------------------------------------------------------------*/
+
 package com.karandev.util.retrofit
 
 import retrofit2.Call
