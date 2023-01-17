@@ -1,17 +1,15 @@
 package org.csystem.android.app.veterinarian
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.karandev.util.retrofit.RetrofitUtil
 import com.karandev.util.retrofit.putQueue
 import org.csystem.android.app.veterinarian.api.IVeterinarianService
 import org.csystem.android.app.veterinarian.api.POST_SERVICE_BASE_URL
 import org.csystem.android.app.veterinarian.api.data.entity.VeterinarianSave
-import org.csystem.android.app.veterinarian.databinding.ActivityMainBinding
 import org.csystem.android.app.veterinarian.databinding.ActivityVeterinarianSaveBinding
-import org.csystem.android.app.veterinarian.viewmodel.MainActivityViewModel
 import org.csystem.android.app.veterinarian.viewmodel.VeterinarianSaveActivityViewModel
 import retrofit2.Call
 import retrofit2.Response

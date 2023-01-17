@@ -1,5 +1,6 @@
 package org.csystem.android.app.veterinarian
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -67,7 +68,7 @@ class VeterinarianInfoActivity : AppCompatActivity() {
 
     fun findByLastNameButtonClicked()
     {
-
+        Intent(this, VeterinarianFindByLastNameActivity::class.java).apply { startActivity(this) }
     }
 
     fun exitButtonClicked() = finish()

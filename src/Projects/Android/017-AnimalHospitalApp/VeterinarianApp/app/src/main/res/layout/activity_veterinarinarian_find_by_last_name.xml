@@ -32,5 +32,10 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.handleExitButton()}"
             android:text="@string/button_exit_text" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:adapter="@{viewModel.adapter}"
+            android:layout_height="match_parent" />
     </LinearLayout>
 </layout>

@@ -14,4 +14,5 @@
     <string name="edittext_birth_date_hint">Input Birth Date (DD/MM/YYYY)</string>
     <string name="problem_message">Problem occurs!…</string>
     <string name="problem_try_again_message">Problem occurs. Try again later!…</string>
+    <string name="no_veterinarian_message">No Veterinarian</string>
 </resources>
