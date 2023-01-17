@@ -11,7 +11,6 @@ import org.csystem.android.app.veterinarian.viewmodel.VeterinarianSaveActivityVi
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
 
-
     private fun initBinding()
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -36,6 +35,6 @@ class MainActivity : AppCompatActivity() {
 
     fun getButtonClicked()
     {
-
+        Intent(this, VeterinarianInfoActivity::class.java).apply { startActivity(this) }
     }
 }

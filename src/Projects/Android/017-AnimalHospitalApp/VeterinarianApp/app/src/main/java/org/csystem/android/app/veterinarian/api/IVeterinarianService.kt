@@ -1,5 +1,6 @@
 package org.csystem.android.app.veterinarian.api
 
+import org.csystem.android.app.veterinarian.api.data.entity.CountInfo
 import org.csystem.android.app.veterinarian.api.data.entity.VeterinarianSave
 import retrofit2.Call
 import retrofit2.http.Body
@@ -11,7 +12,7 @@ interface IVeterinarianService {
     fun findByLastName(lastName: String)
 
     @GET("/api/read/vets/count")
-    fun count() : Call<Long>
+    fun count() : Call<CountInfo>
 
     @POST("/api/update/vets/vet/save")
     fun save(@Body veterinarian: VeterinarianSave) : Call<VeterinarianSave>
