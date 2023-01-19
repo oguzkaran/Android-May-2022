@@ -6,6 +6,7 @@
     <string name="button_find_by_last_name_text">Find By Last Name</string>
     <string name="button_search_text">Search</string>
     <string name="button_exit_text">Exit</string>
+    <string name="switch_offline_text">Offline</string>
     <string name="edittext_diploma_no_hint">Input Diploma Number</string>
     <string name="edittext_citizen_id_hint">Input Citizen Id</string>
     <string name="edittext_first_name_hint">Input First Name</string>
@@ -14,5 +15,5 @@
     <string name="edittext_birth_date_hint">Input Birth Date (DD/MM/YYYY)</string>
     <string name="problem_message">Problem occurs!…</string>
     <string name="problem_try_again_message">Problem occurs. Try again later!…</string>
-    <string name="no_veterinarian_message">No Veterinarian</string>
+    <string name="no_veterinarian_message">No Veterinarian found</string>
 </resources>

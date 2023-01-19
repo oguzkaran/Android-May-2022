@@ -7,4 +7,9 @@ data class VeterinarianInfo(
                         var middleName: String?,
                         var lastName: String?,
                         var registerDate: String?
-)
+) {
+    override fun toString() = when  {
+        middleName != null -> "$firstName $middleName ${lastName?.uppercase()}"
+        else -> "$firstName ${lastName?.uppercase()}"
+    }
+}

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.karandev.util.retrofit.RetrofitUtil
 import com.karandev.util.retrofit.putQueue
+import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.veterinarian.api.IVeterinarianService
 import org.csystem.android.app.veterinarian.api.POST_SERVICE_BASE_URL
 import org.csystem.android.app.veterinarian.api.data.entity.VeterinarianSave
@@ -14,6 +15,7 @@ import org.csystem.android.app.veterinarian.viewmodel.VeterinarianSaveActivityVi
 import retrofit2.Call
 import retrofit2.Response
 
+@AndroidEntryPoint
 class VeterinarianSaveActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityVeterinarianSaveBinding
     private lateinit var mVeterinarianService: IVeterinarianService

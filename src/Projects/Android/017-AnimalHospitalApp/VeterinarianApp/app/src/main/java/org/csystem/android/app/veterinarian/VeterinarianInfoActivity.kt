@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.karandev.util.retrofit.RetrofitUtil
+import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.veterinarian.api.GET_SERVICE_BASE_URL
 import org.csystem.android.app.veterinarian.api.IVeterinarianService
 import org.csystem.android.app.veterinarian.api.data.entity.CountInfo
@@ -15,6 +16,7 @@ import org.csystem.android.app.veterinarian.viewmodel.VeterinarianInfoActivityVi
 import retrofit2.Call
 import retrofit2.Response
 
+@AndroidEntryPoint
 class VeterinarianInfoActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityVeterinarianInfoBinding
     private lateinit var mVeterinarianService: IVeterinarianService

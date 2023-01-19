@@ -6,8 +6,8 @@ import org.csystem.android.app.veterinarian.viewmodel.adapter.VeterinarianListAd
 data class VeterinarianFindByLastNameActivityViewModel(
     var activity: VeterinarianFindByLastNameActivity,
     var text: String = "",
-    var adapter: VeterinarianListAdapter = VeterinarianListAdapter(activity)
-) {
+    var adapter: VeterinarianListAdapter = VeterinarianListAdapter(activity),
+    var offline: Boolean = false) {
     fun handleFindButton() = activity.findButtonClicked()
     fun handleExitButton() = activity.exitButtonClicked()
 }

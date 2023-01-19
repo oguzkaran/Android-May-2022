@@ -15,12 +15,62 @@ import retrofit2.Call
 import retrofit2.Response
 
 import com.karandev.util.retrofit.putQueue
+import dagger.hilt.android.AndroidEntryPoint
+import org.csystem.android.app.veterinarian.api.data.entity.VeterinarianInfo
 
+@AndroidEntryPoint
 class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityVeterinarinarianFindByLastNameBinding
     private lateinit var mVeterinarianService: IVeterinarianService
 
-    private fun responseCallback(response: Response<VeterinariansInfo>)
+    private fun offlineProc(pos: Int)
+    {
+        val diplomaNo = mBinding.viewModel!!.adapter.getItem(pos)?.diplomaNo;
+
+        Toast.makeText(this, "$diplomaNo", Toast.LENGTH_LONG).show()
+    }
+
+    private fun onlineModeResponseCallback(response: Response<VeterinarianInfo>)
+    {
+        if (response.code() != 200) {
+            Toast.makeText(this, R.string.no_veterinarian_message, Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val vi = response.body()
+
+        if (vi != null) {
+            val diplomaNo = vi.diplomaNo;
+            val lastName = vi.lastName
+            Toast.makeText(this, "Diploma No: $diplomaNo, Last Name:$lastName", Toast.LENGTH_LONG).show()
+        }
+        else
+            Toast.makeText(this, R.string.problem_message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun onlineModeFailCallback(call: Call<VeterinarianInfo>, ex: Throwable)
+    {
+        Toast.makeText(this, R.string.problem_try_again_message, Toast.LENGTH_LONG).show()
+        Log.d("veterinarians_response", ex.message!!)
+        call.cancel()
+    }
+
+    private fun onlineProc(pos: Int)
+    {
+        val diplomaNo = mBinding.viewModel!!.adapter.getItem(pos)?.diplomaNo
+        val call = mVeterinarianService.findByDiplomaNo(diplomaNo!!)
+        call.putQueue({_, r -> onlineModeResponseCallback(r)}) { c, r -> onlineModeFailCallback(c, r)}
+    }
+
+    private fun onItemClickListenerCallback(pos: Int)
+    {
+        if (mBinding.viewModel!!.offline)
+            offlineProc(pos)
+        else
+            onlineProc(pos)
+    }
+
+    private fun findResponseCallback(response: Response<VeterinariansInfo>)
     {
         val vi = response.body()
 
@@ -33,11 +83,17 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.problem_message, Toast.LENGTH_LONG).show()
     }
 
-    private fun failCallback(call: Call<VeterinariansInfo>, ex: Throwable)
+    private fun findFailCallback(call: Call<VeterinariansInfo>, ex: Throwable)
     {
         Toast.makeText(this, R.string.problem_try_again_message, Toast.LENGTH_LONG).show()
         Log.d("veterinarians_response", ex.message!!)
         call.cancel()
+    }
+
+    private fun initVeterinariansListView()
+    {
+        mBinding.veterinarianFindByLastNameActivityVeterinarians
+            .setOnItemClickListener{_, _, pos, _ -> onItemClickListenerCallback(pos)}
     }
 
     private fun initVeterinarianService()
@@ -55,6 +111,7 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     {
         initBinding()
         initVeterinarianService()
+        initVeterinariansListView()
     }
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -67,7 +124,7 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     {
         mBinding.viewModel!!.adapter.clear()
         val call = mVeterinarianService.findByLastName(mBinding.viewModel!!.text)
-        call.putQueue({_, r -> responseCallback(r)}) {c, r -> failCallback(c, r)}
+        call.putQueue({_, r -> findResponseCallback(r)}) { c, r -> findFailCallback(c, r)}
     }
 
     fun exitButtonClicked() = finish()

@@ -21,6 +21,13 @@
             android:inputType="textPersonName"
             android:text="@={viewModel.text}" />
 
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.offline}"
+            android:text="@string/switch_offline_text"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,8 +41,9 @@
             android:text="@string/button_exit_text" />
 
         <ListView
+            android:id="@+id/veterinarianFindByLastNameActivityVeterinarians"
             android:layout_width="match_parent"
-            android:adapter="@{viewModel.adapter}"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:adapter="@{viewModel.adapter}" />
     </LinearLayout>
 </layout>
