@@ -2,8 +2,7 @@ package org.csystem.android.app.geonames.postalcodesearch.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PostalCode{
-
+public class PostalCode {
     public String adminCode1;
 
     @SerializedName("lng")

@@ -1,0 +1,9 @@
+Uygulama için aşağıdaki istenenleri gerçekleştiriniz:
+- Aşağıdaki servislere ilişkin uygun activity'leri ekleyiniz
+    http://161.97.141.113:50500/api/read/vets/monthyear?y=2023&m=1
+    http://161.97.141.113:50500/api/read/vets/between/year?begin=1976&end=2021
+  Activity'ler VeterinarianFindByLastNameActivity'ye benzeyebilir
+
+- ListView'lar için uygun VeterinarianDetailsActivity biçiminde bir actiyity ekleyiniz
+
+

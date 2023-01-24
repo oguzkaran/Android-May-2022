@@ -16,4 +16,8 @@
     <string name="problem_message">Problem occurs!…</string>
     <string name="problem_try_again_message">Problem occurs. Try again later!…</string>
     <string name="no_veterinarian_message">No Veterinarian found</string>
+    <string name="alert_dialog_offline_title">Which option do you want to use?</string>
+    <string name="alert_dialog_offline_positive_button_text">Online</string>
+    <string name="alert_dialog_offline_negative_button_text">Offline</string>
+    <string name="alert_dialog_offline_neutral_button_text">Cancel</string>
 </resources>

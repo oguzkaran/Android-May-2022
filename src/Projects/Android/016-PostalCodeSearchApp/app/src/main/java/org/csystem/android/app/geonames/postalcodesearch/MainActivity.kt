@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    lateinit var postalCodeSearch: IPostalCodeSearch
 
     private fun responseCallback(response: Response<PostalCodes>)
     {
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     fun listPlacesButtonClicked()
     {
-        val postalCodeSearch = RetrofitUtil.createRetrofitWithLogging(GEONAMES_BASE_URL).create(IPostalCodeSearch::class.java)
+        postalCodeSearch = RetrofitUtil.createRetrofitWithLogging(GEONAMES_BASE_URL).create(IPostalCodeSearch::class.java)
         val call = postalCodeSearch.findPostalCode("csystem", "tr", 67000, 10)
 
         RetrofitUtil.enqueue(call, {_, r -> responseCallback(r)}) {c, ex -> failCallback(c, ex)}

@@ -20,6 +20,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class VeterinarianInfoActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityVeterinarianInfoBinding
+
     @VeterinarianGetServiceInterceptor
     @Inject
     lateinit var veterinarianService: IVeterinarianService

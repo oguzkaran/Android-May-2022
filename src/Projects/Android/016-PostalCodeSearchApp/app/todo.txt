@@ -6,4 +6,4 @@ detayları gösterilecektir
 - Uygulama başka bir uygulama tarafından çalıştırılabilecek şekilde yazılacaktır
 - Tasarımı genel istekleri yerine getirmek koşuluyla dilediğiniz gibi belirleyebilirsiniz
 - Uygulamayı mümkün olduğunca databinding kullanarak yapmaya çalışınız
-- Derste yazdığımız RetrofitUtil kütüphanesini şimdilik libs içerisinden kullanınız
+- Uygulamada IPostalCodeSearch arayüz referansını DI olarak tasarlayınız

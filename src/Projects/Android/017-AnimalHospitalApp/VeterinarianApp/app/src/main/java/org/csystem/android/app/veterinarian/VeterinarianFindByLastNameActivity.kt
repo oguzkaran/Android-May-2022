@@ -3,6 +3,7 @@ package org.csystem.android.app.veterinarian
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.csystem.android.app.veterinarian.api.IVeterinarianService
@@ -66,10 +67,12 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
 
     private fun onItemClickListenerCallback(pos: Int)
     {
-        if (mBinding.viewModel!!.offline)
-            offlineProc(pos)
-        else
-            onlineProc(pos)
+        AlertDialog.Builder(this)
+            .setTitle(R.string.alert_dialog_offline_title)
+            .setPositiveButton(R.string.alert_dialog_offline_positive_button_text) {_, _ -> onlineProc(pos)}
+            .setNegativeButton(R.string.alert_dialog_offline_negative_button_text) {_, _ -> offlineProc(pos)}
+            .setNeutralButton(R.string.alert_dialog_offline_neutral_button_text) {_, _ -> }
+            .create().show()
     }
 
     private fun findResponseCallback(response: Response<VeterinariansInfo>)

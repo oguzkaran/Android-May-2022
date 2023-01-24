@@ -62,4 +62,5 @@ dependencies {
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.1'
 
     implementation 'com.karandev:com-karandev-util-retrofit:1.0.0'
+
 }
