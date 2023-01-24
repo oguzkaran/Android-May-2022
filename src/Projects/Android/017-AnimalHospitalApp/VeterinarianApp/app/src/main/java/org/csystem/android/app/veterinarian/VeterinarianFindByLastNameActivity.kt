@@ -5,8 +5,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.karandev.util.retrofit.RetrofitUtil
-import org.csystem.android.app.veterinarian.api.GET_SERVICE_BASE_URL
 import org.csystem.android.app.veterinarian.api.IVeterinarianService
 import org.csystem.android.app.veterinarian.api.data.entity.VeterinariansInfo
 import org.csystem.android.app.veterinarian.databinding.ActivityVeterinarinarianFindByLastNameBinding
@@ -17,11 +15,15 @@ import retrofit2.Response
 import com.karandev.util.retrofit.putQueue
 import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.veterinarian.api.data.entity.VeterinarianInfo
+import org.csystem.android.app.veterinarian.api.di.annotation.VeterinarianGetServiceInterceptor
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityVeterinarinarianFindByLastNameBinding
-    private lateinit var mVeterinarianService: IVeterinarianService
+    @VeterinarianGetServiceInterceptor
+    @Inject
+    lateinit var veterinarianService: IVeterinarianService
 
     private fun offlineProc(pos: Int)
     {
@@ -58,7 +60,7 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     private fun onlineProc(pos: Int)
     {
         val diplomaNo = mBinding.viewModel!!.adapter.getItem(pos)?.diplomaNo
-        val call = mVeterinarianService.findByDiplomaNo(diplomaNo!!)
+        val call = veterinarianService.findByDiplomaNo(diplomaNo!!)
         call.putQueue({_, r -> onlineModeResponseCallback(r)}) { c, r -> onlineModeFailCallback(c, r)}
     }
 
@@ -96,11 +98,6 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
             .setOnItemClickListener{_, _, pos, _ -> onItemClickListenerCallback(pos)}
     }
 
-    private fun initVeterinarianService()
-    {
-        mVeterinarianService = RetrofitUtil.createRetrofit(GET_SERVICE_BASE_URL).create(IVeterinarianService::class.java)
-    }
-
     private fun initBinding()
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_veterinarinarian_find_by_last_name)
@@ -110,7 +107,6 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     private fun initialize()
     {
         initBinding()
-        initVeterinarianService()
         initVeterinariansListView()
     }
 
@@ -123,7 +119,7 @@ class VeterinarianFindByLastNameActivity : AppCompatActivity() {
     fun findButtonClicked()
     {
         mBinding.viewModel!!.adapter.clear()
-        val call = mVeterinarianService.findByLastName(mBinding.viewModel!!.text)
+        val call = veterinarianService.findByLastName(mBinding.viewModel!!.text)
         call.putQueue({_, r -> findResponseCallback(r)}) { c, r -> findFailCallback(c, r)}
     }
 

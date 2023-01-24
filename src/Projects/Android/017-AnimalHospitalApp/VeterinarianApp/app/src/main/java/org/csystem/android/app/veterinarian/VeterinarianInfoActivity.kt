@@ -8,18 +8,21 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.karandev.util.retrofit.RetrofitUtil
 import dagger.hilt.android.AndroidEntryPoint
-import org.csystem.android.app.veterinarian.api.GET_SERVICE_BASE_URL
 import org.csystem.android.app.veterinarian.api.IVeterinarianService
 import org.csystem.android.app.veterinarian.api.data.entity.CountInfo
+import org.csystem.android.app.veterinarian.api.di.annotation.VeterinarianGetServiceInterceptor
 import org.csystem.android.app.veterinarian.databinding.ActivityVeterinarianInfoBinding
 import org.csystem.android.app.veterinarian.viewmodel.VeterinarianInfoActivityViewModel
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class VeterinarianInfoActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityVeterinarianInfoBinding
-    private lateinit var mVeterinarianService: IVeterinarianService
+    @VeterinarianGetServiceInterceptor
+    @Inject
+    lateinit var veterinarianService: IVeterinarianService
 
     private fun responseCallback(response: Response<CountInfo>)
     {
@@ -38,11 +41,6 @@ class VeterinarianInfoActivity : AppCompatActivity() {
         call.cancel()
     }
 
-    private fun initVeterinarianService()
-    {
-        mVeterinarianService = RetrofitUtil.createRetrofit(GET_SERVICE_BASE_URL).create(IVeterinarianService::class.java)
-    }
-
     private fun initBinding()
     {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_veterinarian_info)
@@ -52,7 +50,6 @@ class VeterinarianInfoActivity : AppCompatActivity() {
     private fun initialize()
     {
         initBinding()
-        initVeterinarianService()
     }
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -63,7 +60,7 @@ class VeterinarianInfoActivity : AppCompatActivity() {
 
     fun countButtonClicked()
     {
-        val call = mVeterinarianService.count()
+        val call = veterinarianService.count()
 
         RetrofitUtil.enqueue(call, {_, r -> responseCallback(r)}) {c, r -> failCallback(c, r)}
     }
