@@ -1,7 +1,7 @@
 package com.erbaris.android.library.geonames.postalcode.data.entity
 
 class PostalCode {
-    var id = 0
+    var id = 0L
     var code = 0
     var adminCode1: String? = null
     var longitude = 0.0

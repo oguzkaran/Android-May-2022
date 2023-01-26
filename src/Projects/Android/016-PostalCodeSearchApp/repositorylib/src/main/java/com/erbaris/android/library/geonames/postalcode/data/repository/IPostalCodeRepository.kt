@@ -4,5 +4,5 @@ import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCode
 import com.karandev.util.data.repository.ICrudRepository
 
 interface IPostalCodeRepository : ICrudRepository<PostalCode, Int> {
-
+    fun findPostalCodesByCode(code: Int) : MutableIterable<PostalCode>
 }

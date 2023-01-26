@@ -1,19 +1,12 @@
 package com.erbaris.android.library.geonames.postalcode.data.repository
 
+import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCodeInfo
 import org.csystem.util.datetime.DateTimeConvertUtil
 import java.util.*
 import javax.inject.Inject
-
-private const val CREATE_POSTAL_CODE_INFO = """
-    CREATE TABLE postal_code_info (
-        code INTEGER,
-        query_date_time INTEGER not null,
-        CONSTRAINT postal_code_info_PK PRIMARY KEY(code)
-    );
-"""
 
 private const val CODE = "code"
 private const val QUERY_DATE_TIME = "query_date_time"
@@ -31,11 +24,22 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
         return PostalCodeInfo(code, DateTimeConvertUtil.toLocalDateTime(queryDateTime))
     }
 
-    override fun findByCode(code: Int) : PostalCodeInfo? {
+    override fun count(): Long
+    {
+        db.rawQuery("select count(*) as count from $TABLE_NAME", arrayOf("count")).use {
+            it.moveToFirst()
+            return it.getLong(0);
+        }
+    }
+
+    override fun existsById(code: Int) = findByCode(code) != null
+
+    override fun findByCode(code: Int) : PostalCodeInfo?
+    {
         val projection = arrayOf(CODE, QUERY_DATE_TIME)
         var cursor: Cursor? = null
         var postalCodeInfo: PostalCodeInfo? = null
-        
+
         try {
             cursor = db.query(TABLE_NAME, projection, null, null, null, null, null)
             if (cursor != null && cursor.moveToFirst())
@@ -49,43 +53,49 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
     }
     override fun <S : PostalCodeInfo?> save(postalCodeInfo: S) : S
     {
-        TODO("Not yet implemented")
+        val cv = ContentValues()
+
+        cv.put(CODE, postalCodeInfo?.code)
+        cv.put(QUERY_DATE_TIME, DateTimeConvertUtil.toMilliseconds(postalCodeInfo?.queryDateTime))
+
+        db.insertOrThrow(TABLE_NAME, null, cv)
+
+        return postalCodeInfo
     }
 
     //Not implemented methods
-    override fun count(): Long {
+    override fun delete(entity: PostalCodeInfo?)
+    {
         TODO("Not yet implemented")
     }
 
-    override fun delete(entity: PostalCodeInfo?) {
+    override fun deleteAll()
+    {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAll() {
+    override fun deleteAll(entities: MutableIterable<PostalCodeInfo>?)
+    {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAll(entities: MutableIterable<PostalCodeInfo>?) {
+    override fun deleteAllById(ids: MutableIterable<Int>?)
+    {
         TODO("Not yet implemented")
     }
 
-    override fun deleteAllById(ids: MutableIterable<Int>?) {
+    override fun deleteById(id: Int?)
+    {
         TODO("Not yet implemented")
     }
 
-    override fun deleteById(id: Int?) {
+    override fun findAll(): MutableIterable<PostalCodeInfo>
+    {
         TODO("Not yet implemented")
     }
 
-    override fun existsById(id: Int?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun findAll(): MutableIterable<PostalCodeInfo> {
-        TODO("Not yet implemented")
-    }
-
-    override fun findAllById(id: MutableIterable<Int>?): MutableIterable<PostalCodeInfo> {
+    override fun findAllById(id: MutableIterable<Int>?): MutableIterable<PostalCodeInfo>
+    {
         TODO("Not yet implemented")
     }
 
@@ -94,11 +104,8 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
         TODO("Not yet implemented")
     }
 
-
-
-    override fun <S : PostalCodeInfo?> saveAll(entities: MutableIterable<S>?): MutableIterable<S> {
+    override fun <S : PostalCodeInfo?> saveAll(entities: MutableIterable<S>?): MutableIterable<S>
+    {
         TODO("Not yet implemented")
     }
-
-
 }
