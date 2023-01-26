@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCodeInfo
-import org.csystem.util.datetime.DateTimeConvertUtil
+import com.karandev.util.datetime.DateTimeConvertUtil
 import java.util.*
 import javax.inject.Inject
 
