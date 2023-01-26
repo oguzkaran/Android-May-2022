@@ -17,7 +17,6 @@ dependencyResolutionManagement {
         maven {
             url 'https://raw.github.com/oguzkaran/javaapp1-jun-2022-maven-repo/main'
         }
-
     }
 }
 rootProject.name = "PostalCodeSearchApp"

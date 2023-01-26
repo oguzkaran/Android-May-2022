@@ -1,0 +1,8 @@
+package com.erbaris.android.library.geonames.postalcode.data.repository
+
+import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCodeInfo
+import com.karandev.util.data.repository.ICrudRepository
+
+interface IPostalCodeInfoRepository : ICrudRepository<PostalCodeInfo, Int> {
+    fun findByCode(code: Int) : PostalCodeInfo?
+}

@@ -1,9 +1,31 @@
 package com.erbaris.android.library.geonames.postalcode.data.repository
 
+import android.database.sqlite.SQLiteDatabase
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCode
 import java.util.*
+import javax.inject.Inject
 
-class PostalCodeRepository : IPostalCodeRepository {
+private const val CREATE_POSTAL_CODE = """
+    CREATE TABLE postal_codes (
+        postal_code_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        code INTEGER not null,
+        admin_code_1 TEXT,
+        longitude REAL not null,
+        country_code TEXT,
+        admin_name1 TEXT,
+        place_name TEXT,
+        latitude REAL not null,
+        iso_31662_Info TEXT,
+        CONSTRAINT postal_code_PK PRIMARY KEY (postal_code_id),
+        CONSTRAINT postal_codes_FK FOREIGN KEY (code) REFERENCES postal_code_info(code)
+    );
+"""
+
+
+
+class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
+    @Inject lateinit var db: SQLiteDatabase
+
     override fun count(): Long
     {
         TODO("Not yet implemented")
