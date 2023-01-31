@@ -21,7 +21,8 @@ private const val ISO_31662_INFO = "iso_31662_Info";
 private const val TABLE_NAME = "postal_code"
 
 class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
-    @Inject lateinit var db: SQLiteDatabase
+    @Inject
+    lateinit var db: SQLiteDatabase
 
     override fun <S : PostalCode?> save(postalCode: S): S
     {
@@ -44,7 +45,7 @@ class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
         return postalCode.also { it?.id = postalCodeId }
     }
 
-    override fun findPostalCodesByCode(code: Int): MutableIterable<PostalCode>
+    override fun findByCode(code: Int): MutableIterable<PostalCode>
     {
         TODO("Write this function")
     }

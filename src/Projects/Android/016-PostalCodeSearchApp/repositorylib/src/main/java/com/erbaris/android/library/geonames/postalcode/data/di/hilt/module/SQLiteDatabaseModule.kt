@@ -11,8 +11,6 @@ import javax.inject.Inject
 @Module
 @InstallIn(SingletonComponent::class)
 class SQLiteDatabaseModule @Inject constructor(){
-    @Inject lateinit var databaseHelper: SQLiteOpenHelper
-
     @Provides
-    fun provideSQLiteDatabase() : SQLiteDatabase = databaseHelper.writableDatabase
+    fun provideSQLiteDatabase(databaseHelper: SQLiteOpenHelper) : SQLiteDatabase = databaseHelper.writableDatabase
 }

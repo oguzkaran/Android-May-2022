@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "PostalCodeSearchApp"
 include ':app'
 include ':repositorylib'
+include ':servicelib'
+include ':geonameslib'
+include ':commonlib'

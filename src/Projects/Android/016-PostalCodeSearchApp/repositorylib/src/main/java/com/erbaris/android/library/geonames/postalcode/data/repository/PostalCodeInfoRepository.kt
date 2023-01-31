@@ -18,7 +18,7 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
 
     private fun createPostalCodeInfo(cursor: Cursor) : PostalCodeInfo
     {
-        val code = cursor.getLong(0)
+        val code = cursor.getInt(0)
         val queryDateTime = cursor.getLong(1);
 
         return PostalCodeInfo(code, DateTimeConvertUtil.toLocalDateTime(queryDateTime))
