@@ -8,7 +8,7 @@ import org.csystem.android.library.geonames.postalcode.dto.PostalCodeDTO
 import org.csystem.android.library.geonames.postalcode.dto.PostalCodeSaveDTO
 import javax.inject.Inject
 
-class PostalCodeAppService @Inject  constructor() {
+class PostalCodeAppService @Inject constructor() {
     @Inject
     lateinit var postalCodeAppHelper: PostalCodeAppHelper
 
