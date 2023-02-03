@@ -25,11 +25,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     packagingOptions {
-        exclude 'application.properties'
-        exclude 'META-INF/INDEX.LIST'
+        resources {
+            excludes += ['application.properties', 'META-INF/INDEX.LIST']
+        }
     }
+
 
     compileOptions {
         coreLibraryDesugaringEnabled true
