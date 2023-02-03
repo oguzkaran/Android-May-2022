@@ -1,6 +1,6 @@
-package org.csystem.android.app.geonames.postalcodesearch.api;
+package com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api;
 
-import org.csystem.android.app.geonames.postalcodesearch.data.entity.PostalCodes;
+import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCodes;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

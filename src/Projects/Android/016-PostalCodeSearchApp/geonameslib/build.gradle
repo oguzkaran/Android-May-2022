@@ -46,6 +46,16 @@ dependencies {
 
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
+
+    //Retrofit, okHttp3 and Gson dependencies
+    implementation('com.squareup.retrofit2:retrofit:2.9.0') {
+        exclude module: 'okhttp'
+    }
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
+    implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.1'
+
+    implementation project(path: ":commonlib")
 }
 
 kapt {

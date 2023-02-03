@@ -18,7 +18,7 @@ private const val PLACE_NAME = "place_name";
 private const val LATITUDE = "latitude";
 private const val ISO_31662_INFO = "iso_31662_Info";
 
-private const val TABLE_NAME = "postal_code"
+private const val TABLE_NAME = "postal_codes"
 
 class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
     @Inject

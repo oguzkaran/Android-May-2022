@@ -1,15 +1,15 @@
 package org.csystem.android.app.geonames.postalcodesearch
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.borasahin.android.library.geonames.postalcode.data.service.PostalCodeAppService
+import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.api.GEONAMES_BASE_URL
+import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.data.mapper.PostalCodeMapper
+import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api.IPostalCodeSearch
+import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCodes
 import com.karandev.util.retrofit.RetrofitUtil
 import dagger.hilt.android.AndroidEntryPoint
-import org.csystem.android.app.geonames.postalcodesearch.api.GEONAMES_BASE_URL
-import org.csystem.android.app.geonames.postalcodesearch.api.IPostalCodeSearch
-import org.csystem.android.app.geonames.postalcodesearch.data.entity.PostalCodes
-import org.csystem.android.app.geonames.postalcodesearch.data.mapper.PostalCodeMapper
 import retrofit2.Call
 import retrofit2.Response
 import javax.inject.Inject
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val postalCodes = response.body()
 
         if (postalCodes != null) {
-            val places = postalCodes.codes.map {it.placeName}.reduce {r, p -> "$r $p" }.toString()
+            val places = postalCodes.codes.map { it.placeName }.reduce { r, p -> "$r $p" }.toString()
 
             Toast.makeText(this, places, Toast.LENGTH_LONG).show()
         }

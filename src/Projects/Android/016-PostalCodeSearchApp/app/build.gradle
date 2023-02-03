@@ -76,4 +76,5 @@ dependencies {
 
     implementation project(path: ":commonlib")
     implementation project(path: ":servicelib")
+    implementation project(path: ":geonameslib")
 }

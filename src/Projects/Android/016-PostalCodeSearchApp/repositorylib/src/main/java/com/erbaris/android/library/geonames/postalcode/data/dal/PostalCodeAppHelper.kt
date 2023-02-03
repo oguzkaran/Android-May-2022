@@ -15,14 +15,14 @@ class PostalCodeAppHelper @Inject constructor() {
     @Inject
     lateinit var postalCodeInfoRepository: IPostalCodeInfoRepository
 
-    fun savePostalCode(postalCode: PostalCode) : Boolean
+    fun savePostalCode(postalCodeInfo: PostalCodeInfo, postalCodes: Iterable<PostalCode>) : Boolean
     {
         try {
-            if (postalCodeInfoRepository.existsById(postalCode.code))
+            if (postalCodeInfoRepository.existsById(postalCodeInfo.code))
                 return false
 
-            postalCodeInfoRepository.save(PostalCodeInfo(postalCode.code))
-            postalCodeRepository.save(postalCode)
+            postalCodeInfoRepository.save(postalCodeInfo)
+            postalCodes.forEach{postalCodeRepository.save(it)  }
 
             return true
         }

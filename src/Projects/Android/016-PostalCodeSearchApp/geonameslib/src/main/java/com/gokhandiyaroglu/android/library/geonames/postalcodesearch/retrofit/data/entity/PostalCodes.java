@@ -1,4 +1,4 @@
-package org.csystem.android.app.geonames.postalcodesearch.data.entity;
+package com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity;
 
 import com.google.gson.annotations.SerializedName;
 

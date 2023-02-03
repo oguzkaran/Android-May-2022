@@ -2,6 +2,7 @@ package com.borasahin.android.library.geonames.postalcode.data.service
 
 import com.borasahin.android.library.geonames.postalcode.data.service.mapper.IPostalCodeMapper
 import com.erbaris.android.library.geonames.postalcode.data.dal.PostalCodeAppHelper
+import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCodeInfo
 import com.karandev.util.data.repository.exception.RepositoryException
 import com.karandev.util.data.service.DataServiceException
 import org.csystem.android.library.geonames.postalcode.dto.PostalCodeDTO
@@ -15,10 +16,16 @@ class PostalCodeAppService @Inject constructor() {
     @Inject
     lateinit var postalCodeMapper: IPostalCodeMapper
 
-    fun savePostalCode(postalCodeSaveDTO: PostalCodeSaveDTO) : Boolean
+    fun savePostalCode(postalCodeSaveDTOs: List<PostalCodeSaveDTO>) : Boolean
     {
         try {
-            return postalCodeAppHelper.savePostalCode(postalCodeMapper.toPostalCode(postalCodeSaveDTO))
+            if (postalCodeSaveDTOs.isEmpty())
+                return false;
+
+            val code = postalCodeSaveDTOs[0].code;
+            val list = postalCodeSaveDTOs.map { postalCodeMapper.toPostalCode(it) }.toList();
+
+            return postalCodeAppHelper.savePostalCode(PostalCodeInfo(code), list)
         }
         catch (ex: RepositoryException) {
             throw DataServiceException("PostalCodeAppService.savePostalCode", ex.cause)
