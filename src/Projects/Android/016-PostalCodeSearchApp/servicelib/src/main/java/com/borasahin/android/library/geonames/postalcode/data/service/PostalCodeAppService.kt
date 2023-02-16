@@ -14,8 +14,6 @@ import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 
 class PostalCodeAppService @Inject constructor() {
-
-
     @Inject
     lateinit var postalCodeAppHelper: PostalCodeAppHelper
 
@@ -24,8 +22,6 @@ class PostalCodeAppService @Inject constructor() {
 
     @Inject
     lateinit var threadPool: ExecutorService
-
-
 
     private fun savePostalCodeThreadCallBack(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, handler: Handler, resultBlock: (Boolean) -> Unit,
                                              failBlock: (DataServiceException) -> Unit)
