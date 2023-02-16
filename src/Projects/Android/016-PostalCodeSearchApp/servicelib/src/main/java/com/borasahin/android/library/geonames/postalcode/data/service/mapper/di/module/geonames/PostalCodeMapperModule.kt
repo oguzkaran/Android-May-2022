@@ -1,7 +1,7 @@
-package com.gokhandiyaroglu.android.app.geonames.postalcodesearch.data.mapper.di.module
+package com.borasahin.android.library.geonames.postalcode.data.service.mapper.di.module.geonames
 
-import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.data.mapper.IPostalCodeMapper
-import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.data.mapper.PostalCodeMapper
+import com.borasahin.android.library.geonames.postalcode.data.service.mapper.geonames.IPostalCodeMapper
+import com.borasahin.android.library.geonames.postalcode.data.service.mapper.geonames.PostalCodeMapper
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -41,7 +41,7 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
         var postalCodeInfo: PostalCodeInfo? = null
 
         try {
-            cursor = db.query(TABLE_NAME, projection, null, null, null, null, null)
+            cursor = db.query(TABLE_NAME, projection, "code = $code", null, null, null, null)
             if (cursor != null && cursor.moveToFirst())
                 postalCodeInfo = createPostalCodeInfo(cursor)
         }

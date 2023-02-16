@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.borasahin.android.library.geonames.postalcode.data.service.PostalCodeAppService
-import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.api.GEONAMES_BASE_URL
-import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.data.mapper.PostalCodeMapper
+import com.borasahin.android.library.geonames.postalcode.data.service.mapper.geonames.IPostalCodeMapper
 import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api.IPostalCodeSearch
 import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCodes
 import com.karandev.util.retrofit.RetrofitUtil
@@ -16,13 +15,14 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    @Inject
     lateinit var postalCodeSearch: IPostalCodeSearch
 
     @Inject
     lateinit var postalCodeAppService: PostalCodeAppService
 
     @Inject
-    lateinit var postalCodeMapper: PostalCodeMapper
+    lateinit var postalCodeMapper: IPostalCodeMapper
 
     private fun responseCallback(response: Response<PostalCodes>)
     {
@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         if (postalCodes != null) {
             val places = postalCodes.codes.map { it.placeName }.reduce { r, p -> "$r $p" }.toString()
+
+            val dtos = postalCodes.codes.map { postalCodeMapper.toPostalCodeSaveDTO(it) }
+
+            postalCodeAppService.savePostalCode(dtos, {Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()})
+                        {Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()}
 
             Toast.makeText(this, places, Toast.LENGTH_LONG).show()
         }
@@ -52,8 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     fun listPlacesButtonClicked()
     {
-        postalCodeSearch = RetrofitUtil.createRetrofitWithLogging(GEONAMES_BASE_URL).create(IPostalCodeSearch::class.java)
-        val call = postalCodeSearch.findPostalCode("csystem", "tr", 67000, 10)
+        val call = postalCodeSearch.findPostalCode("csystem", "tr", 67100, 10)
 
         RetrofitUtil.enqueue(call, {_, r -> responseCallback(r)}) {c, ex -> failCallback(c, ex)}
     }

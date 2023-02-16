@@ -37,7 +37,7 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -55,7 +55,8 @@ dependencies {
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.1'
 
-    implementation project(path: ":commonlib")
+
+    implementation 'com.karandev:com-karandev-util-retrofit:1.0.0'
 }
 
 kapt {

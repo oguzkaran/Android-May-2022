@@ -1,8 +1,8 @@
-package com.gokhandiyaroglu.android.app.geonames.postalcodesearch.data.mapper
+package com.borasahin.android.library.geonames.postalcode.data.service.mapper.geonames
 
+import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeDTO
+import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeSaveDTO
 import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCode
-import org.csystem.android.library.geonames.postalcode.dto.PostalCodeDTO
-import org.csystem.android.library.geonames.postalcode.dto.PostalCodeSaveDTO
 
 interface IPostalCodeMapper {
     fun toPostalCodeDTO(postalCode: PostalCode) : PostalCodeDTO

@@ -2,7 +2,7 @@ Uygulamayı aşağıdaki açıklamalara göre düzenleyiniz
 - Posta kodu bilgileri bir option olarak yerel veritabanına eklenecektir
 
 - Posta kodu sorgulanırken önce yerel veritabanında var mı diye bakılacak, eğer varsa bilgiler
-oradan alınacaktır. Yoksa servisten alınacak ve tekrar optinal olarak kaydedilebilecektir
+oradan alınacaktır. Yoksa servisten alınacak ve tekrar optional olarak kaydedilebilecektir
 
 - Posta kodu yerel veritabanından alınmışsa bu durumda optinal olarak kaydedilme bilgisini
 kullanıcı görmeyecektir
