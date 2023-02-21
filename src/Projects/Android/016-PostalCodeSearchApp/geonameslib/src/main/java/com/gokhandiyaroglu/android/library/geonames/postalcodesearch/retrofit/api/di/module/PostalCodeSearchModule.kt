@@ -1,6 +1,6 @@
 package com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api.di.module
 
-import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.api.GEONAMES_BASE_URL
+import com.gokhandiyaroglu.android.app.geonames.postalcodesearch.api.BASE_URL
 import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api.IPostalCodeSearch
 import com.karandev.util.retrofit.RetrofitUtil
 import dagger.Module
@@ -13,6 +13,6 @@ import javax.inject.Inject
 @InstallIn(SingletonComponent::class)
 class PostalCodeSearchModule @Inject constructor() {
     @Provides
-    fun providePostalCodeSearch() : IPostalCodeSearch = RetrofitUtil.createRetrofitWithLogging(GEONAMES_BASE_URL)
+    fun providePostalCodeSearch() : IPostalCodeSearch = RetrofitUtil.createRetrofitWithLogging(BASE_URL)
         .create(IPostalCodeSearch::class.java)
 }

@@ -9,27 +9,32 @@ import java.sql.SQLException
 import javax.inject.Inject
 
 private const val DATABASE_NAME = "postalcodeappdb"
-private const val DATABASE_VERSION = 2
+private const val DATABASE_VERSION = 1
 
 private const val CREATE_POSTAL_CODE_INFO = """
     CREATE TABLE postal_code_info (
         code INTEGER,
+        query_count INTEGER default(1) not null,
         query_date_time INTEGER not null,
+        save_date_time INTEGER not null,
+        source_service TEXT not null,
         CONSTRAINT postal_code_info_PK PRIMARY KEY(code)
     );
 """
+
 
 private const val CREATE_POSTAL_CODES = """
     CREATE TABLE postal_codes (
         postal_code_id INTEGER primary key AUTOINCREMENT,
         code INTEGER not null,
         admin_code1 TEXT,
-        longitude REAL not null,
-        country_code TEXT,
+        admin_code2 TEXT,
         admin_name1 TEXT,
-        place_name TEXT,
+        admin_name2 TEXT,
+        longitude REAL not null,
         latitude REAL not null,
-        iso_31662_Info TEXT,
+        plate TEXT,
+        place_name TEXT,
         CONSTRAINT postal_codes_FK FOREIGN KEY (code) REFERENCES postal_code_info(code)
     );
 """

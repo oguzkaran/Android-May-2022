@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         if (postalCodes != null) {
             val places = postalCodes.codes.map { it.placeName }.reduce { r, p -> "$r $p" }.toString()
 
-            val dtos = postalCodes.codes.map { postalCodeMapper.toPostalCodeSaveDTO(it) }
+            val dtos = postalCodes.codes.map { it.code = 34387.toString(); postalCodeMapper.toPostalCodeSaveDTO(it) }
 
             postalCodeAppService.savePostalCode(dtos, {Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()})
                         {Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()}
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     fun listPlacesButtonClicked()
     {
-        val call = postalCodeSearch.findPostalCode("csystem", "tr", 67100, 10)
+        val call = postalCodeSearch.findPostalCode("34387")
 
         RetrofitUtil.enqueue(call, {_, r -> responseCallback(r)}) {c, ex -> failCallback(c, ex)}
     }

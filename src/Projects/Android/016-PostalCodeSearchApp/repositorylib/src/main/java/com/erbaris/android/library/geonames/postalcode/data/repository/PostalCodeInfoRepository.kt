@@ -9,7 +9,12 @@ import java.util.*
 import javax.inject.Inject
 
 private const val CODE = "code"
+private const val QUERY_COUNT = "query_count"
 private const val QUERY_DATE_TIME = "query_date_time"
+private const val SAVE_DATE_TIME = "save_date_time"
+private const val SOURCE_SERVICE = "source_service"
+
+
 private const val TABLE_NAME = "postal_code_info"
 
 class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository {
@@ -21,7 +26,7 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
         val code = cursor.getInt(0)
         val queryDateTime = cursor.getLong(1);
 
-        return PostalCodeInfo(code, DateTimeConvertUtil.toLocalDateTime(queryDateTime))
+        return PostalCodeInfo(code = code, queryDateTime = DateTimeConvertUtil.toLocalDateTime(queryDateTime), )
     }
 
     override fun count(): Long
@@ -56,6 +61,7 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
         val cv = ContentValues()
 
         cv.put(CODE, postalCodeInfo?.code)
+        cv.put(SAVE_DATE_TIME, DateTimeConvertUtil.toMilliseconds(postalCodeInfo?.saveDateTime))
         cv.put(QUERY_DATE_TIME, DateTimeConvertUtil.toMilliseconds(postalCodeInfo?.queryDateTime))
 
         db.insertOrThrow(TABLE_NAME, null, cv)

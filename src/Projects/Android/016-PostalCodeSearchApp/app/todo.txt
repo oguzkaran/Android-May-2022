@@ -7,7 +7,7 @@ oradan alınacaktır. Yoksa servisten alınacak ve tekrar optional olarak kayded
 - Posta kodu yerel veritabanından alınmışsa bu durumda optinal olarak kaydedilme bilgisini
 kullanıcı görmeyecektir
 
-- Uygulamada geonameslib kütüphanesinde servisten bilgiler alınacaktır
++ Uygulamada geonameslib kütüphanesinde servisten bilgiler alınacaktır
 
 - List All Places button'u için belirlenen posta koduna ilişkin tüm bilgiler listview'a eklenecektir
 
@@ -22,4 +22,15 @@ detayları gösterilecektir
 
 - Uygulamayı mümkün olduğunca databinding kullanarak yapmaya çalışınız
 
-- Uygulamada IPostalCodeSearch arayüz referansını DI olarak tasarlayınız
++ Uygulamada IPostalCodeSearch arayüz referansını DI olarak tasarlayınız
+
+- Uygulamada, burada yazılan servis çalışmıyorsa geonames'den sorgulama yaoılacak ve yerel veritabanı
+anlamında yine aynı senaryo uygulanacaktır
+
+- postal_code_info tablosunda query_count alanı ve query_date_time isimli alanlar her bir
+ sorguda güncellenecektir
+
+- postal_code_info tablosunda source_service isimli bir alanda bilginin hangi servisten alındığı
+tutulacaktır. Burada yazılmış olan servis için "csd", geonames için de "geonames" kullanılacaktır
+
+

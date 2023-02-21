@@ -6,4 +6,6 @@ Uygulama için aşağıdaki istenenleri gerçekleştiriniz:
 
 - ListView'lar için uygun VeterinarianDetailsActivity biçiminde bir actiyity ekleyiniz
 
+- Yapılan işlemleri ayrı kütüphaneler olarak ve katmanlar olarak ayırınız
+
 

@@ -1,25 +1,21 @@
 package com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity;
 
-import com.google.gson.annotations.SerializedName;
 
 public class PostalCode {
+    public String code;
     public String adminCode1;
-
-    @SerializedName("lng")
-    public double longitude;
-
-    public String countryCode;
-
-    public String postalCode;
+    public String adminCode2;
 
     public String adminName1;
+    public String adminName2;
+
+    public double longitude;
+
+    public double latitude;
+
+    public String plate;
 
     public String placeName;
 
-    @SerializedName("lat")
-    public double latitude;
-
-    @SerializedName("ISO3166-2")
-    public String iSO31662Info;
 }
 

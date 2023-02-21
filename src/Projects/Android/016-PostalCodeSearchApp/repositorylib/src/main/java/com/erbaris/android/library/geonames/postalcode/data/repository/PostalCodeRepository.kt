@@ -11,12 +11,13 @@ import javax.inject.Inject
 private const val POSTAL_CODE_ID = "postal_code_id";
 private const val CODE = "code";
 private const val ADMIN_CODE1 = "admin_code1";
-private const val LONGITUDE = "longitude";
-private const val COUNTRY_CODE = "country_code";
+private const val ADMIN_CODE2 = "admin_code2";
 private const val ADMIN_NAME1 = "admin_name1";
-private const val PLACE_NAME = "place_name";
+private const val ADMIN_NAME2 = "admin_name2";
+private const val LONGITUDE = "longitude";
 private const val LATITUDE = "latitude";
-private const val ISO_31662_INFO = "iso_31662_Info";
+private const val PLATE = "plate";
+private const val PLACE_NAME = "place_name";
 
 private const val TABLE_NAME = "postal_codes"
 
@@ -30,12 +31,13 @@ class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
 
         cv.put(CODE, postalCode?.code)
         cv.put(ADMIN_CODE1, postalCode?.adminCode1)
-        cv.put(LONGITUDE, postalCode?.longitude)
-        cv.put(COUNTRY_CODE, postalCode?.countryCode)
+        cv.put(ADMIN_CODE2, postalCode?.adminCode2)
         cv.put(ADMIN_NAME1, postalCode?.adminName1)
-        cv.put(PLACE_NAME, postalCode?.placeName)
+        cv.put(ADMIN_NAME2, postalCode?.adminName2)
+        cv.put(LONGITUDE, postalCode?.longitude)
         cv.put(LATITUDE, postalCode?.latitude)
-        cv.put(ISO_31662_INFO, postalCode?.iSO31662Info)
+        cv.put(PLATE, postalCode?.plate)
+        cv.put(PLACE_NAME, postalCode?.placeName)
 
         val postalCodeId = db.insert(TABLE_NAME, null, cv);
 
