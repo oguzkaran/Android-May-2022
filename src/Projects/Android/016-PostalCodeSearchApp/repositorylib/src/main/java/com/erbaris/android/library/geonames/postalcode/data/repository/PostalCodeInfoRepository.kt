@@ -14,7 +14,6 @@ private const val QUERY_DATE_TIME = "query_date_time"
 private const val SAVE_DATE_TIME = "save_date_time"
 private const val SOURCE_SERVICE = "source_service"
 
-
 private const val TABLE_NAME = "postal_code_info"
 
 class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository {
@@ -41,7 +40,7 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
 
     override fun findByCode(code: Int) : PostalCodeInfo?
     {
-        val projection = arrayOf(CODE, QUERY_DATE_TIME)
+        val projection = arrayOf(CODE, QUERY_COUNT, SAVE_DATE_TIME, QUERY_DATE_TIME, SOURCE_SERVICE)
         var cursor: Cursor? = null
         var postalCodeInfo: PostalCodeInfo? = null
 
@@ -61,8 +60,10 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
         val cv = ContentValues()
 
         cv.put(CODE, postalCodeInfo?.code)
+        cv.put(QUERY_COUNT, 1)
         cv.put(SAVE_DATE_TIME, DateTimeConvertUtil.toMilliseconds(postalCodeInfo?.saveDateTime))
         cv.put(QUERY_DATE_TIME, DateTimeConvertUtil.toMilliseconds(postalCodeInfo?.queryDateTime))
+        cv.put(SOURCE_SERVICE, postalCodeInfo?.sourceService)
 
         db.insertOrThrow(TABLE_NAME, null, cv)
 

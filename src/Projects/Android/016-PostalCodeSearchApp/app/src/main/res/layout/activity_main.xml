@@ -2,7 +2,8 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
-
+        <import type="org.csystem.android.app.geonames.postalcodesearch.viewmodel.MainActivityViewModel"/>
+        <variable name="viewModel" type="MainActivityViewModel" />
     </data>
 
     <LinearLayout
@@ -17,11 +18,13 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
+            android:text="@={viewModel.code}"
             android:hint="@string/edittext_number_hint"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.handleFindAllPlacesButton()}"
             android:text="@string/button_list_places_text" />
 
         <ListView
