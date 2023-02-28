@@ -23,7 +23,10 @@ class PostalCodeAppService @Inject constructor() {
     @Inject
     lateinit var threadPool: ExecutorService
 
-    private fun savePostalCodeThreadCallBack(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, handler: Handler, resultBlock: (Boolean) -> Unit,
+    @Inject
+    lateinit var handler: Handler
+
+    private fun savePostalCodeThreadCallBack(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
                                              failBlock: (DataServiceException) -> Unit)
     {
         try {
@@ -33,11 +36,14 @@ class PostalCodeAppService @Inject constructor() {
             }
             val code = postalCodeSaveDTOs[0].code;
             val list = postalCodeSaveDTOs.map { postalCodeMapper.toPostalCode(it) }.toList();
+            val ho = SavePostalCodeResultHandlerObject(postalCodeAppHelper.savePostalCode(PostalCodeInfo(code), list), resultBlock)
 
-            handler.sendMessage(handler.obtainMessage(0, postalCodeAppHelper.savePostalCode(PostalCodeInfo(code), list)))
+            handler.sendMessage(handler.obtainMessage(1, ho))
         }
         catch (ex: RepositoryException) {
-            failBlock(DataServiceException("PostalCodeAppService.savePostalCode", ex.cause))
+            val ho = SavePostalCodeFailHandlerObject(DataServiceException("PostalCodeAppService.savePostalCode", ex.cause), failBlock)
+
+            handler.sendMessage(handler.obtainMessage(2, ho))
         }
     }
 
@@ -55,14 +61,7 @@ class PostalCodeAppService @Inject constructor() {
     fun savePostalCode(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
                        failBlock: (DataServiceException) -> Unit)
     {
-        val handler = object: Handler(Looper.myLooper()!!) {
-            override fun handleMessage(msg: Message)
-            {
-                //...
-                resultBlock(msg.obj as Boolean )
-            }
-        }
-        threadPool.execute{savePostalCodeThreadCallBack(postalCodeSaveDTOs, handler, resultBlock, failBlock)}
+        threadPool.execute{savePostalCodeThreadCallBack(postalCodeSaveDTOs, resultBlock, failBlock)}
     }
 
     fun findPostalCodesByCode(code: Int, resultBlock: (MutableIterable<PostalCodeDTO>) -> Unit,

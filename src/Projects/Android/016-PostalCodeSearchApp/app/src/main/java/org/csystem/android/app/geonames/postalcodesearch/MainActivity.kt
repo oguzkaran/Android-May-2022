@@ -51,9 +51,14 @@ class MainActivity : AppCompatActivity() {
                     { Toast.makeText(this, it.message, Toast.LENGTH_LONG).show() }
                 })
                 */
-                
+
+                postalCodeAppService.savePostalCode(dtos,
+                    { Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show() })
+                    { Toast.makeText(this, it.message, Toast.LENGTH_LONG).show() }
+
                 Toast.makeText(this, places, Toast.LENGTH_LONG).show()
-            } else
+            }
+            else
                 Toast.makeText(this, "Problem Occurs", Toast.LENGTH_LONG).show()
         }
         catch (ex: UnsupportedOperationException) {
