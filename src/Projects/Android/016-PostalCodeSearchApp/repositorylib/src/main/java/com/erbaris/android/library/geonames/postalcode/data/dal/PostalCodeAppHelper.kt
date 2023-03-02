@@ -15,6 +15,16 @@ class PostalCodeAppHelper @Inject constructor() {
     @Inject
     lateinit var postalCodeInfoRepository: IPostalCodeInfoRepository
 
+    fun findPostalCodesByCode(code: Int): MutableIterable<PostalCode>
+    {
+        try {
+            return postalCodeRepository.findByCode(code)
+        }
+        catch (ex: Exception) {
+            throw RepositoryException("PostalCodeAppHelper.findPostalCodesByCode", ex)
+        }
+    }
+
     fun savePostalCode(postalCodeInfo: PostalCodeInfo, postalCodes: Iterable<PostalCode>) : Boolean
     {
         try {
@@ -31,14 +41,6 @@ class PostalCodeAppHelper @Inject constructor() {
         }
     }
 
-    fun findPostalCodesByCode(code: Int): MutableIterable<PostalCode>
-    {
-        try {
-            return postalCodeRepository.findByCode(code)
-        }
-        catch (ex: Exception) {
-            throw RepositoryException("PostalCodeAppHelper.findPostalCodesByCode", ex)
-        }
-    }
+
     //...
 }

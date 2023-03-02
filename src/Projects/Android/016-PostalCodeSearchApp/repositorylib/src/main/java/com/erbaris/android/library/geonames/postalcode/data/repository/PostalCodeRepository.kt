@@ -1,12 +1,13 @@
 package com.erbaris.android.library.geonames.postalcode.data.repository
 
 import android.content.ContentValues
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCode
-import hilt_aggregated_deps._dagger_hilt_android_internal_managers_HiltWrapper_ActivityRetainedComponentManager_ActivityRetainedLifecycleEntryPoint
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 private const val POSTAL_CODE_ID = "postal_code_id";
 private const val CODE = "code";
@@ -24,6 +25,44 @@ private const val TABLE_NAME = "postal_codes"
 class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
     @Inject
     lateinit var db: SQLiteDatabase
+
+    private fun createPostalCode(cursor: Cursor) : PostalCode
+    {
+        return PostalCode().apply {
+            id = cursor.getLong(0)
+            code = cursor.getInt(1)
+            adminCode1 = cursor.getString(2)
+            adminCode2 = cursor.getString(3)
+            adminName1 = cursor.getString(4)
+            adminName2 = cursor.getString(5)
+            longitude = cursor.getDouble(6)
+            latitude = cursor.getDouble(7)
+            plate = cursor.getString(8)
+            placeName = cursor.getString(9)
+        }
+    }
+
+    private fun findByCodeQueryCallback(cursor: Cursor) : MutableIterable<PostalCode>
+    {
+        val postalCodes = ArrayList<PostalCode>()
+
+        if (!cursor.moveToFirst())
+            return postalCodes
+
+        do
+            postalCodes.add(createPostalCode(cursor))
+        while (cursor.moveToFirst())
+
+        return postalCodes
+    }
+
+    override fun findByCode(code: Int) : MutableIterable<PostalCode>
+    {
+        val projection = arrayOf(POSTAL_CODE_ID, CODE, ADMIN_CODE1, ADMIN_CODE2, ADMIN_NAME1, ADMIN_NAME2, LONGITUDE, LATITUDE, PLACE_NAME, PLACE_NAME)
+
+        db.rawQuery("select * from $TABLE_NAME where code = $code", projection)
+            .use {return findByCodeQueryCallback(it)}
+    }
 
     override fun <S : PostalCode?> save(postalCode: S): S
     {
@@ -47,12 +86,8 @@ class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
         return postalCode.also { it?.id = postalCodeId }
     }
 
-    override fun findByCode(code: Int): MutableIterable<PostalCode>
-    {
-        TODO("Write this function")
-    }
-
     //Not implemented methods
+
     override fun count(): Long
     {
         TODO("Not yet implemented")

@@ -1,15 +1,20 @@
 package com.borasahin.android.library.geonames.postalcode.data.service
 
 import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.widget.Toast
 import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeDTO
 import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeSaveDTO
 import com.borasahin.android.library.geonames.postalcode.data.service.mapper.IPostalCodeMapper
 import com.erbaris.android.library.geonames.postalcode.data.dal.PostalCodeAppHelper
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCodeInfo
+import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api.IPostalCodeSearch
+import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCodes
 import com.karandev.util.data.repository.exception.RepositoryException
 import com.karandev.util.data.service.DataServiceException
+import com.karandev.util.retrofit.RetrofitUtil
+import com.karandev.util.retrofit.putQueue
+import retrofit2.Call
+import retrofit2.Response
 import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 
@@ -26,6 +31,33 @@ class PostalCodeAppService @Inject constructor() {
     @Inject
     lateinit var handler: Handler
 
+    @Inject
+    lateinit var postalCodeSearch: IPostalCodeSearch
+
+    private fun responseCallback(code: String, response: Response<PostalCodes>) : MutableIterable<PostalCodeDTO>
+    {
+        try {
+            val postalCodes = response.body()
+
+            if (postalCodes != null) {
+                return postalCodes.codes.map {
+                    it.code = code; postalCodeMapper.toPostalCodeDTO(it)
+                }.toMutableList()
+            }
+            else
+                throw RuntimeException("Problem occurs")
+        }
+        catch (ex: Throwable) {
+            throw ex
+        }
+    }
+
+    private fun failCallback(call: Call<PostalCodes>, ex: Throwable)
+    {
+        //...
+        call.cancel()
+    }
+
     private fun savePostalCodeThreadCallBack(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
                                              failBlock: (DataServiceException) -> Unit)
     {
@@ -41,7 +73,7 @@ class PostalCodeAppService @Inject constructor() {
             handler.sendMessage(handler.obtainMessage(1, ho))
         }
         catch (ex: RepositoryException) {
-            val ho = SavePostalCodeFailHandlerObject(DataServiceException("PostalCodeAppService.savePostalCode", ex.cause), failBlock)
+            val ho = FailHandlerObject(DataServiceException("PostalCodeAppService.savePostalCode", ex.cause), failBlock)
 
             handler.sendMessage(handler.obtainMessage(2, ho))
         }
@@ -51,17 +83,30 @@ class PostalCodeAppService @Inject constructor() {
                                       failBlock: (DataServiceException) -> Unit)
     {
         try {
-            resultBlock(postalCodeAppHelper.findPostalCodesByCode(code).map { postalCodeMapper.toPostalCodeDTO(it) }.toMutableList())
-        }
-        catch (ex: RepositoryException) {
-            failBlock(DataServiceException("PostalCodeAppService.savePostalCode", ex.cause))
-        }
-    }
+            val list = postalCodeAppHelper.findPostalCodesByCode(code).map { postalCodeMapper.toPostalCodeDTO(it) }.toMutableList()
 
-    fun savePostalCode(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
-                       failBlock: (DataServiceException) -> Unit)
-    {
-        threadPool.execute{savePostalCodeThreadCallBack(postalCodeSaveDTOs, resultBlock, failBlock)}
+            if (list.isNotEmpty()) {
+                val ho = FindPostalCodeByCodeResultHandlerObject(list, resultBlock)
+
+                handler.sendMessage(handler.obtainMessage(3, ho))
+            }
+            else {
+                val call = postalCodeSearch.findPostalCode(code.toString())
+                var codes : MutableIterable<PostalCodeDTO> = ArrayList<PostalCodeDTO>()
+
+                call.putQueue({_, r -> codes = responseCallback(code.toString(), r)}) {c, ex -> failCallback(c, ex)}
+
+                val ho = FindPostalCodeByCodeResultHandlerObject(codes, resultBlock)
+
+                handler.sendMessage(handler.obtainMessage(3, ho))
+            }
+        }
+        catch (ex: Throwable) {
+            val cause = if (ex.cause != null) ex.cause else null
+            val ho = FailHandlerObject(DataServiceException("PostalCodeAppService.findPostalCodesByCodeThreadCallback", cause), failBlock)
+
+            handler.sendMessage(handler.obtainMessage(4, ho))
+        }
     }
 
     fun findPostalCodesByCode(code: Int, resultBlock: (MutableIterable<PostalCodeDTO>) -> Unit,
@@ -69,5 +114,11 @@ class PostalCodeAppService @Inject constructor() {
     {
 
         threadPool.execute{findPostalCodesByCodeThreadCallback(code, resultBlock, failBlock)}
+    }
+
+    fun savePostalCode(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
+                       failBlock: (DataServiceException) -> Unit)
+    {
+        threadPool.execute{savePostalCodeThreadCallBack(postalCodeSaveDTOs, resultBlock, failBlock)}
     }
 }

@@ -3,7 +3,8 @@ package com.borasahin.android.library.geonames.postalcode.data.service.di.module
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import com.borasahin.android.library.geonames.postalcode.data.service.SavePostalCodeFailHandlerObject
+import com.borasahin.android.library.geonames.postalcode.data.service.FailHandlerObject
+import com.borasahin.android.library.geonames.postalcode.data.service.FindPostalCodeByCodeResultHandlerObject
 import com.borasahin.android.library.geonames.postalcode.data.service.SavePostalCodeResultHandlerObject
 import dagger.Module
 import dagger.Provides
@@ -23,19 +24,24 @@ class PostalCodeAppServiceHandlerModule @Inject constructor() {
 
     private fun savePostalCodeFailBlockCallback(msg: Message)
     {
-        val ho = msg.obj as SavePostalCodeFailHandlerObject;
+        val ho = msg.obj as FailHandlerObject;
 
         ho.failBlock(ho.ex)
     }
 
     private fun findPostalCodeByCodeResultBlockCallback(msg: Message)
     {
+        val ho = msg.obj as FindPostalCodeByCodeResultHandlerObject
+
+        ho.resultBlock(ho.result)
     }
 
     private fun findPostalCodeByCodeFailBlockCallback(msg: Message)
     {
-    }
+        val ho = msg.obj as FailHandlerObject;
 
+        ho.failBlock(ho.ex)
+    }
 
     @Provides
     fun provideHandler() : Handler = object: Handler(Looper.myLooper()!!) {

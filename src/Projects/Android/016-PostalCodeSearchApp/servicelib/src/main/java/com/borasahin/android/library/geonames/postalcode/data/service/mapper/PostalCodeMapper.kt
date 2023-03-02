@@ -4,9 +4,24 @@ import com.borasahin.android.library.geonames.postalcode.data.service.dto.Postal
 import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeSaveDTO
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCode
 import javax.inject.Inject
+import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCode as PostalCodeGeonames
 
 class PostalCodeMapper @Inject constructor() : IPostalCodeMapper {
     override fun toPostalCodeDTO(postalCode: PostalCode): PostalCodeDTO
+    {
+        return PostalCodeDTO().apply {
+            adminCode1 = postalCode.adminCode1
+            adminCode2 = postalCode.adminCode2
+            adminName1 = postalCode.adminName1
+            adminName2 = postalCode.adminName2
+            longitude = postalCode.longitude
+            latitude = postalCode.latitude
+            plate = postalCode.plate
+            placeName = postalCode.placeName
+        }
+    }
+
+    override fun toPostalCodeDTO(postalCode: PostalCodeGeonames): PostalCodeDTO
     {
         return PostalCodeDTO().apply {
             adminCode1 = postalCode.adminCode1
