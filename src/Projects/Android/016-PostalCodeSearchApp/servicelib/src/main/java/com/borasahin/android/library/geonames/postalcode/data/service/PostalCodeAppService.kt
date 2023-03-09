@@ -131,6 +131,6 @@ class PostalCodeAppService @Inject constructor() {
     fun savePostalCode(postalCodeDTOs: List<PostalCodeDTO>, resultBlock: (Boolean) -> Unit,
                        failBlock: (DataServiceException) -> Unit)
     {
-       //savePostalCode(postalCodeDTOs.map { postalCodeMapper. })
+       //TODO:
     }
 }

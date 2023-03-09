@@ -30,7 +30,7 @@ class PostalCodeInfoRepository @Inject constructor() : IPostalCodeInfoRepository
 
     override fun count(): Long
     {
-        db.rawQuery("select count(*) as count from $TABLE_NAME", arrayOf("count")).use {
+        db.rawQuery("select count(*) as count from $TABLE_NAME", arrayOf("")).use {
             it.moveToFirst()
             return it.getLong(0);
         }
