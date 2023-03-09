@@ -2,11 +2,11 @@ package org.csystem.android.app.geonames.postalcodesearch
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.borasahin.android.library.geonames.postalcode.data.service.PostalCodeAppService
 import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeDTO
-import com.borasahin.android.library.geonames.postalcode.data.service.mapper.geonames.IPostalCodeMapper
 import com.karandev.util.data.service.DataServiceException
 import dagger.hilt.android.AndroidEntryPoint
 import org.csystem.android.app.geonames.postalcodesearch.databinding.ActivityMainBinding
@@ -20,19 +20,40 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var postalCodeAppService: PostalCodeAppService
 
-    @Inject
-    lateinit var postalCodeMapper: IPostalCodeMapper
-
-    private fun findPostalCodesByCodeResultCallback(postalCodes: MutableIterable<PostalCodeDTO>)
+    private fun saveResultCallback(result: Boolean)
     {
-        val places = postalCodes.map { it.placeName }.toString()
+        Toast.makeText(this, if (result) "Success" else "Fail", Toast.LENGTH_LONG).show()
+    }
 
-        Toast.makeText(this, places, Toast.LENGTH_LONG).show()
+    private fun saveFailCallback(ex: Throwable)
+    {
+        Toast.makeText(this, ex.message, Toast.LENGTH_LONG).show()
+    }
+
+    private fun findPostalCodesByCodeResultCallback(postalCodes: MutableIterable<PostalCodeDTO>, found: Boolean)
+    {
+        if (postalCodes.count() > 0) {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.alert_dialog_title_text)
+                .setMessage(R.string.alert_dialog_message_text)
+                .setPositiveButton(R.string.alert_dialog_positive_button_text)
+                {_, _ -> postalCodeAppService.savePostalCode(postalCodes.toList(), {saveResultCallback(it)}) {saveFailCallback(it)} }
+                .setNegativeButton(R.string.alert_dialog_negative_button_text) {_, _ -> Toast.makeText(this, "No", Toast.LENGTH_SHORT).show()}
+                .setNeutralButton(R.string.alert_dialog_neutral_button_text) {_, _ -> Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show()}
+                .create()
+                .show()
+
+            val places = postalCodes.map { it.placeName }.toString()
+
+            Toast.makeText(this, places, Toast.LENGTH_LONG).show()
+        }
+        else
+            Toast.makeText(this, "No data", Toast.LENGTH_LONG).show()
     }
 
     private fun findPostalCodesByCodeFailCallback(ex: DataServiceException)
     {
-        Toast.makeText(this@MainActivity, ex.message, Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MainActivity, "${ex.cause?.javaClass?.name}${ex.message}", Toast.LENGTH_LONG).show()
     }
 
     private fun initBinding()
@@ -56,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     {
         try {
             postalCodeAppService.findPostalCodesByCode(mBinding.viewModel!!.code.toInt(),
-                {findPostalCodesByCodeResultCallback(it)}) {findPostalCodesByCodeFailCallback(it)}
+                {it, found -> findPostalCodesByCodeResultCallback(it, found)}) {findPostalCodesByCodeFailCallback(it)}
         }
         catch (ex: NumberFormatException) {
             Toast.makeText(this, "Invalid code value!...", Toast.LENGTH_LONG).show()

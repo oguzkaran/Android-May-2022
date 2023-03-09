@@ -58,10 +58,13 @@ class PostalCodeRepository @Inject constructor() : IPostalCodeRepository {
 
     override fun findByCode(code: Int) : MutableIterable<PostalCode>
     {
-        val projection = arrayOf(POSTAL_CODE_ID, CODE, ADMIN_CODE1, ADMIN_CODE2, ADMIN_NAME1, ADMIN_NAME2, LONGITUDE, LATITUDE, PLACE_NAME, PLACE_NAME)
-
-        db.rawQuery("select * from $TABLE_NAME where code = $code", projection)
-            .use {return findByCodeQueryCallback(it)}
+        try {
+            db.rawQuery("select * from $TABLE_NAME where code = ?", arrayOf("$code"))
+                .use { return findByCodeQueryCallback(it) }
+        }
+        catch (ex: Throwable) {
+            throw ex
+        }
     }
 
     override fun <S : PostalCode?> save(postalCode: S): S

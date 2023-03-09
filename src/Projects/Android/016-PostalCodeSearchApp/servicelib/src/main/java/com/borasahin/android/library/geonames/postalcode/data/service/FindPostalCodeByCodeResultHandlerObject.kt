@@ -4,4 +4,5 @@ import com.borasahin.android.library.geonames.postalcode.data.service.dto.Postal
 import com.karandev.util.data.service.DataServiceException
 
 internal data class FindPostalCodeByCodeResultHandlerObject(var result: MutableIterable<PostalCodeDTO>,
-                                                            var resultBlock: (MutableIterable<PostalCodeDTO>) -> Unit)
+                                                            var foundInDB: Boolean,
+                                                            var resultBlock: (MutableIterable<PostalCodeDTO>, Boolean) -> Unit)

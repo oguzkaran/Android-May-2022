@@ -33,7 +33,7 @@ class PostalCodeAppServiceHandlerModule @Inject constructor() {
     {
         val ho = msg.obj as FindPostalCodeByCodeResultHandlerObject
 
-        ho.resultBlock(ho.result)
+        ho.resultBlock(ho.result, ho.foundInDB)
     }
 
     private fun findPostalCodeByCodeFailBlockCallback(msg: Message)
@@ -53,8 +53,6 @@ class PostalCodeAppServiceHandlerModule @Inject constructor() {
                 3 -> findPostalCodeByCodeResultBlockCallback(msg)
                 4 -> findPostalCodeByCodeFailBlockCallback(msg)
             }
-
-            var ho = msg.obj as SavePostalCodeResultHandlerObject
         }
     }
 }

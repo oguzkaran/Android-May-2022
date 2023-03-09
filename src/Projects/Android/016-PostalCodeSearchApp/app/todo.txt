@@ -1,7 +1,7 @@
 Uygulamayı aşağıdaki açıklamalara göre düzenleyiniz
-- Posta kodu bilgileri bir option olarak yerel veritabanına eklenecektir
++ Posta kodu bilgileri bir option olarak yerel veritabanına eklenecektir
 
-- Posta kodu sorgulanırken önce yerel veritabanında var mı diye bakılacak, eğer varsa bilgiler
++ Posta kodu sorgulanırken önce yerel veritabanında var mı diye bakılacak, eğer varsa bilgiler
 oradan alınacaktır. Yoksa servisten alınacak ve tekrar optional olarak kaydedilebilecektir
 
 - Posta kodu yerel veritabanından alınmışsa bu durumda optional olarak kaydedilme bilgisini
@@ -9,7 +9,7 @@ kullanıcı görmeyecektir
 
 + Uygulamada geonameslib kütüphanesinde servisten bilgiler alınacaktır
 
-- List All Places button'u için belirlenen posta koduna ilişkin tüm bilgiler listview'a eklenecektir
+- Find Places button'u için belirlenen posta koduna ilişkin tüm bilgiler listview'a eklenecektir
 
 - Eğer hiç veri gelmezse uygun mesaj (string.xml içerisinde) kullanıcıya Toast olarak verilecektir
 
@@ -20,17 +20,18 @@ detayları gösterilecektir
 
 - Tasarımı genel istekleri yerine getirmek koşuluyla dilediğiniz gibi belirleyebilirsiniz
 
-- Uygulamayı mümkün olduğunca databinding kullanarak yapmaya çalışınız
++ Uygulamayı mümkün olduğunca databinding kullanarak yapmaya çalışınız
 
 + Uygulamada IPostalCodeSearch arayüz referansını DI olarak tasarlayınız
+
++ postal_code_info tablosunda query_count alanı ve query_date_time isimli alanlar her bir
+ sorguda güncellenecektir
+
++ postal_code_info tablosunda source_service isimli bir alanda bilginin hangi servisten alındığı
+tutulacaktır. Burada yazılmış olan servis için "csd", geonames için de "geonames" kullanılacaktır
 
 - Uygulamada, burada yazılan servis çalışmıyorsa geonames'den sorgulama yaoılacak ve yerel veritabanı
 anlamında yine aynı senaryo uygulanacaktır
 
-- postal_code_info tablosunda query_count alanı ve query_date_time isimli alanlar her bir
- sorguda güncellenecektir
-
-- postal_code_info tablosunda source_service isimli bir alanda bilginin hangi servisten alındığı
-tutulacaktır. Burada yazılmış olan servis için "csd", geonames için de "geonames" kullanılacaktır
 
 
