@@ -23,6 +23,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        resources {
+            excludes += ['application.properties', 'META-INF/INDEX.LIST']
+        }
+    }
+
+
     compileOptions {
         coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_11
@@ -45,7 +53,8 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.0'
 
     implementation 'com.karandev:com-karandev-util-data:1.0.0'
-    implementation 'com.karandev:com-karandev-util-retrofit:1.0.0'
+    implementation 'com.karandev:com-karandev-util-datetime:1.0.0'
+
 
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
@@ -53,9 +62,14 @@ dependencies {
     implementation project(path: ":repositorylib")
     implementation project(path: ":geonameslib")
 
+    implementation('com.squareup.retrofit2:retrofit:2.9.0') {
+        exclude module: 'okhttp'
+    }
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.1'
+
+    implementation 'com.karandev:com-karandev-util-retrofit:1.0.0'
 }
 
 kapt {

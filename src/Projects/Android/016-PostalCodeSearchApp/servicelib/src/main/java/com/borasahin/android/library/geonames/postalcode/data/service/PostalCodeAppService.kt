@@ -1,18 +1,15 @@
 package com.borasahin.android.library.geonames.postalcode.data.service
 
 import android.os.Handler
-import android.widget.Toast
 import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeDTO
 import com.borasahin.android.library.geonames.postalcode.data.service.dto.PostalCodeSaveDTO
 import com.borasahin.android.library.geonames.postalcode.data.service.mapper.IPostalCodeMapper
 import com.erbaris.android.library.geonames.postalcode.data.dal.PostalCodeAppHelper
 import com.erbaris.android.library.geonames.postalcode.data.entity.PostalCodeInfo
 import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.api.IPostalCodeSearch
-import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCode
 import com.gokhandiyaroglu.android.library.geonames.postalcodesearch.retrofit.data.entity.PostalCodes
 import com.karandev.util.data.repository.exception.RepositoryException
 import com.karandev.util.data.service.DataServiceException
-import com.karandev.util.retrofit.RetrofitUtil
 import com.karandev.util.retrofit.putQueue
 import retrofit2.Call
 import retrofit2.Response
@@ -122,14 +119,14 @@ class PostalCodeAppService @Inject constructor() {
         threadPool.execute{findPostalCodesByCodeThreadCallback(code, resultBlock, failBlock)}
     }
 
-    fun savePostalCode(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
+    fun savePostalCodeSave(postalCodeSaveDTOs: List<PostalCodeSaveDTO>, resultBlock: (Boolean) -> Unit,
                        failBlock: (DataServiceException) -> Unit)
     {
         threadPool.execute{savePostalCodeThreadCallBack(postalCodeSaveDTOs, resultBlock, failBlock)}
     }
 
-    fun savePostalCode(postalCodeDTOs: List<PostalCodeDTO>, resultBlock: (Boolean) -> Unit,
-                       failBlock: (DataServiceException) -> Unit)
+    fun savePostalCodeDTO(postalCodeDTOs: List<PostalCodeDTO>, resultBlock: (Boolean) -> Unit,
+                          failBlock: (DataServiceException) -> Unit)
     {
        //TODO:
     }

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 .setTitle(R.string.alert_dialog_title_text)
                 .setMessage(R.string.alert_dialog_message_text)
                 .setPositiveButton(R.string.alert_dialog_positive_button_text)
-                {_, _ -> postalCodeAppService.savePostalCode(postalCodes.toList(), {saveResultCallback(it)}) {saveFailCallback(it)} }
+                {_, _ -> postalCodeAppService.savePostalCodeDTO(postalCodes.toList(), {saveResultCallback(it)}) {saveFailCallback(it)} }
                 .setNegativeButton(R.string.alert_dialog_negative_button_text) {_, _ -> Toast.makeText(this, "No", Toast.LENGTH_SHORT).show()}
                 .setNeutralButton(R.string.alert_dialog_neutral_button_text) {_, _ -> Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show()}
                 .create()
