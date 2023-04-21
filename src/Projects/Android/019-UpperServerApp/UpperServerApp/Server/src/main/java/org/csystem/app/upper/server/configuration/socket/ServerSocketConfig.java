@@ -15,5 +15,4 @@ public class ServerSocketConfig {
     {
         return new ServerSocket(port, backlog);
     }
-
 }
