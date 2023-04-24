@@ -85,7 +85,13 @@ public final class TcpUtil {
 		return result;
 	}
 
-	public static Optional<ServerSocket> getFirstAvailableSocket(int minPort, int maxPort)
+	/**
+	* @author Oğuz karan
+	* @return Returns the first available port in the range [minPort, maxPort]
+	* @param minPort is first port (inclusive)
+	 * @param maxPort if last port (inclusive)
+	 */
+	public static Optional<ServerSocket> getFirstAvailablePort(int minPort, int maxPort)
 	{
 		Optional<ServerSocket> result = Optional.empty();
 
