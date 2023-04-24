@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Server.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 23.04.2023
+	LAST UPDATE : 24.04.2023
 
 	Multi-client (concurrent) server class that support fluent pattern
 
@@ -27,14 +27,14 @@ public class Server implements Closeable {
     private final ServerSocket m_serverSocket;
     private IRunnable m_acceptClientRunnable;
     private Consumer<Throwable> m_serverSocketExceptionConsumer;
-    private IConsumer<Socket> m_socketConsumer;
+    private IConsumer<Socket> m_clientSocketConsumer;
     private Consumer<IOException> m_clientIOExceptionConsumer;
     private Consumer<Throwable> m_clientExceptionConsumer;
 
     private void handleClient(Socket socket)
     {
         try (socket) {
-            m_socketConsumer.accept(socket);
+            m_clientSocketConsumer.accept(socket);
         }
         catch (IOException ex) {
             m_clientIOExceptionConsumer.accept(ex);
@@ -61,20 +61,25 @@ public class Server implements Closeable {
         }
     }
 
-    public Server(int port) throws IOException
-    {
-        this(port, 50);
-    }
-
-    public Server(int port, int backlog) throws IOException
-    {
-        this(port, backlog, null);
-    }
-
-    public Server(int port, int backlog, InetAddress bindAddr) throws IOException
+    private Server(int port, int backlog, InetAddress bindAddr) throws IOException
     {
         m_threadPool = Executors.newCachedThreadPool();
         m_serverSocket = new ServerSocket(port, backlog, bindAddr);
+    }
+
+    public static Server of(int port) throws IOException
+    {
+        return of(port, 50);
+    }
+
+    public static Server of(int port, int backlog) throws IOException
+    {
+        return of(port, backlog, null);
+    }
+
+    public static Server of(int port, int backlog, InetAddress bindAddr) throws IOException
+    {
+        return new Server(port, backlog, bindAddr);
     }
 
     public Server setAcceptClientRunnable(IRunnable acceptClientRunnable)
@@ -91,9 +96,9 @@ public class Server implements Closeable {
         return this;
     }
 
-    public Server setSocketConsumer(IConsumer<Socket> socketConsumer)
+    public Server setClientSocketConsumer(IConsumer<Socket> clientSocketConsumer)
     {
-        m_socketConsumer = socketConsumer;
+        m_clientSocketConsumer = clientSocketConsumer;
 
         return this;
     }

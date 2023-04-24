@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
 
 @Component
 public class Client {
     private final ApplicationContext m_context;
 
+    private final ExecutorService m_threadPool;
 
     private void sendAndReceive(String text)
     {
@@ -31,9 +33,11 @@ public class Client {
         }
     }
 
-    public Client(ApplicationContext context)
+
+    public Client(ApplicationContext context, ExecutorService threadPool)
     {
         m_context = context;
+        m_threadPool = threadPool;
     }
 
     public void run()
@@ -46,5 +50,7 @@ public class Client {
             if ("quit".equals(text))
                 break;
         }
+
+        m_threadPool.shutdown();
     }
 }

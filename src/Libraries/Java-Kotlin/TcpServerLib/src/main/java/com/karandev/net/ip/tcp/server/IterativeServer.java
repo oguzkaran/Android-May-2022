@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Server.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 23.04.2023
+	LAST UPDATE : 24.04.2023
 
 	Aynchronous Single-client (iterative) server class that support fluent pattern
 
@@ -61,20 +61,25 @@ public class IterativeServer implements Closeable {
         }
     }
 
-    public IterativeServer(int port) throws IOException
-    {
-        this(port, 50);
-    }
-
-    public IterativeServer(int port, int backlog) throws IOException
-    {
-        this(port, backlog, null);
-    }
-
-    public IterativeServer(int port, int backlog, InetAddress bindAddr) throws IOException
+    private IterativeServer(int port, int backlog, InetAddress bindAddr) throws IOException
     {
         m_threadPool = Executors.newSingleThreadExecutor();
         m_serverSocket = new ServerSocket(port, backlog, bindAddr);
+    }
+
+    public static IterativeServer of(int port) throws IOException
+    {
+        return of(port, 50);
+    }
+
+    public static IterativeServer of(int port, int backlog) throws IOException
+    {
+        return of(port, backlog, null);
+    }
+
+    public static IterativeServer of(int port, int backlog, InetAddress bindAddr) throws IOException
+    {
+        return new IterativeServer(port, backlog, bindAddr);
     }
 
     public IterativeServer setAcceptClientRunnable(IRunnable acceptClientRunnable)
