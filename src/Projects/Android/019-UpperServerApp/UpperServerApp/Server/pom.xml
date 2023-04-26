@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>Server</artifactId>
+    <artifactId>UpperServer</artifactId>
     <version>1.0.0</version>
     <name>Server</name>
     <description>Server</description>

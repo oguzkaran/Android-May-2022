@@ -1,5 +1,0 @@
-com/karandev/net/ip/tcp/server/Server.class
-com/karandev/net/ip/tcp/server/functional/IRunnable.class
-com/karandev/net/ip/tcp/server/functional/ISupplier.class
-com/karandev/net/ip/tcp/server/IterativeServer.class
-com/karandev/net/ip/tcp/server/functional/IConsumer.class

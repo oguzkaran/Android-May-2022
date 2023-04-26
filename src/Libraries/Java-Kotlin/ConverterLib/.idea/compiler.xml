@@ -6,21 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="UpperServer" />
-        <module name="ConsoleClient" />
+        <module name="ConverterLib" />
+        <module name="org-csystem-util" />
+        <module name="UtilLib" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="AnimalHospiatalServiceApp" target="17" />
-      <module name="GenericParenProject" target="17" />
-      <module name="Server" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ConsoleClient" options="-parameters" />
-      <module name="Server" options="-parameters" />
-      <module name="UpperServer" options="-parameters" />
+      <module name="ConverterLib" options="-parameters" />
     </option>
   </component>
 </project>
