@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private fun upperCallback()
     {
         mBinding.result = ""
+
         try {
             Socket(mBinding.host, 50515).use {
                 val bw = BufferedWriter(OutputStreamWriter(it.getOutputStream(), StandardCharsets.UTF_8))

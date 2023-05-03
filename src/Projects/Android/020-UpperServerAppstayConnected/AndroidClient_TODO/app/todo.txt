@@ -1,0 +1,9 @@
+- MainActivity'de bir connect işlemini yapan button (veya istediğiniz bir görsel) olacaktır.
+- Button'a click yapıldığında şu an bulunan MainActivity'deki tasarım ayrı bir activity'de açılacaktır.
+- Bağlantılı olarak çalışan server'la ilgili işlemler yapılacaktır.
+- EditText'e quit yazıldığında doğrudan işlemin bitmemesi için quit yazısı [quit] biçiminde
+gönderilecek ve dönen cevap []'ler olmadan yazılacaktır
+- İşlemin bitirilmesi için ayrı button olacaktır. Bu button ile birlikte quit mesajı gönderilecektir
+- İşlem yapılırken karşı bağlantı kopmuşsa MainActivity'ye uygun mesaj verilerek geri dönülecektir
+- UI tasarımını dilediğiniz gibi değiştirebilirsiniz
+- Örnekte thread module'ünü değiştirmenize gerek yoktur

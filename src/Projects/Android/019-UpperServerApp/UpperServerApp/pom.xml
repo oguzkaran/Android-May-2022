@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>org.csystem</groupId>
-    <artifactId>UpperServeApp</artifactId>
+    <artifactId>UpperServerApp</artifactId>
     <version>1.0.0</version>
-    <name>UpperServeApp</name>
+    <name>UpperServerApp</name>
     <packaging>pom</packaging>
 
     <repositories>

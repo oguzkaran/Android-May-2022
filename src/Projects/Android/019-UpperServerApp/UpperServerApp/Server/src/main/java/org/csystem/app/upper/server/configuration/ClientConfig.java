@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 @Configuration
 public class ClientConfig {
-    public void clientSocketConsumerCallback(Socket socket, int clientSocketTimeout) throws IOException
+    private void clientSocketConsumerCallback(Socket socket, int clientSocketTimeout) throws IOException
     {
         socket.setSoTimeout(clientSocketTimeout);
         Console.writeLine("Client connected: %s:%d Local Port: %d", socket.getInetAddress().getHostAddress(), socket.getPort(), socket.getLocalPort());
