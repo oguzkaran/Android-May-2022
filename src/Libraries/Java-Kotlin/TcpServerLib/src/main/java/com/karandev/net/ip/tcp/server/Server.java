@@ -1,9 +1,9 @@
 /*----------------------------------------------------------------------
 	FILE        : Server.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 24.04.2023
+	LAST UPDATE : 05.05.2023
 
-	Multi-client (concurrent) server class that support fluent pattern
+	Base class of server
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
@@ -23,13 +23,14 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 public class Server implements Closeable {
-    private final ExecutorService m_threadPool;
-    private final ServerSocket m_serverSocket;
     private IRunnable m_acceptClientRunnable;
     private Consumer<Throwable> m_serverSocketExceptionConsumer;
     private IConsumer<Socket> m_clientSocketConsumer;
     private Consumer<IOException> m_clientIOExceptionConsumer;
     private Consumer<Throwable> m_clientExceptionConsumer;
+
+    protected final ExecutorService threadPool;
+    protected final ServerSocket serverSocket;
 
     private void handleClient(Socket socket)
     {
@@ -44,16 +45,16 @@ public class Server implements Closeable {
         }
     }
 
-    private void serverThreadCallback()
+    protected void concurrentServerThreadCallback()
     {
         try {
             while (true) {
                 if (m_acceptClientRunnable != null)
                     m_acceptClientRunnable.run();
 
-                var clientSocket = m_serverSocket.accept();
+                var clientSocket = serverSocket.accept();
 
-                m_threadPool.execute(() -> handleClient(clientSocket));
+                threadPool.execute(() -> handleClient(clientSocket));
             }
         }
         catch (Throwable ex) {
@@ -61,10 +62,27 @@ public class Server implements Closeable {
         }
     }
 
-    private Server(int port, int backlog, InetAddress bindAddr) throws IOException
+    protected void iterativeServerThreadCallback()
     {
-        m_threadPool = Executors.newCachedThreadPool();
-        m_serverSocket = new ServerSocket(port, backlog, bindAddr);
+        try {
+            while (true) {
+                if (m_acceptClientRunnable != null)
+                    m_acceptClientRunnable.run();
+
+                var clientSocket = serverSocket.accept();
+
+                handleClient(clientSocket);
+            }
+        }
+        catch (Throwable ex) {
+            m_serverSocketExceptionConsumer.accept(ex);
+        }
+    }
+
+    protected Server(int port, int backlog, InetAddress bindAddr) throws IOException
+    {
+        threadPool = Executors.newCachedThreadPool();
+        serverSocket = new ServerSocket(port, backlog, bindAddr);
     }
 
     public static Server of(int port) throws IOException
@@ -119,7 +137,7 @@ public class Server implements Closeable {
 
     public Server run()
     {
-        m_threadPool.execute(this::serverThreadCallback);
+        threadPool.execute(this::concurrentServerThreadCallback);
 
         return this;
     }
@@ -127,7 +145,7 @@ public class Server implements Closeable {
     @Override
     public void close() throws IOException
     {
-        m_serverSocket.close();
-        m_threadPool.shutdown();
+        serverSocket.close();
+        threadPool.shutdown();
     }
 }

@@ -22,7 +22,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
-public class IterativeServer implements Closeable {
+public class IterativeServer extends Server implements Closeable {
     private final ExecutorService m_threadPool;
     private final ServerSocket m_serverSocket;
     private IRunnable m_acceptClientRunnable;
@@ -63,6 +63,7 @@ public class IterativeServer implements Closeable {
 
     private IterativeServer(int port, int backlog, InetAddress bindAddr) throws IOException
     {
+        super(port, backlog, bindAddr);
         m_threadPool = Executors.newSingleThreadExecutor();
         m_serverSocket = new ServerSocket(port, backlog, bindAddr);
     }

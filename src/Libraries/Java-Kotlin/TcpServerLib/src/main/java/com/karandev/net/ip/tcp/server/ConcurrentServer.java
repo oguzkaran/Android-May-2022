@@ -13,7 +13,6 @@ package com.karandev.net.ip.tcp.server;
 import com.karandev.net.ip.tcp.server.functional.IConsumer;
 import com.karandev.net.ip.tcp.server.functional.IRunnable;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -44,7 +43,7 @@ public class ConcurrentServer extends Server {
         }
     }
 
-    private void serverThreadCallback()
+    protected void concurrentServerThreadCallback()
     {
         try {
             while (true) {
@@ -61,8 +60,26 @@ public class ConcurrentServer extends Server {
         }
     }
 
+    protected void iterativeServerThreadCallback()
+    {
+        try {
+            while (true) {
+                if (m_acceptClientRunnable != null)
+                    m_acceptClientRunnable.run();
+
+                var clientSocket = m_serverSocket.accept();
+
+                handleClient(clientSocket);
+            }
+        }
+        catch (Throwable ex) {
+            m_serverSocketExceptionConsumer.accept(ex);
+        }
+    }
+
     private ConcurrentServer(int port, int backlog, InetAddress bindAddr) throws IOException
     {
+        super(port, backlog, bindAddr);
         m_threadPool = Executors.newCachedThreadPool();
         m_serverSocket = new ServerSocket(port, backlog, bindAddr);
     }
@@ -80,54 +97,5 @@ public class ConcurrentServer extends Server {
     public static ConcurrentServer of(int port, int backlog, InetAddress bindAddr) throws IOException
     {
         return new ConcurrentServer(port, backlog, bindAddr);
-    }
-
-    public ConcurrentServer setAcceptClientRunnable(IRunnable acceptClientRunnable)
-    {
-        m_acceptClientRunnable = acceptClientRunnable;
-
-        return this;
-    }
-
-    public ConcurrentServer setServerSocketExceptionConsumer(Consumer<Throwable> serverSocketExceptionConsumer)
-    {
-        m_serverSocketExceptionConsumer = serverSocketExceptionConsumer;
-
-        return this;
-    }
-
-    public ConcurrentServer setClientSocketConsumer(IConsumer<Socket> clientSocketConsumer)
-    {
-        m_clientSocketConsumer = clientSocketConsumer;
-
-        return this;
-    }
-
-    public ConcurrentServer setClientIOExceptionConsumer(Consumer<IOException> clientIOExceptionConsumer)
-    {
-        m_clientIOExceptionConsumer = clientIOExceptionConsumer;
-
-        return this;
-    }
-
-    public ConcurrentServer setClientExceptionConsumer(Consumer<Throwable> clientExceptionConsumer)
-    {
-        m_clientExceptionConsumer = clientExceptionConsumer;
-
-        return this;
-    }
-
-    public ConcurrentServer run()
-    {
-        m_threadPool.execute(this::serverThreadCallback);
-
-        return this;
-    }
-
-    @Override
-    public void close() throws IOException
-    {
-        m_serverSocket.close();
-        m_threadPool.shutdown();
     }
 }
