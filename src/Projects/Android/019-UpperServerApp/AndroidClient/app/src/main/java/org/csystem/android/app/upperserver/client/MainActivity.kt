@@ -5,6 +5,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.csystem.android.app.upperserver.client.databinding.ActivityMainBinding
 import org.csystem.android.app.upperserver.client.viewmodel.MainActivityViewModel
 import java.io.BufferedReader
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         mBinding.result = ""
 
         try {
+
             Socket(mBinding.host, 50515).use {
                 val bw = BufferedWriter(OutputStreamWriter(it.getOutputStream(), StandardCharsets.UTF_8))
                 val br = BufferedReader(InputStreamReader(it.getInputStream(), StandardCharsets.UTF_8))
@@ -66,7 +70,10 @@ class MainActivity : AppCompatActivity() {
         initialize()
     }
 
-    fun onUpperButtonClicked() = threadPool.execute {upperCallback()}
+    fun onUpperButtonClicked()
+    {
+        CoroutineScope(Dispatchers.IO).launch { upperCallback() }
+    }
 
     fun onExitButtonClicked() = finish()
 }
