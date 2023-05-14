@@ -7,7 +7,9 @@ import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.csystem.android.app.upperserver.client.databinding.ActivityMainBinding
 import org.csystem.android.app.upperserver.client.viewmodel.MainActivityViewModel
 import java.io.BufferedReader
@@ -17,22 +19,16 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.net.Socket
 import java.nio.charset.StandardCharsets
-import java.util.concurrent.ExecutorService
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
 
-    @Inject
-    lateinit var threadPool : ExecutorService
-
-    private fun upperCallback()
+    private suspend fun upperCallback()
     {
         mBinding.result = ""
 
         try {
-
             Socket(mBinding.host, 50515).use {
                 val bw = BufferedWriter(OutputStreamWriter(it.getOutputStream(), StandardCharsets.UTF_8))
                 val br = BufferedReader(InputStreamReader(it.getInputStream(), StandardCharsets.UTF_8))
@@ -43,10 +39,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
         catch (ex: IOException) {
-            runOnUiThread {Toast.makeText(this, "Problem occurs while send/receive", Toast.LENGTH_LONG).show()}
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@MainActivity, "Problem occurs while send/receive", Toast.LENGTH_LONG).show()
+            }
         }
         catch (ex: Throwable) {
-            runOnUiThread {Toast.makeText(this, "General problem occurs. Try again later", Toast.LENGTH_LONG).show()}
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@MainActivity, "General problem occurs. Try again later", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
