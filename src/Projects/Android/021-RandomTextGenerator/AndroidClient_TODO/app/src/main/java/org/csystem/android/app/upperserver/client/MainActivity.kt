@@ -5,10 +5,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.csystem.android.app.upperserver.client.databinding.ActivityMainBinding
 import org.csystem.android.app.upperserver.client.viewmodel.MainActivityViewModel
 import java.io.BufferedReader
@@ -18,36 +14,30 @@ import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.net.Socket
 import java.nio.charset.StandardCharsets
+import java.util.concurrent.ExecutorService
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityMainBinding
-    private fun socketCllback(socket: Socket)
-    {
-        val bw = BufferedWriter(OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))
-        val br = BufferedReader(InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8))
 
-        bw.write(mBinding.text + "\r\n")
-        bw.flush()
-        mBinding.result = br.readLine().trim()
-    }
+    @Inject
+    lateinit var threadPool : ExecutorService
 
-    private suspend fun upperCallback()
+    private fun upperCallback()
     {
         mBinding.result = ""
 
         try {
-            Socket(mBinding.host, 50515).use {socketCllback(it)}
+            Socket(mBinding.host, 50517).use {
+                
+            }
         }
         catch (ex: IOException) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(this@MainActivity, "Problem occurs while send/receive", Toast.LENGTH_LONG).show()
-            }
+            runOnUiThread {Toast.makeText(this, "Problem occurs while send/receive", Toast.LENGTH_LONG).show()}
         }
         catch (ex: Throwable) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(this@MainActivity, "General problem occurs. Try again later", Toast.LENGTH_LONG).show()
-            }
+            runOnUiThread {Toast.makeText(this, "General problem occurs. Try again later", Toast.LENGTH_LONG).show()}
         }
     }
 
@@ -71,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         initialize()
     }
 
-    fun onUpperButtonClicked() = CoroutineScope(Dispatchers.IO).launch { upperCallback() }
+    fun onUpperButtonClicked() = threadPool.execute {upperCallback()}
 
     fun onExitButtonClicked() = finish()
 }
