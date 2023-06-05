@@ -7,7 +7,9 @@
         <import type="org.csystem.android.app.upperserver.client.viewmodel.MainActivityViewModel"/>
         <variable type="MainActivityViewModel" name = "viewModel"/>
         <variable type="String" name = "host"/>
-        <variable type="String" name = "text"/>
+        <variable type="String" name = "countStr"/>
+        <variable type="String" name = "minStr"/>
+        <variable type="String" name = "boundStr"/>
         <variable type="String" name = "result"/>
     </data>
 
@@ -26,14 +28,28 @@
             android:text="@={host}"/>
 
         <EditText
-            android:id="@+id/editTextText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="@string/edittext_text_hint_text"
-            android:text="@={text}"/>
+            android:hint="@string/edittext_count_hint_text"
+            android:text="@={countStr}"/>
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/edittext_min_hint_text"
+            android:text="@={minStr}"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="@string/edittext_bound_hint_text"
+            android:text="@={boundStr}"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

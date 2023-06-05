@@ -5,9 +5,8 @@ import org.csystem.util.console.Console;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutorService;
 
 @Component
@@ -31,6 +30,7 @@ public class Client {
                 TcpUtil.sendInt(socket, count);
                 if (TcpUtil.receiveInt(socket) == 0) {
                     Console.writeLine("Invalid count");
+                    Console.writeLine("Maximum value of count is %d", TcpUtil.receiveInt(socket));
                     continue;
                 }
 
@@ -38,6 +38,8 @@ public class Client {
                 TcpUtil.sendInt(socket, bound);
                 if (TcpUtil.receiveInt(socket) == 0) {
                     Console.writeLine("Invalid min/bound value");
+                    Console.writeLine("Minimum value is %d", TcpUtil.receiveInt(socket));
+                    Console.writeLine("Maximum value of bound is %d", TcpUtil.receiveInt(socket));
                     continue;
                 }
                 Console.writeLine("Reading texts");

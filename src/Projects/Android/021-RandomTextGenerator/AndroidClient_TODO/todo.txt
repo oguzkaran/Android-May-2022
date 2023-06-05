@@ -1,0 +1,6 @@
+- MainActivity içerisinde adapter binding yaparak text'leri listview'a ekleyiniz.
+
+- Server sınırlar dışındaki parametreler için sınır değerleri de gönderecek şekilde yazılmıştır. Client
+ programı buna göre düzenleyiniz. Bunun için ConsoleClient programından yararlanabilirsiniz.
+
+- Uygulama coroutine kullanılacak şekilde düzenlenecektir.

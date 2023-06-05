@@ -34,6 +34,7 @@ public class ClientConfig {
 
         if (count > m_maxCount || count < 1) {
             TcpUtil.sendInt(socket, 0);
+            TcpUtil.sendInt(socket, m_maxCount);
             return;
         }
 
@@ -44,6 +45,8 @@ public class ClientConfig {
 
         if (bound > m_maxBound || min >= bound || min < 1) {
             TcpUtil.sendInt(socket, 0);
+            TcpUtil.sendInt(socket, 1);
+            TcpUtil.sendInt(socket, m_maxBound);
             return;
         }
 
