@@ -1,0 +1,3 @@
+- MainActivity içerisinde adapter binding yaparak text'leri listview'a ekleyiniz.
+
+- Uygulama coroutine kullanılacak şekilde düzenlenecektir.

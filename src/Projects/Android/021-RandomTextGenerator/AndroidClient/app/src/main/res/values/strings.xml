@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">UpperClient</string>
+    <string name="button_upper_text">OK</string>
+    <string name="button_exit_text">Exit</string>
+    <string name="edittext_host_hint_text">Input host</string>
+    <string name="edittext_count_hint_text">Input count</string>
+    <string name="edittext_min_hint_text">Input minimum value</string>
+    <string name="edittext_bound_hint_text">Input bound value</string>
+    <string name="switch_append_text">Append</string>
+</resources>

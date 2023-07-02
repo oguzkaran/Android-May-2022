@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">RandomTextGeneratorApp</string>
-    <string name="splash_text">C ve Sistem Programcıları derneği</string>
-    <string name="butto_add_text">Add</string>
-    <string name="butto_exit_text">Exit</string>
-</resources>
