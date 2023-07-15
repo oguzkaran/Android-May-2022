@@ -36,9 +36,9 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.csystem</groupId>
-            <artifactId>org-csystem-util-console</artifactId>
-            <version>6.2.0</version>
+            <groupId>com.karandev</groupId>
+            <artifactId>com-karandev-util-console</artifactId>
+            <version>35.0.0</version>
         </dependency>
 
     </dependencies>

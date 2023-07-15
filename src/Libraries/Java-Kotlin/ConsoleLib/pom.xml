@@ -11,18 +11,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.csystem</groupId>
-    <artifactId>UpperServerApp</artifactId>
-    <version>2.0.0</version>
-    <name>UpperServerApp</name>
-    <packaging>pom</packaging>
-
-    <repositories>
-        <repository>
-            <id>Android-May-2022</id>
-            <url>https://raw.github.com/oguzkaran/android-may-2022-maven-repo/main</url>
-        </repository>
-    </repositories>
+    <groupId>com.karandev</groupId>
+    <artifactId>com-karandev-util-console</artifactId>
+    <version>35.0.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -31,15 +22,17 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.karandev</groupId>
-            <artifactId>com-karandev-util-console</artifactId>
-            <version>35.0.0</version>
-        </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
