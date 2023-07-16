@@ -1,7 +1,7 @@
 package org.csystem.app.upper.server;
 
 import com.karandev.net.ip.tcp.server.Server;
-import org.csystem.util.console.Console;
+import com.karandev.util.console.Console;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;

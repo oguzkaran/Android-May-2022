@@ -1,7 +1,7 @@
 package org.csystem.app.upper.server.configuration;
 
 import com.karandev.net.ip.tcp.server.functional.IRunnable;
-import org.csystem.util.console.Console;
+import com.karandev.util.console.Console;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

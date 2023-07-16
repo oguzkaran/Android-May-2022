@@ -1,8 +1,8 @@
 package org.csystem.app.upper.server.configuration;
 
 import com.karandev.net.ip.tcp.server.functional.IConsumer;
+import com.karandev.util.console.Console;
 import com.karandev.util.net.TcpUtil;
-import org.csystem.util.console.Console;
 import org.csystem.util.string.StringUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

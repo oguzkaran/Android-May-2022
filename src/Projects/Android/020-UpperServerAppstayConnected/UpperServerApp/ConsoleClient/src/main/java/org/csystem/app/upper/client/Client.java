@@ -1,6 +1,6 @@
 package org.csystem.app.upper.client;
 
-import org.csystem.util.console.Console;
+import com.karandev.util.console.Console;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
