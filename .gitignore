@@ -37,3 +37,5 @@ src/.DS_Store
 .DS_Store
 src/Libraries/.DS_Store
 src/Libraries/Java-Kotlin/.DS_Store
+.DS_Store
+doc/.DS_Store
